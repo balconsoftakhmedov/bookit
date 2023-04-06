@@ -1,7 +1,7 @@
 # compiled output
 # dependencies
 /node_modules
-/assets/dist
+
 /libs/freemius
 
 # IDEs and editors
