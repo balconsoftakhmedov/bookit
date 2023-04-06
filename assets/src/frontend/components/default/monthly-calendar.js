@@ -14,7 +14,7 @@ export default {
               v-for="month in curMonths"
               @click="selectMonth(month)"
             >
-              <div class="title text-uppercase">{{ month.format(month_format) }}</div>
+              <div class="title text-uppercase">{{ month.format(month_format) }} </div>
               <div class="year">{{ month.year() }}</div>
             </div>
           </div>
@@ -205,7 +205,7 @@ export default {
       let currentMonth  = this.moment().month(month).year(year).startOf('month');
       let months        = [];
 
-      for ( let i = 0; i < 5; i++ ) {
+      for ( let i = 0; i < 1; i++ ) {
         months.push( currentMonth.clone().set('month', currentMonth.month() + i) );
       }
 
@@ -233,7 +233,7 @@ export default {
       let dayOfWeek   = ( 0 < firstDay.weekday() ) ? firstDay.weekday() : 7;
       let workingDays = this.getStaffWorkingDays();
       let startDate   = firstDay.clone();
-
+console.log('fff');
       startDate.set('date', firstDay.date() - dayOfWeek);
 
       let item, daysArray = [], weekArray = [], tempItem;
