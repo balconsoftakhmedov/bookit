@@ -127,7 +127,7 @@ export default {
         <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
       </div>
       <div class="stm-people">
-        <div v-if="!dayLoading" class="booking-form">
+        <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
           <template v-if="selectedService">
             <div class="form-group">
               <label>{{ translations.employee }}</label>
@@ -140,7 +140,7 @@ export default {
             <div class="form-group">
               <label>{{ translations.time }}</label>
               <select @change="handleChangeTimeSlot($event)">
-             
+                <option v-for="slot in staffTimeSlots" :value="slot.value">{{ slot.label }}</option>
               </select>
             </div>
             <div class="form-group">
