@@ -1,0 +1,714 @@
+/**
+ * Admin Theme
+ */
+
+$grey: #dddddd;
+$highlight-color: #ffd400;
+
+@mixin normal-font-family {
+  font-family: SFUIDisplay, sans-serif;
+}
+@mixin semibold-font-family {
+  font-family: SFUIDisplay-Semibold, sans-serif;
+}
+@mixin bold-font-family {
+  font-family: SFUIDisplay-Bold, sans-serif;
+}
+@mixin smaller-font {
+  font-size: 12px;
+  line-height: 14px;
+  @include normal-font-family;
+}
+@mixin medium-font-higher-height {
+  font-size: 14px;
+  line-height: 18px;
+  @include normal-font-family;
+}
+@mixin bigger-font {
+  font-size: 14px;
+  line-height: 16px;
+  @include semibold-font-family;
+}
+@mixin bigger-font-bold {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: normal;
+  @include bold-font-family;
+}
+@mixin medium-font {
+  font-size: 16px;
+  line-height: 18px;
+  @include normal-font-family;
+}
+@mixin big-font {
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: normal;
+  @include bold-font-family;
+}
+
+#bookit-dashboard-app {
+
+  &.admin {
+    .bookit-app-content {
+      .bookit-wrapper {
+        position: relative;
+        min-height: 300px;
+        margin-right: 20px;
+        border-radius: 4px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        background-color: $white;
+        padding: 0;
+
+        button,
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        textarea {
+          &:focus, &:hover {
+            resize: none;
+            outline: none;
+            box-shadow: none;
+          }
+          &:disabled{
+            box-shadow:none;
+          }
+        }
+        select {
+          &:focus, &:hover {
+            resize: none;
+            outline: none;
+            box-shadow: none;
+          }
+        }
+        /* Grid System for calendar header */
+        .calendar-header-navbar,
+        .topbar-filters {
+          display: flex;
+          justify-content: space-between;
+          div{
+            &.flex-start {
+              justify-content: left;
+              height: 60px;
+            }
+          }
+
+          .col-1{flex:0 0 auto;width:8.3333333333%}
+          .col-2{flex:0 0 auto;width:16.6666666667%}
+          .col-3{flex:0 0 auto;width:25%}
+          .col-4{flex:0 0 auto;width:33.3333333333%}
+          .col-5{flex:0 0 auto;width:41.6666666667%}
+          .col-6{flex:0 0 auto;width:50%}
+          .col-7{flex:0 0 auto;width:58.3333333333%}
+          .col-8{flex:0 0 auto;width:66.6666666667%}
+          .col-9{flex:0 0 auto;width:75%}
+          .col-10{flex:0 0 auto;width:83.3333333333%}
+          .col-11{flex:0 0 auto;width:91.6666666667%}
+          .col-12{flex:0 0 auto;width:100%}
+        }
+
+        a {
+          text-decoration: none;
+          transition: ease-in 0.1s;
+          &:active,
+          &:focus {
+            outline: 0;
+            box-shadow: none;
+          }
+        }
+
+        .bookit-header {
+          padding: 0px;
+          border-bottom: 1px solid $grey;
+          background-color: #f7f7f7;
+          height: 60px;
+          .topbar-filters {
+            max-width: 100%;
+            div.col-2, div.col-3{
+              padding-top: 10px;
+              &:first-of-type{
+                padding-left: 20px;
+              }
+            }
+            select{
+              height: 40px;
+              color: $black;
+              background-position: 97% 50%;
+              @include normal-font-family;
+            }
+            @import "treeselect";
+          }
+        }
+        /** Documentation */
+        @import 'documentation';
+        .admin-theme {
+          display: flex;
+          flex-wrap: wrap;
+          font-family: SFUIDisplay, sans-serif;
+
+          /** Loader **/
+          @import '../../frontend/components/loader';
+          .calendar {
+            width: 100%;
+            padding: 20px;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+
+            .header {
+              @include big-font;
+              color: $base-color;
+              line-height: 35px;
+              margin: 0 2px 17px;
+            }
+            .calendar-container {
+              /** Popup rules **/
+              @import 'popup';
+
+              @import 'button';
+
+              .topbar-filters{
+                div.form-group{
+                  width: 100%;
+                  label {
+                    display: block;
+                    text-transform: uppercase;
+                    @include small-font;
+                    color: $black;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    &.staff-services-label {
+                      @include smaller-font;
+                      display: flex;
+                      margin: 5px 0;
+                      &.working-hours-label {
+                        margin: 12px 0;
+                      }
+                    }
+                    &.send-notification-label {
+                      @include normal-font;
+                      font-weight: normal;
+                      display: flex;
+                      margin-top: 3%;
+                      text-transform: none;
+                      span{
+                        padding-right: 2%;
+                        font-weight: bold;
+                      }
+                    }
+                  }
+                }
+              }
+
+              /** Calendar **/
+              .calendar-header-navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                height: 60px;
+                width: 100%;
+
+
+                /** Calendar type buttons **/
+                .calendar-type-nav{
+                  position: relative;
+                  display: inline-flex;
+                  vertical-align: middle;
+                  background-color:#EEEEEE;
+                  width: 312px;
+                  height:42px;
+                  border-radius: 4px;
+                  font-size: 16px;
+                  font-weight: 400;
+                  line-height: normal;
+                  text-align: center;
+                  padding: 3px;
+                  box-sizing: border-box;
+
+                  .btn {
+                    position: relative;
+                    flex: 1 1 auto;
+                    width:auto;
+                    height: 36px;
+                    color:$black;
+                    border:none;
+                    opacity: 0.7;
+                    background: none;
+                    &:hover,&.active{
+                      background: #ffffff;
+                      border-radius: 4px;
+                      opacity: 1;
+                    }
+                  }
+                }
+
+                .date-nav{
+                  display: inline-flex;
+                  justify-content: center;
+                  .control-nav{
+                    position: relative;
+                    display: inline-flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    width: max-content;
+                    min-width: 300px;
+                  }
+                  .calendar-active-date{
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    min-width: 200px;
+                    text-align: center;
+                    background: #fff;
+                    cursor: pointer;
+                    outline: none;
+                    color:$black;
+                    font-size: 24px;
+                    font-weight: 700;
+                    padding:0 10px;
+                    &:after{
+                      content: "";
+                      position: relative;
+                      display: inline-block;
+                      left: 5px;
+                      border-width: 8px 5px 0 5px;
+                      border-style: solid;
+                      border-color: #000000 transparent;
+                    }
+                    &.active{
+                      &:after{
+                        border-width: 0 5px 8px 5px;
+                      }
+                    }
+
+                  }
+                  /** Calendar Dropdown **/
+                  .calendar-dropdown {
+                    /* Size & position */
+                    position: absolute;
+                    top: 3.2em;
+                    z-index: 2;
+                    width: 100%;
+                    background-color: #ffffff;
+                    border-radius: 4px;
+                    -moz-border-radius: 4px;
+                    -webkit-border-radius: 4px;
+                    color: $black;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    background-color: $white;
+
+                    &.day{
+                      width: 110%;
+                      z-index: 3;
+                      .info{
+                        position: relative;
+                        width: 100%;
+                        text-align: left;
+                        padding: 2%;
+                        p{
+                          padding-left: 1.5em;
+                          margin: 2%;
+                          color: #6c6c6c;
+                          @include smaller-font;
+                          span{
+                            height: 6px;
+                            width: 6px;
+                            border-radius: 50%;
+                            display: inline-block;
+                            margin-right: 3%;
+                            &.available{
+                              background-color: $base-color;
+                            }
+                            &.unavailable{
+                              background-color: $black;
+                            }
+                          }
+                        }
+                      }
+                    }
+                    .dropdown{
+                      display: inline-block;
+                      text-align: center;
+                      position: relative;
+                      width: 100%;
+
+                      .list{
+                        width: 90%;
+                        position: relative;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 5%;
+                        &.day{
+                          padding: 0;
+                          width: 100%;
+                        }
+                        .week-titles{
+                          position: relative;
+                          .title{
+                            font-family: "Montserrat Medium";
+                            color: #6c6c6c;
+                            position: relative;
+                            display: inline-flex;
+                            align-items: center;
+                            box-sizing: border-box;
+                            flex: 1 1 13%; /*grow | shrink | basis */
+                            justify-content: center;
+                            height: auto;
+                            width: 40px;
+                            margin: 1px;
+                          }
+                        }
+                        .week{
+                          height: 40px;
+                          margin: 1px;
+                          color: $base-color;
+                          position: relative;
+                          box-sizing: border-box;
+                        }
+                        .list-item{
+                          height: 40px;
+                          margin: 1%;
+                          background-color: rgba(0, 102, 102, 0.1);
+                          color: $base-color;
+                          position: relative;
+                          display: inline-flex;
+                          align-items: center;
+                          box-sizing: border-box;
+                          @include medium-font-higher-height;
+                          &:hover,&:focus{
+                            background-color: #B4D3D3;
+                            cursor: pointer;
+                          }
+                          &.month{
+                            flex: 1 1 30%; /*grow | shrink | basis */
+                            text-align: center;
+                            justify-content: center;
+                          }
+                          &.week{
+                            flex: 1 1 100%; /*grow | shrink | basis */
+                            justify-content: start;
+                            padding: 5%;
+                            b{ padding: 5%;}
+                          }
+                          &.day{
+                            flex: 1 1 13%; /*grow | shrink | basis */
+                            justify-content: center;
+                            height: 40px;
+                            width: 40px;
+                            margin: 1px;
+                            &.available{
+                              cursor: pointer;
+                            }
+                            &.inactive{
+                              opacity: 0.4;
+                              cursor: not-allowed;
+                            }
+                          }
+                          &.active{
+                            background-color: rgba(255, 212, 0, 0.2);
+                            border: 2px solid #fed430;
+                          }
+                        }
+                      }
+                      .slider-control{
+                        height: 26px;
+                        width: 90%;
+                        position: relative;
+                        display: inline-flex;
+                        justify-content: center;
+                        margin-top: 10px;
+                        &.day{
+                          width:100%;
+                        }
+                        div{
+                          position: relative;
+                          &.slider-title{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 70%;
+                            margin: 0 5%;
+                            padding-top: 1%;
+                            color:$black;
+                            background-color: #f7f7f7;
+                            @include normal-font;
+                          }
+                          &.next, &.prev {
+                            width: 26px;
+                            height: 26px;
+                            text-align: center;
+                            background-color: rgba(0, 102, 102, 0.1);
+                            i {
+                              display: inline-block;
+                              border-top: 6px solid transparent;
+                              border-bottom: 6px solid transparent;
+                              margin-top: 8px;
+
+                              &.left-icon {
+                                border-right: 8px solid $base-color;
+                              }
+                              &.right-icon {
+                                border-left: 8px solid $base-color;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    &.active{
+                      opacity: 1;
+                    }
+                  }
+
+                  .btn{
+                    border: none;
+                    color: white;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    height: 36px;
+                    width: 36px;
+                    border: 1px solid $grey;
+                    background:#ffffff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    i {
+                      display: inline-block;
+                      width: 8px;
+                      height: 14px;
+                      position: relative;
+                      background:#000000;
+                      opacity: 0.5;
+                      &.left-icon {
+                        -webkit-mask-image: url("../../frontend/icons/arrow-left.svg");
+                      }
+                      &.right-icon {
+                        -webkit-mask-image: url("../../frontend/icons/arrow-right.svg");
+                      }
+                    }
+                  }
+                }
+
+                .detail-nav{
+                  text-align: right;
+                  display: inline-flex;
+                  justify-content: flex-end;
+                  align-items: center;
+                  /** Switcher */
+                  .switcher{
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 16px;
+                    font-weight: 200;
+                    margin-right: 20px;
+                    span{
+                      opacity: 0.7;
+                    }
+                    .bookit-switch {
+                      position: relative;
+                      display: inline-block;
+                      margin-left: 10px;
+                      label {
+                        width: 45px;
+                        height: 24px;
+                        background: $grey;
+                        position: relative;
+                        border-radius: 46px;
+                        margin-bottom: 1px;
+                        display: inline-block;
+                        -webkit-transition: .4s;
+                        transition: .4s;
+                        &:after {
+                          content: '';
+                          background: #fff;
+                          top: 0;
+                          left: 0;
+                          width: 18px;
+                          height: 18px;
+                          margin-top: 3px;
+                          margin-left: 3px;
+                          position: absolute;
+                          border-radius: 100%;
+                          z-index: 2;
+                          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                          -webkit-transition: .4s;
+                          transition: .4s;
+                        }
+                      }
+                      input {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 5;
+                        opacity: 0;
+                        cursor: pointer;
+                        &:checked + label:after {
+                          background: #fff;
+                          right: 0;
+                          left: 20px;
+                          transition: .4s;
+                        }
+                        &:checked + label {
+                          background: $base-color;
+                        }
+                      }
+                    }
+                  }
+                  .today{
+                    border: none;
+                    color: #6c6c6c;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    height: 42px;
+                    width: auto;
+                    border: 1px solid $grey;
+                    background:#ffffff;
+                    padding: 10px 25px;
+                  }
+                }
+              }
+              /** Base rules for all types **/
+              .calendar-header {
+                background: $base-color;
+                width: 100%;
+                min-height: 40px;
+                height: 40px;
+                position: relative;
+                border-left: solid 1px #377e7e;
+                border-right: solid 1px #377e7e;
+                border-radius: 4px 4px 0 0;
+                box-sizing: border-box;
+                .week-days{
+                  width: 100%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  span {
+                    float: left;
+                    display: block;
+                    width: 14.285%;
+                    color: $white;
+                    @include smaller-font;
+                    letter-spacing: 1.2px;
+                    line-height: normal;
+                    text-align: center;
+                    text-transform: uppercase;
+                    padding: 14px 0 13px;
+                    border-left: solid 1px #377e7e;
+                    &:first-child{
+                      border-left: none;
+                    }
+                  }
+                }
+              }
+              .calendar-body {
+                position: relative;
+                background: $white;
+                width: 100%;
+                border: 1px solid $grey;
+                border-radius: 0 0 4px 4px;
+                box-sizing: border-box;
+                overflow: hidden;
+                .dates {
+                  width: 100%;
+                  overflow: initial;
+                  text-align: center;
+                  .week {
+                    display: flex;
+                    justify-content: space-between;
+                    min-height: 200px;
+                    border-bottom: solid 1px $grey;
+                    &:first-child{
+                      min-height: 160px;
+                    }
+                    &:last-child{
+                      border-bottom: none;
+                    }
+                    .date {
+                      float: left;
+                      display: block;
+                      width: 14.285%;
+                      letter-spacing: normal;
+                      border-left: solid 1px $grey;
+                      box-sizing: border-box;
+                      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                      &:first-child{
+                        border-left: none;
+                      }
+                      &.available {
+                        cursor: pointer;
+                        &.selected-day {
+                          background-color: rgb(255, 212, 0, 0.1);
+                          span {
+                            color:$base-color;
+                            font-size: 18px;
+                          }
+                        }
+                      }
+                      &.inactive {
+                        cursor: not-allowed;
+                        span{
+                          color: rgba(0, 102, 102, 0.3);
+                        }
+                        div.appointments{
+                          opacity: 0.5;
+                          .appointment-info{
+                            cursor: not-allowed;
+                          }
+                        }
+                      }
+                      .day{
+                        position: relative;
+                        float: right;
+                        text-align: right;
+                        width: 100%;
+                        box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        padding-top: 10px;
+                        padding-right: 10px;
+                        padding-bottom: 5px;
+                        color: $black;
+                        @include medium-font;
+                      }
+                    }
+                  }
+                }
+              }
+              /** Base rules for all types **/
+              @import 'calendar/month-calendar';
+              @import 'calendar/week-calendar';
+              @import 'calendar/day-calendar';
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  #bookit-dashboard-app {
+    &.admin {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+}

@@ -1,0 +1,169 @@
+/**
+ * Main SCSS
+ */
+
+$base-color: #006666;
+$highlight-color: #ffd400;
+$base-bg-color: #f0f8f8;
+$border-color: #dfe6e9;
+
+$white: #ffffff;
+$black: #272727;
+$grey: #a7b1b6;
+$red: #d94141;
+
+#bookit-app {
+  width: 100%;
+  position: relative;
+  display: inline;
+
+  .bookit-app-content{
+    margin: 0 auto;
+    max-width: 969px;
+    &.step_by_step{
+      max-width: 1190px;
+      min-width: inherit;
+    }
+  }
+  // Display
+  .display-block        { display: block; }
+  .display-inline       { display: inline; }
+  .display-inline-block { display: inline-block; }
+  .display-inline-flex  { display: inline-flex; }
+
+  // Alignment
+  .text-left            { text-align: left; }
+  .text-right           { text-align: right; }
+  .text-center          { text-align: center; }
+  .text-justify         { text-align: justify; }
+  .text-nowrap          { white-space: nowrap; }
+  .float-left           { float: left; }
+  .float-right          { float: right; }
+
+  // Transformation
+  .text-lowercase       { text-transform: lowercase; }
+  .text-uppercase       { text-transform: uppercase; }
+  .text-capitalize      { text-transform: capitalize; }
+
+  // Transformation
+  .slide-leave-active,
+  .slide-enter-active   { transition: .2s; }
+  .slide-enter-active   { transition-delay: .2s; }
+  .slide-enter          { transform: translate(100%, 0); }
+  .slide-leave-to       { transform: translate(-100%, 0); }
+
+  .print-only            { display: none; }
+
+  .noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  a {
+    text-decoration: none;
+    &:active,
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+
+  /* Grid System */
+  .bookit-row {
+    display: flex;
+    justify-content: space-between;
+    &.flex-start {
+      justify-content: flex-start;
+    }
+    > div {
+      width: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+      &.col-2-3 {
+        width: 66.6%;
+      }
+      &.col-2 {
+        width: 50%;
+      }
+      &.col-3 {
+        width: 33.3%;
+      }
+      &.col-4 {
+        width: 25%;
+      }
+      &.col-5 {
+        width: 20%;
+      }
+    }
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  /** Calendar View styles **/
+  @import 'views/step_by_step';
+}
+
+@media screen
+and (max-device-width: 836px)
+and (min-device-width: 760px){
+  #bookit-app {
+    .bookit-app-content{
+      //max-width: unset;todo
+      &.step_by_step{
+        max-width: 760px;
+        min-width: 700px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 769px) {
+  #bookit-app {
+    .bookit-app-content {
+      &.step_by_step {
+        padding-bottom: 60px;
+      }
+    }
+    .bookit-row {
+      flex-direction: column;
+      div[class^='col-'] {
+        width: 100%;
+        min-width: 100%;
+      }
+    }
+  }
+}
+
+@media print {
+  .rev-btn {
+    visibility: hidden !important;
+  }
+  rs-layer {
+    visibility: hidden !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-only {
+    display: block;
+    visibility: visible;
+  }
+  .appointment-details,
+  .appointment-details * {
+    visibility: visible;
+  }
+}
+
+/** styles for pro features **/
+@import 'components/pro';
+
+/**
+ * Import Themes
+ */
+@import 'themes/default/main';
+@import 'components/toaster';

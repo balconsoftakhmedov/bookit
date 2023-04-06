@@ -1,0 +1,3 @@
+[submodule "libs/admin-notification"]
+	path = libs/admin-notification
+	url = https://bitbucket.org/stylemixthemes/admin-notification.git

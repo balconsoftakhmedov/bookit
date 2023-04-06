@@ -1,0 +1,697 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Booking Calendar | Appointment Booking | BookIt\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-07 07:13+0000\n"
+"PO-Revision-Date: 2021-06-04 04:55+0000\n"
+"Last-Translator: \n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.0; wp-5.6"
+
+#: includes/classes/Translations.php:76
+msgid "Add"
+msgstr ""
+
+#: includes/classes/Translations.php:72
+msgid "Add New"
+msgstr ""
+
+#: includes/classes/Translations.php:84
+msgid "Add New Category"
+msgstr ""
+
+#: includes/classes/Translations.php:75
+msgid "All Appointments"
+msgstr ""
+
+msgid "Appointment"
+msgstr ""
+
+#: includes/classes/admin/AppointmentsController.php:111
+msgid "Appointment Deleted!"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:64
+msgid "Appointment Saved!"
+msgstr ""
+
+#: includes/classes/admin/AppointmentsController.php:92
+msgid "Appointment Status Changed!"
+msgstr ""
+
+#: includes/classes/admin/AppointmentsController.php:75
+msgid "Appointment Updated!"
+msgstr ""
+
+#: templates/dashboard/bookit-appointments.php:2
+msgid "Appointments"
+msgstr ""
+
+#: includes/classes/Translations.php:54 includes/classes/Translations.php:80
+msgid "Approve"
+msgstr ""
+
+#: includes/classes/Translations.php:35
+msgid "Book Now"
+msgstr ""
+
+#: includes/classes/Translations.php:17
+msgid "Booking Appointment"
+msgstr ""
+
+#. Description of the plugin
+msgid "Booking Appointments Calendar. You can easily realize Booking Appointments with this plugin."
+msgstr ""
+
+#. Name of the plugin
+msgid "Booking Calendar | Appointment Booking | BookIt"
+msgstr ""
+
+#: includes/classes/Translations.php:25
+msgid "Booking Details"
+msgstr ""
+
+#: includes/widgets/ElementorWidgetSettings.php:46 includes/widgets/VisualComposerWidget.php:32
+msgid "Bookit Calendar"
+msgstr ""
+
+#: includes/classes/Translations.php:59
+msgid "Bookit Plugin"
+msgstr ""
+
+#: templates/bookit-calendar.php:3
+msgid "Calendar"
+msgstr ""
+
+#: includes/widgets/ElementorWidgetSettings.php:93
+msgid "Calendar Settings"
+msgstr ""
+
+#: includes/classes/Translations.php:56 includes/classes/Translations.php:82
+msgid "Cancel"
+msgstr ""
+
+#: includes/classes/Translations.php:73
+msgid "Categories"
+msgstr ""
+
+#: includes/classes/admin/CategoriesController.php:44
+msgid "Category Deleted!"
+msgstr ""
+
+#: includes/classes/admin/CategoriesController.php:25
+msgid "Category Saved!"
+msgstr ""
+
+#: includes/classes/Translations.php:13
+msgid "Choose Category"
+msgstr ""
+
+#: includes/classes/Translations.php:14
+msgid "Choose Service"
+msgstr ""
+
+#: includes/classes/Translations.php:42
+msgid "Client Name"
+msgstr ""
+
+#: includes/classes/Translations.php:48
+msgid "Confirmation mismatched."
+msgstr ""
+
+#: includes/widgets/VisualComposerWidget.php:34
+msgid "Content"
+msgstr ""
+
+#: includes/classes/Translations.php:20
+msgid "Customer"
+msgstr ""
+
+#: includes/classes/admin/CustomersController.php:82
+msgid "Customer Deleted!"
+msgstr ""
+
+#: includes/classes/admin/CustomersController.php:63
+msgid "Customer Saved!"
+msgstr ""
+
+#: templates/dashboard/bookit-customers.php:2
+msgid "Customers"
+msgstr ""
+
+#: includes/classes/Translations.php:78
+msgid "Delete"
+msgstr ""
+
+#: includes/classes/Translations.php:77
+msgid "Edit"
+msgstr ""
+
+#: includes/classes/Translations.php:27
+msgid "Email"
+msgstr ""
+
+#: includes/classes/Translations.php:19
+msgid "Employee"
+msgstr ""
+
+#: includes/classes/Translations.php:85
+msgid "Enter Category Name"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:67 includes/classes/AppointmentController.php:82
+#: includes/classes/AppointmentController.php:97 includes/classes/AppointmentController.php:112
+#: includes/classes/AppointmentController.php:127 includes/classes/admin/ServicesController.php:47
+#: includes/classes/admin/ServicesController.php:69 includes/classes/admin/ServicesController.php:88
+#: includes/classes/admin/AppointmentsController.php:48 includes/classes/admin/AppointmentsController.php:78
+#: includes/classes/admin/AppointmentsController.php:95 includes/classes/admin/AppointmentsController.php:114
+#: includes/classes/admin/CategoriesController.php:28 includes/classes/admin/CategoriesController.php:47
+#: includes/classes/admin/SettingsController.php:58 includes/classes/admin/StaffController.php:41
+#: includes/classes/admin/StaffController.php:108 includes/classes/admin/StaffController.php:131
+#: includes/classes/admin/CustomersController.php:44 includes/classes/admin/CustomersController.php:66
+#: includes/classes/admin/CustomersController.php:85
+msgid "Error occurred!"
+msgstr ""
+
+#: includes/classes/Translations.php:52
+msgid "Filter by Service"
+msgstr ""
+
+#: includes/classes/Translations.php:53
+msgid "Filter by Staff"
+msgstr ""
+
+#: includes/classes/Translations.php:15
+msgid "From"
+msgstr ""
+
+#: includes/classes/Translations.php:26
+msgid "Full Name"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://bookit.stylemixthemes.com/"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://stylemixthemes.com/"
+msgstr ""
+
+#: includes/classes/Translations.php:31
+msgid "I will pay locally"
+msgstr ""
+
+#: includes/classes/Translations.php:40
+msgid "in"
+msgstr ""
+
+#: includes/classes/Translations.php:47
+msgid "Invalid Email address."
+msgstr ""
+
+#: includes/helpers.php:58 includes/helpers.php:60
+msgid "Keep empty"
+msgstr ""
+
+#: includes/classes/Translations.php:16
+msgid "No available Services!"
+msgstr ""
+
+#: includes/classes/Translations.php:50
+msgid "No Booked Appointments"
+msgstr ""
+
+#: includes/classes/Translations.php:74
+msgid "No Results"
+msgstr ""
+
+#: includes/classes/Translations.php:49
+msgid "Not Available"
+msgstr ""
+
+#: includes/helpers.php:69 includes/helpers.php:71
+msgid "Nothing found"
+msgstr ""
+
+#: includes/classes/Translations.php:29
+msgid "Password"
+msgstr ""
+
+#: includes/classes/Translations.php:30
+msgid "Password Confirmation"
+msgstr ""
+
+#: includes/classes/Translations.php:57 includes/classes/Translations.php:83
+msgid "Past"
+msgstr ""
+
+#: includes/classes/Translations.php:33
+msgid "Pay now with Credit Card"
+msgstr ""
+
+#: includes/classes/Translations.php:32
+msgid "Pay now with PayPal"
+msgstr ""
+
+#: includes/classes/Translations.php:28
+msgid "Phone"
+msgstr ""
+
+#: includes/widgets/VisualComposerWidget.php:35
+msgid "Place Bookit Calendar"
+msgstr ""
+
+#: includes/classes/Translations.php:24
+msgid "Please choose a Service!"
+msgstr ""
+
+#: includes/classes/Translations.php:58
+msgid "Powered by"
+msgstr ""
+
+#: includes/classes/Translations.php:22
+msgid "Price"
+msgstr ""
+
+#: includes/classes/Translations.php:45
+msgid "Print Confirmation"
+msgstr ""
+
+#: includes/classes/Translations.php:55 includes/classes/Translations.php:81
+msgid "Reject"
+msgstr ""
+
+#: includes/classes/Translations.php:37
+msgid "Reservation confirmation"
+msgstr ""
+
+#: includes/classes/Translations.php:44
+msgid "Reservation Date"
+msgstr ""
+
+#: includes/classes/Translations.php:43
+msgid "Reservation Time"
+msgstr ""
+
+#: includes/classes/Translations.php:79
+msgid "Save"
+msgstr ""
+
+#: includes/classes/Translations.php:71
+msgid "Search"
+msgstr ""
+
+#: includes/classes/Translations.php:41
+msgid "seconds"
+msgstr ""
+
+#: includes/widgets/ElementorWidgetSettings.php:100 includes/widgets/VisualComposerWidget.php:39
+msgid "Select Category"
+msgstr ""
+
+#: includes/widgets/ElementorWidgetSettings.php:109 includes/widgets/VisualComposerWidget.php:47
+msgid "Select Service"
+msgstr ""
+
+#: includes/widgets/ElementorWidgetSettings.php:118 includes/widgets/VisualComposerWidget.php:55
+msgid "Select Staff"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:21
+msgid "Selected Service Time is not available!"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:26
+msgid "Please enter a valid phone number"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:32
+msgid "Please enter email or phone"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:37
+msgid "Please enter email"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:41
+msgid "Please enter your email in format youremail@example.com"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:46
+msgid "Full name must be between 3 and 25 characters long"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:55
+msgid "Please enter a password"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:59
+msgid "Passwords may not contain the character '\\'"
+msgstr ""
+
+#: includes/classes/AppointmentController.php:63
+msgid "Please enter the same password in both password fields"
+msgstr ""
+
+#: includes/classes/Translations.php:18
+msgid "Service"
+msgstr ""
+
+#: includes/classes/admin/ServicesController.php:85
+msgid "Service Deleted!"
+msgstr ""
+
+#: includes/classes/admin/ServicesController.php:66
+msgid "Service Saved!"
+msgstr ""
+
+#: templates/dashboard/bookit-services.php:2
+msgid "Services"
+msgstr ""
+
+#: templates/dashboard/bookit-settings.php:2 includes/classes/admin/AdminMenu.php:100
+msgid "Settings"
+msgstr ""
+
+#: includes/classes/admin/SettingsController.php:45
+msgid "Wrong currency value"
+msgstr ""
+
+#: includes/classes/admin/SettingsController.php:55
+msgid "Settings Saved!"
+msgstr ""
+
+#: templates/dashboard/bookit-staff.php:2
+msgid "Staff"
+msgstr ""
+
+#: includes/classes/admin/StaffController.php:128
+msgid "Staff Deleted!"
+msgstr ""
+
+#: includes/classes/admin/StaffController.php:105
+msgid "Staff Saved!"
+msgstr ""
+
+#: includes/classes/Translations.php:51
+msgid "Status"
+msgstr ""
+
+#. Author of the plugin
+msgid "StylemixThemes"
+msgstr ""
+
+#: includes/classes/Translations.php:23
+msgid "Submit"
+msgstr ""
+
+#: includes/classes/Translations.php:46
+msgid "This field is required."
+msgstr ""
+
+#: includes/classes/Translations.php:21
+msgid "Time"
+msgstr ""
+
+#: includes/classes/admin/AdminMenu.php:104
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/classes/Translations.php:38
+msgid "We have sent your booking information to your email address."
+msgstr ""
+
+#: includes/classes/Translations.php:34
+msgid "WooCommerce Checkout"
+msgstr ""
+
+#: includes/classes/Translations.php:39
+msgid "You will be redirected to"
+msgstr ""
+
+#: includes/classes/Translations.php:36
+msgid "Your Appointment Request successfully sent!"
+msgstr ""
+
+#: includes/classes/classes/admin/StaffController.php:54 includes/classes/classes/admin/CustomersController.php:57
+msgid "Phone number is not correct"
+msgstr ""
+
+#: includes/classes/classes/admin/StaffController.php:59 includes/classes/classes/admin/CustomersController.php:66
+msgid "Not valid Email"
+msgstr ""
+
+#: includes/classes/classes/admin/StaffController.php:65 includes/classes/classes/admin/CustomersController.php:72
+msgid "Full Name must be greater than 3 characters"
+msgstr ""
+
+#: includes/classes/classes/admin/StaffController.php:68 includes/classes/classes/admin/CustomersController.php:75
+msgid "Full Name is required"
+msgstr ""
+
+#: includes/classes/classes/admin/CategoriesController.php:16
+msgid "Category Name can't be empty and must be greater than 3 characters"
+msgstr ""
+
+#: includes/classes/classes/admin/ServicesController.php:57
+msgid "Price must be a number"
+msgstr ""
+
+#: includes/classes/classes/admin/ServicesController.php:60
+msgid "Price can't be empty"
+msgstr ""
+
+#: includes/classes/classes/admin/ServicesController.php:64
+msgid "Category is required"
+msgstr ""
+
+#: includes/classes/classes/admin/ServicesController.php:70
+msgid "Title must be greater than 3 characters"
+msgstr ""
+
+#: includes/classes/classes/admin/ServicesController.php:73
+msgid "Title is required"
+msgstr ""
+
+#: includes/classes/classes/admin/CustomersController.php:62
+msgid "Email is required"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Customer Phone"
+msgstr ""
+
+msgid "staff"
+msgstr ""
+
+msgid "service"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Payment"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Payment method"
+msgstr ""
+
+msgid "No Payment Method"
+msgstr ""
+
+msgid "Payment status"
+msgstr ""
+
+msgid "You are going to delete appointment "
+msgstr ""
+
+msgid "Send Notification to:"
+msgstr ""
+
+msgid "Reason for cancellation "
+msgstr ""
+
+msgid "Reason message"
+msgstr ""
+
+msgid "Changing of the service duration will not affect the existing appointments and will be applied only to new appointments"
+msgstr ""
+
+msgid "Customer name"
+msgstr ""
+
+msgid "Working Hours"
+msgstr ""
+
+msgid ""
+"Changing of the Staff working hours will not affect the existing appointments and will be applied only to new appointments"
+msgstr ""
+
+msgid "Appointment ID"
+msgstr ""
+
+msgid "All Service"
+msgstr ""
+
+msgid "All Staff"
+msgstr ""
+
+msgid "Selected"
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Auto Refresh"
+msgstr ""
+
+msgid "Detailed view"
+msgstr ""
+
+msgid "disabled"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Edit Appointments"
+msgstr ""
+
+msgid "The duration of the time slot"
+msgstr ""
+
+msgid "To use this feature you need to install WooCommerce Plugin."
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Enter your comment"
+msgstr ""
+
+msgid "New customer"
+msgstr ""
+
+msgid "Type to search"
+msgstr ""
+
+msgid "Enter password"
+msgstr ""
+
+msgid "Repeat password"
+msgstr ""
+
+msgid "pending"
+msgstr ""
+
+msgid "approved"
+msgstr ""
+
+msgid "cancelled"
+msgstr ""
+
+msgid "complete"
+msgstr ""
+
+msgid "locally"
+msgstr ""
+
+msgid "free"
+msgstr ""
+
+msgid "rejected"
+msgstr ""
+
+msgid "Single Site"
+msgstr ""
+
+msgid "Up to 5 Sites"
+msgstr ""
+
+msgid "Most Popular"
+msgstr ""
+
+msgid "Up to 25 Sites"
+msgstr ""
+
+msgid "Developer Oriented"
+msgstr ""
+
+msgid ""
+"You get <a href=\"%1$s\"><span %2$s>1 year</span> updates and support</a> from the date of purchase. We offer 30 days Money "
+"Back Guarantee based on <a href=\"%1$s\">Refund Policy</a>."
+msgstr ""
+
+msgid "Lifetime"
+msgstr ""
+
+msgid "1 year"
+msgstr ""
+
+msgid "BookIt Calendar Appointment Plugin"
+msgstr ""
+
+msgid "Learn more."
+msgstr ""
+
+msgid "Pricing"
+msgstr ""
+
+msgid "Annual"
+msgstr ""
+
+msgid "per year"
+msgstr ""
+
+msgid "Get now"
+msgstr ""
+
+msgid "Version:"
+msgstr ""
+
+msgid "View Changelog"
+msgstr ""
+
+msgid "Last Update:"
+msgstr ""
+
+msgid "Wordpress Version:"
+msgstr ""
+
+msgid "Tested up to:"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Your card was not authenticated, please try again"
+msgstr ""
+
+msgid "Something went wrong"
+msgstr ""

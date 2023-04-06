@@ -1,0 +1,63 @@
+.color-picker {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  flex-basis: 15%;
+  margin-right: 20px;
+  color: $black;
+  &:last-child{
+    margin-right: 0;
+  }
+  .input-group{
+    height: 45px;
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: initial;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    .color-value{
+      color: $black;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 0 10px;
+    }
+    input{
+      &.color-picker-container{
+        flex-grow: unset;
+        width: 39px;
+        height: 39px;
+        border-radius: 2px;
+        margin: 0 3px;
+        border: 1px solid #dddddd;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+    }
+    .input-group-append{
+      margin-left: auto;
+      width: 79px;
+      border-left: 1px solid #dddddd;
+      justify-content: center;
+      color:$base-color;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 400;
+      height: 45px;
+      .cancel-button{
+        display: flex;
+        align-items: center;
+        box-shadow: none !important;
+      }
+    }
+  }
+  .vc-chrome {
+    position: absolute;
+    right: 0;
+    top: 54px;
+    z-index: 99;
+  }
+}

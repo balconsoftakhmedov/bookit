@@ -1,0 +1,191 @@
+
+/* Modal */
+.bookit-modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: table;
+  transition: opacity 0.3s ease;
+  .bookit-modal-wrapper {
+    display: table-cell;
+    position: relative;
+    top: 80px;
+    .bookit-modal-container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 25px 0px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3);
+      background-color: $white;
+      transition: all 0.3s ease;
+      &.appointment{
+        max-width: 880px;
+      }
+      &.delete{
+        h3{
+          margin-bottom: 15px;
+        }
+        .loader{
+          max-width: 660px;
+          border-radius: 10px;
+        }
+      }
+      .bookit-modal-header {
+        position: relative;
+        padding: 0 30px;
+        &.delete{
+          h3{
+            margin-bottom: 10px;
+          }
+          label{
+            font-size: 14px;
+          }
+        }
+        h3 {
+          margin-top: 0;
+          font-weight: bold;
+          @include big-font;
+        }
+        .close {
+          position: absolute;
+          display:flex;
+          align-items: center;
+          justify-content: center;
+          top: -0.2em;
+          right: 0;
+          border-radius: 100%;
+          background-color: #eeeeee;
+          text-align: center;
+          width: 26px;
+          height: 26px;
+          line-height: 26px;
+          margin-right: 20px;
+          .close-icon {
+            display: inline-block;
+            background: url("../icons/cross.svg") no-repeat center;
+            background-size: contain;
+            width: 10px;
+            height: 10px;
+            opacity: 1;
+          }
+        }
+      }
+      .bookit-modal-body {
+        margin: 25px 0 0;
+        .send-notification-title{
+          font-size: 16px;
+          text-align: left;
+          margin-bottom: 15px;
+        }
+        .modal-info{
+          @include normal-font;
+          padding: 0 30px;
+        }
+        &.margin {
+          margin: 27px 30px 0;
+        }
+        &.position-relative {
+          position: relative;
+        }
+      }
+      .bookit-modal-footer {
+        margin: 0;
+        padding: 0 30px;
+        .button-actions{
+          padding-top: 15px;
+          position: relative;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .bookit-button{
+          height: 45px;
+          font-size: 14px;
+        }
+        .view-actions{
+          display: flex;
+          justify-content: flex-end;
+          button{
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 4px;
+            border: none;
+            font-size: 16px;
+            height:45px ;
+            margin-left: 20px;
+            padding: 10px 20px;
+            &:first-child{
+              margin-left: 0;
+            }
+            .btn-icon{
+              content: "";
+              -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+              -webkit-mask-position: center;
+              mask-position: center;
+              width: 22px;
+              height: 18px;
+              display: block;
+              float: left;
+              margin-right: 5px;
+            }
+            &.approve-btn{
+              color: $white;
+              background: $base-color;
+              .btn-icon{
+                background-color:$white;
+                -webkit-mask-image: url("../icons/correct.svg");
+                mask-image: url("../icons/correct.svg");
+              }
+            }
+            &.reject-btn{
+              color: $red;
+              background: rgba(217, 65, 65, 0.1);
+              .btn-icon{
+                background-color:$red;
+                -webkit-mask-image: url("../icons/reject.svg");
+                mask-image: url("../icons/reject.svg");
+              }
+            }
+            &.cancel-btn{
+              color: $base-color;
+              background: rgba(0, 102, 102, 0.1);
+
+              .btn-icon{
+                background-color:$base-color;
+                -webkit-mask-image: url("../icons/reject.svg");
+                mask-image: url("../icons/reject.svg");
+              }
+            }
+            &.approved-btn{
+              color: $base-color;
+              background: none;
+              cursor: unset;
+              .btn-icon{
+                background-color:$base-color;
+                -webkit-mask-image: url("../icons/correct.svg");
+                mask-image: url("../icons/correct.svg");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.bookit-modal-enter,
+.bookit-modal-leave-active {
+  opacity: 0;
+  .bookit-modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+/* Modal End */

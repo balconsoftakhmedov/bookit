@@ -1,0 +1,54 @@
+{
+  "name": "bookit",
+  "version": "2.0.0",
+  "description": "Booking Appointments Calendar.",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.stylemix.net:bookit/bookit.git"
+  },
+  "browserslist": "> 0.25%, not dead",
+  "keywords": [
+    "booking",
+    "appointment",
+    "calendar"
+  ],
+  "author": "StylemixThemes <info@stylemixthemes.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.6.0",
+    "deploy-freemius": "git+https://github.com/StylemixThemes/deploy-freemius-js.git",
+    "laravel-mix": "^5.0.5",
+    "laravel-mix-clean": "^0.1.0",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.26.9",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "dependencies": {
+    "@riophae/vue-treeselect": "0.4.0",
+    "axios": "^1.3.4",
+    "hooper": "^0.3.4",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
+    "moment-timezone": "^0.5.43",
+    "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
+    "vue-color": "^2.7.1",
+    "vue-ctk-date-time-picker": "^2.5.0",
+    "vue-input-autowidth": "^1.0.10",
+    "vue-toasted": "^1.1.28",
+    "vuejs-datatable": "^2.0.0-alpha.7",
+    "vuex": "^3.5.1"
+  }
+}

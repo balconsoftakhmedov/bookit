@@ -1,0 +1,230 @@
+
+/* Tabs */
+.bookit-tabs {
+  border-bottom: 1px solid $grey;
+  padding: 0 30px;
+  margin: 0;
+  > li {
+    display: inline-block;
+    margin: 0;
+    > a {
+      display: block;
+      padding: 20px;
+      color: $black;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: 3px solid transparent;
+      @include smaller-font;
+      &:hover {
+      }
+    }
+    &.disabled{
+      opacity: 0.5;
+    }
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $base-color;
+        cursor: default;
+        background-color: rgba(0, 102, 102, 0.1);
+        border-bottom: 3px solid $base-color;
+      }
+    }
+  }
+}
+.bookit-tabs-details {
+  > div {
+    padding: 30px 30px 10px;
+    &.not-installed{
+      position: relative;
+      &:after{
+        content: '';
+        top:0;
+        right:0px;
+        left:0px;
+        bottom:-20px;
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        cursor: not-allowed;
+      }
+    }
+    &.no-padding{
+      padding: 0;
+    }
+  }
+}
+.bookit-modal-body {
+  .bookit-tabs-details {
+    padding: 20px 30px 10px;
+    > div {
+      max-height: calc(50vh);
+      overflow-x: scroll;
+    }
+  }
+}
+
+.vertical {
+  display: flex;
+  .bookit-tabs {
+    width: 20%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    > li {
+      display: list-item;
+      > a {
+        border: 1px solid $grey;
+      }
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          border-bottom: 2px solid $base-color;
+        }
+      }
+      &:first-child{
+        > a {
+          border-top-right-radius: 4px;
+          border-top-left-radius: 4px;
+        }
+      }
+      &:last-child{
+        > a {
+          border-bottom-right-radius: 4px;
+          border-bottom-left-radius: 4px;
+        }
+      }
+    }
+  }
+  &.email-templates-tabs{
+    .bookit-tabs{
+      width: 300px;
+      border: 1px solid $grey;
+      border-top: none;
+      > li {
+        display: list-item;
+        > a {
+          border: none;
+          border-bottom: 1px solid $grey;
+        }
+        &:first-child, &:last-child{
+          > a {
+            border-radius: 0;
+          }
+        }
+        &.active > a {
+          &:hover,
+          &:focus {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+    .bookit-tabs-details{
+      background-color: #f7f7f7;
+      .email-card {
+        background-color: $white;
+        border: 1px solid $grey;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        flex-basis: 100%;
+        .form-group {
+          .label{
+            color: $black;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            flex-basis: 100%;
+          }
+          small{
+            margin-bottom: 5px;
+            input[readonly] {
+              font-size: 16px;
+              font-weight: 400;
+              margin-top: 0;
+              width: 100%;
+              &:hover {
+                opacity: 0.8;
+              }
+              &.small {
+                width: auto;
+                min-height: auto;
+                height: 30px;
+                color: $base-color;
+                background: rgba(0, 102, 102, 0.1);
+                border-radius: 4px;
+                padding: 0;
+                border: none;
+                margin-right: 5px;
+                margin-bottom: 5px;
+                cursor: pointer;
+                text-align: center;
+              }
+            }
+          }
+          textarea{
+            height: auto;
+          }
+        }
+      }
+    }
+    .bookit-button{
+      margin-left: 30px;
+    }
+  }
+  .bookit-tabs-details {
+    width: 80%;
+    padding-top: 0px;
+    .import-card {
+      border: 1px solid $grey;
+      box-shadow: 0 0 5px $grey;
+      padding: 15px;
+      border-radius: 5px;
+      .form-group {
+        margin-bottom: 25px;
+        +.form-group {
+          margin-left: 0;
+        }
+        textarea{
+          height: auto;
+        }
+      }
+    }
+    hr {
+      border-top: 2px solid $base-color;
+      border-bottom: 1px solid $base-bg-color;
+      margin: 25px 0;
+    }
+  }
+}
+.payments-tabs{
+  position: relative;
+  .woocommerce{
+    position: relative;
+  }
+  .no-addon{
+    padding-top: 30px;
+    &:after{
+        content: '';
+        top:75px;
+        right:-30px;
+        left:-30px;
+        bottom:0;
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        cursor: not-allowed;
+      }
+  }
+}
+.appointment-tabs {
+  padding: 0;
+  .bookit-tabs {
+    margin-bottom: 0;
+  }
+  .bookit-tabs-details {
+    padding: 0;
+  }
+}
+/* Tabs End */

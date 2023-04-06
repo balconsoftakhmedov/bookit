@@ -1,0 +1,69 @@
+body {
+    &.bookit-calendar_page_bookit-settings,
+    &.bookit-calendar_page_bookit-appointments,
+    &.bookit-calendar_page_bookit-services,
+    &.bookit-calendar_page_bookit-staff,
+    &.bookit-calendar_page_bookit-customers,
+    &.bookit-calendar_page_bookit-contact,
+    &.bookit-calendar_page_bookit-addons-integrations,
+    &.bookit-calendar_page_bookit-account,
+    &.toplevel_page_bookit
+    {
+        #bookit-feature-request {
+            display: inline-block !important;
+        }
+    }
+}
+
+#bookit-feature-request {
+    position: fixed;
+    bottom: 28px;
+    right: 20px;
+    width: 28px;
+    height: 28px;
+    padding: 14px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background-color: #00a0df;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    box-sizing: content-box;
+
+    &:hover {
+        span {
+            transition: all .1s;
+            transition-delay: .1s;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    img {
+        width: 29px;
+    }
+
+    span {
+        position: fixed;
+        right: 15px;
+        bottom: 95px;
+        min-width: 170px;
+        padding: 6px 12px 7px;
+        color: #ffffff;
+        font-size: 13px;
+        line-height: 16px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+        border-radius: 5px;
+        background-color: #00a0df;
+        visibility: hidden;
+        opacity: 0;
+        &::after {
+            content: '';
+            position: absolute;
+            top: 45px;
+            right: 26px;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-top: 10px solid #00a0df;
+        }
+    }
+}

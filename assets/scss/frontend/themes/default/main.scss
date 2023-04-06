@@ -1,0 +1,61 @@
+/**
+ * Default Theme
+ */
+@mixin normal-font {
+  font-size: 13px;
+  line-height: 15px;
+}
+@mixin normal-font-bold {
+  font-size: 13px;
+  line-height: 15px;
+}
+@mixin smaller-font {
+  font-size: 12px;
+  line-height: 14px;
+}
+@mixin bigger-font {
+  font-size: 14px;
+  line-height: 16px;
+}
+@mixin bigger-font-bold {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: normal;
+}
+@mixin big-font {
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: normal;
+}
+
+#bookit-app {
+  .bookit-app-content {
+    .default-theme {
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 15px;
+
+      // Loader
+      @import '../../components/loader';
+
+      // Sidebar Filters
+      @import '../../components/sidebar-filters';
+
+      // Monthly Calendar
+      @import '../../components/month-calendar';
+
+      // Booking Form
+      @import '../../components/form-popup';
+    }
+  }
+}
+
+@media screen and (max-width: 769px) {
+  #bookit-app {
+    .bookit-app-content {
+      .default-theme {
+        display: block;
+      }
+    }
+  }
+}

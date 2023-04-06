@@ -1,0 +1,455 @@
+/**
+ * Monthly Calendar
+ */
+
+.monthly-calendar {
+  width: calc(70% - 15px);
+  padding-left: 30px;
+
+  &.full-width {
+    width: 100%;
+  }
+
+  .header {
+    @include big-font;
+    color: $base-color;
+    line-height: 35px;
+    margin: 0 2px 17px;
+  }
+
+  .calendar-container {
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      background: $base-color;
+      margin: 0 2px;
+      .months {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        .month {
+          display: block;
+          cursor: pointer;
+          color: $white;
+          padding: 17px 10px 15px;
+          .title {
+            @include bigger-font-bold;
+          }
+          .year {
+            @include normal-font;
+            opacity: 0.6;
+          }
+          &.active {
+            background: $highlight-color;
+            color: $base-color;
+          }
+        }
+      }
+      .left-arrow, .right-arrow {
+        width: 5%;
+        cursor: pointer;
+        position: relative;
+        .left-icon, .right-icon {
+          display: inline-block;
+          background-size: contain;
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          top: calc(50% - 7px);
+        }
+        .left-icon {
+          background: url("../icons/arrow-left.svg") no-repeat center;
+          right: 0;
+        }
+        .right-icon {
+          background: url("../icons/arrow-right.svg") no-repeat center;
+          left: 0;
+        }
+      }
+    }
+
+    .calendar-body {
+      width: 100%;
+      position: relative;
+      .weeks {
+        width: 100%;
+        span {
+          float: left;
+          display: block;
+          width: 14.285%;
+          padding: 15px 0 13px;
+          text-align: center;
+          text-transform: uppercase;
+          color: $base-color;
+          @include bigger-font-bold;
+        }
+      }
+      .dates {
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+
+        .week {
+
+          .date {
+            position: relative;
+            float: left;
+            text-align: left;
+            display: block;
+            cursor: default;
+            width: calc(14.285% - 4px);
+            min-height: 55px;
+            margin-left: 2px;
+            background: $base-bg-color;
+            margin-bottom: 4px;
+            + .date {
+              margin-left: 4px;
+            }
+            &.today {
+              span {
+                border: solid 1px $base-color;
+                border-top: solid 4px $base-color;
+                padding: 4px 7px 7px;
+              }
+            }
+            &:hover {
+              .day-info {
+                display: block;
+              }
+            }
+            &.selected-day {
+              .day-info {
+                display: none;
+              }
+            }
+            &:hover,
+            &:focus,
+            &:active,
+            &.selected-day {
+              span {
+                &.available {
+                  background-color: $white;
+                  border: solid 1px $border-color;
+                  border-top: solid 4px $highlight-color;
+                  padding: 4px 7px 7px;
+                }
+              }
+              .selected-day-month {
+                position: absolute;
+                top: 25px;
+                left: 8px;
+                cursor: pointer;
+                color: $base-color;
+                @include normal-font-bold;
+
+              }
+              .selected-day-flag {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 6px;
+                bottom: -5px;
+                box-sizing: border-box;
+                background: $white;
+                border-left: solid 1px $border-color;
+                border-right: solid 1px $border-color;
+                z-index: 9;
+              }
+            }
+            span {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              -webkit-box-sizing: border-box;
+              padding: 8px;
+              color: $base-color;
+              @include normal-font-bold;
+
+              &.available {
+                cursor: pointer;
+              }
+              &.inactive {
+                color: rgba(0, 102, 102, 0.3);
+                cursor: not-allowed;
+              }
+              &.day-off {
+                color: $grey;
+                cursor: not-allowed;
+                border: solid 1px rgba(255, 131, 107, 0.5);
+                background: $white;
+                opacity: 0.7;
+              }
+
+              .day-info {
+                display: none;
+                width: 100%;
+                position: relative;
+                bottom: -10px;
+                font-size: 12px;
+                line-height: 14px;
+                .user-icon, .timer-icon {
+                  display: inline-block;
+                  background-size: contain;
+                  width: 13px;
+                  height: 16px;
+                }
+                .user-icon {
+                  background: url("../icons/user.svg") no-repeat center;
+                }
+                .timer-icon {
+                  background: url("../icons/timer.svg") no-repeat center;
+                  margin-bottom: -1px;
+                }
+              }
+
+            }
+          }
+
+          .booking-form {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            -webkit-align-items: flex-end;
+            align-items: flex-end;
+            width: calc(100% - 4px);
+            min-height: 50px;
+            margin: 0 2px 4px;
+            padding: 19px 22px 27px;
+            color: $base-color;
+            background-color: $white;
+            border: solid 1px $border-color;
+            @include normal-font-bold;
+            .notice {
+              margin: 0 auto;
+              @include big-font;
+            }
+            .form-group {
+              display: inline-block;
+              text-align: left;
+              margin-bottom: 0;
+              &:first-child {
+                min-width: 45%;
+              }
+              + .form-group {
+                margin-left: 15px;
+              }
+              label {
+                text-transform: uppercase;
+                font-size: 11px;
+                margin: 0 0 0.5rem 0;
+              }
+              select {
+                opacity: 1;
+                visibility: visible;
+                display: block;
+                cursor: pointer;
+                height: auto;
+                border-radius: 5px;
+                border: solid 1px #c8d1d5;
+                color: $base-color;
+                background-color: $base-bg-color;
+                padding: 10px 30px 10px 13px;
+                width: 100%;
+                max-width: 100%;
+                @include normal-font-bold;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                appearance: none;
+                background-image: url("data:image/svg+xml;utf8,<svg fill='cadetblue' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+                background-repeat: no-repeat;
+                background-position-x: 100%;
+                background-position-y: 9px;
+                &::-ms-expand {
+                  display: none;
+                }
+                &:focus {
+                  outline: none;
+                }
+              }
+              button {
+                @include bigger-font-bold;
+                text-transform: uppercase;
+                text-decoration: none;
+                color: $white;
+                background: $base-color;
+                border-radius: 5px;
+                padding: 10px 28px;
+                &[disabled] {
+                  background-color: $grey;
+                }
+              }
+            }
+          }
+
+        }
+
+      }
+    }
+
+  }
+}
+
+
+@media screen and (max-width: 969px) {
+  .monthly-calendar {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .monthly-calendar {
+    width: auto;
+
+    .calendar-container {
+
+      .calendar-header {
+        .months {
+          width: 94%;
+          padding: 0 10px;
+          .month {
+            padding: 17px 10px 15px;
+            .title {
+              @include normal-font-bold;
+            }
+            .year {
+              @include smaller-font;
+            }
+          }
+        }
+        .left-arrow, .right-arrow {
+          width: 4%;
+          .left-icon, .right-icon {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: calc(50% - 5px);
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .monthly-calendar {
+    .calendar-container {
+
+      .calendar-header {
+        .months {
+          .month {
+            .title {
+              @include smaller-font;
+            }
+            .year {
+              @include smaller-font;
+            }
+          }
+        }
+      }
+
+      .calendar-body {
+        .weeks {
+          span {
+            @include normal-font-bold;
+          }
+        }
+        .dates {
+          .week {
+            .date {
+              min-height: 60px;
+              &:hover,
+              &:focus,
+              &:active{
+                span{
+                  &.available{
+                    padding: 4px;
+                  }
+                }
+              }
+              span {
+                padding: 0px;
+                .day-info {
+                  font-size: 8px;
+                  .user-icon, .timer-icon {
+                    width: 9px;
+                    height: 9px;
+                    background-size: 8px;
+                  }
+                }
+              }
+              &.selected-day {
+                .selected-day-month {
+                  display: none;
+                }
+              }
+            }
+            .booking-form {
+              flex-direction: column;
+              align-items: center;
+              padding: 15px;
+              .form-group {
+                min-width: 60%;
+                + .form-group {
+                  margin-left: 0;
+                  margin-top: 10px;
+                }
+                &:first-child {
+                  min-width: 60%;
+                }
+                &:last-child {
+                  text-align: center;
+                }
+              }
+            }
+          }
+
+        }
+      }
+
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .monthly-calendar {
+    .calendar-container {
+      .calendar-body {
+        .dates {
+          .week {
+            .date {
+              min-height: 60px;
+              &:hover,
+              &:focus,
+              &:active{
+                span{
+                  &.available{
+                    padding: 4px 0px 4px 7px;
+                  }
+                }
+              }
+              span {
+                .day-info {
+                  font-size: 8px;
+                  .user-icon, .timer-icon {
+                    width: 8px;
+                    height: 8px;
+                    background-size: 7px;
+                  }
+                  .float-left, .float-right{
+                    float: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

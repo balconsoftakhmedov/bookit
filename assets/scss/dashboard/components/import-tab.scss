@@ -1,0 +1,296 @@
+/* Import Tab */
+.import-tab {
+  .bookit-tabs-details {
+    padding: 0px;
+  }
+
+  .bookit-row-import {
+    max-width: 900px;
+    border-radius: 10px;
+    border: 1px solid $grey;
+    background-color: $white;
+    margin-bottom: 30px;
+
+    padding: 20px 0px;
+    &.bookit-row-second {
+    }
+  }
+
+  .bookit-import-export-inline-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+
+    &.export-row {
+      position: relative;
+    }
+    .demo-btn-wrapper {
+      display: inline-block;
+
+      &:first-child {
+        margin-right:20px;
+        position: relative;
+      }
+
+      &:last-child {
+        margin-left: auto;
+      }
+
+      .bookit-export-button{
+        margin-right: 20px;
+      }
+      .errors_block{
+        position: relative;
+        float: left;
+        margin-bottom: -15%;
+        width:100%;
+        .error{
+          text-align: left;
+          font-style: italic;
+          margin-left: 6%;
+          font-size: 12px;
+          color: $red;
+        }
+      }
+
+      .demo-btn-item{
+        &.bookit-file-upload{
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+  .demo-import-text {
+    height: 21px;
+    color: $black;
+    @include big-font;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .demo-import-text-description {
+    height: 17px;
+    opacity: 0.7;
+    color: $black;
+    @include smaller-font;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .box-align {
+    display: flex;
+    align-items: center;
+  }
+
+  .demo-demo-icon {
+    width: 100px;
+    height: 80px;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    span {
+      width: 100%;
+      &.demo-import {
+        background: url("../icons/demo-import.svg") no-repeat center;
+        background-size: contain;
+      }
+      &.json-import {
+        background: url("../icons/json-import.svg") no-repeat center;
+        background-size: contain;
+      }
+      &.excel {
+        background: url("../icons/excel.svg") no-repeat center;
+        background-size: contain;
+      }
+    }
+  }
+
+  .line-break {
+    width: 100%;
+    display: inline-block;
+  }
+
+  .hr-line {
+    width: 83.5%;
+    float: right;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  .bookit-demo-import-button {
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: none;
+    transition: ease-in 0.1s;
+    background-color: $base-color;
+    color: $white;
+    height: 45px;
+    width:  fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    text-align: center;
+    @include smaller-font;
+    font-weight: 700;
+
+    a {
+      color: $white;
+      &:focus, &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  .bookit-export-button, .panel-custom {
+    margin-bottom: 0px;
+
+    .uploaded-file{
+      text-align: left;
+      font-style: italic;
+      padding: 10px 0px;
+    }
+    .error{
+      text-align: left;
+      font-style: italic;
+      margin-left: 6%;
+      font-size: 12px;
+      color: $red;
+    }
+  }
+  .panel-custom{
+    display: inline-flex;
+    column-gap: 10px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .import-file-button {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    border-radius: 4px;
+    background-color: #e5efef;
+    cursor: pointer;
+    padding: 0 20px;
+    column-gap: 5px;
+    i{
+      &.paper-clip-icon{
+        position: relative;
+        display:inline-block;
+        width: 16px;
+        height: 16px;
+        content: " ";
+        background: url("../icons/paper-clip.svg") no-repeat;
+        background-size: 16px 15px;
+      }
+    }
+    .button-text {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      color: $base-color;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+
+  input.import-file {
+    display: none;
+    width: 152px;
+    color: transparent;
+    height: 41.2px;
+  }
+
+  input.import-file[type="file"] {
+    display: none;
+  }
+
+  .validate-error {
+    text-align: left;
+    position: absolute;
+    margin: -10px;
+    margin-left: 22px;
+    font-size: 12px;
+    color: $red;
+  }
+
+  textarea#progress_data_textarea {
+    overflow: auto;
+    resize: vertical;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-clip: padding-box;
+    border-radius: .25rem;
+    box-sizing: border-box;
+    border-color: rgba(222, 222, 222, .75);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .04);
+    height: auto;
+    background-color: #e9ecef;
+    opacity: 1;
+  }
+
+  .progress {
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0.75rem;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #c8d1d5;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+  }
+
+  .bg-success {
+    background-color: $base-color !important;
+  }
+  .import-loading {
+    position: relative;
+  }
+
+  .progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $base-color;
+    transition: width .6s ease;
+    border-radius: 3px;
+  }
+
+
+  .import-title {
+    @include big-font;
+    text-align: center;
+    span {
+      opacity: 0.7;
+      color: $black;
+      @include smaller-font;
+      text-align: center;
+    }
+  }
+}
+/* Import Tab End */

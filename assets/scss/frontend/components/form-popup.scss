@@ -1,0 +1,538 @@
+/**
+ * Monthly Calendar
+ */
+
+.bookit-modal-mask {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: table;
+  transition: opacity 0.3s ease;
+  .bookit-modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    .bookit-modal-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 5px;
+      box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.15);
+      background-color: $white;
+      transition: all 0.3s ease;
+      z-index: 9999;
+
+      .bookit-modal-header {
+        h3 {
+          margin: 0;
+          @include big-font;
+          font-size: 20px;
+          line-height: 1.2;
+          color: $base-color;
+          padding: 35px 40px 30px;
+        }
+      }
+      .appointment-info {
+        background-color: $highlight-color;
+        color: $black;
+        padding: 17.5px 35px;
+        .text-bold {
+          @include normal-font-bold;
+          font-size: 15px;
+          line-height: 1.2;
+          + .text-uppercase {
+            margin-top: 4px;
+          }
+        }
+        .text-uppercase {
+          @include smaller-font;
+          + .text-bold {
+            margin-top: 4px;
+          }
+        }
+        &.small-padding {
+          padding: 15px 35px 1px;
+        }
+        &.medium-padding {
+          padding: 3%;
+          margin-top: 2%;
+        }
+        &.redirect-answer{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .text-bold{
+            align-items: center;
+            display: flex;
+          }
+        }
+      }
+      .payment-text {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .bookit-modal-body {
+        padding: 32.5px 35px;
+        .bookit-row + .bookit-row {
+          margin-top: 25px;
+        }
+        .form-group {
+          position: relative;
+          display: flex;
+          flex-flow: column-reverse;
+          width: 100%;
+          label {
+            color: $grey;
+            @include smaller-font;
+            margin-bottom: 4px;
+          }
+          label, input {
+            transition: all 0.2s;
+            touch-action: manipulation;
+          }
+          input {
+            border: 0;
+            padding: 0 0 5px;
+            border-bottom: 1px solid #cdd6db;
+            -webkit-appearance: none;
+            cursor: text;
+            color: $black;
+            font-size: 15px;
+            height: 24px;
+            background: transparent;
+            &:focus {
+              outline: 0;
+            }
+            &:placeholder-shown + label {
+              cursor: text;
+              color: $grey;
+              max-width: 66.66%;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              transform-origin: left bottom;
+              transform: translate(0, 20px) scale(1.3);
+            }
+            &:not(:placeholder-shown) + label,
+            &:focus + label {
+              transform: translate(0, 0) scale(1);
+              cursor: pointer;
+            }
+          }
+          ::-webkit-input-placeholder {
+            opacity: 0;
+            transition: inherit;
+          }
+          .validation-icon {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background-size: contain;
+            &.has-error-icon {
+              background: url("../icons/validation-error.svg") no-repeat center;
+              width: 16px;
+              height: 16px;
+            }
+            &.has-success-icon {
+              background: url("../icons/validation-success.svg") no-repeat center;
+              width: 13px;
+              height: 14px;
+            }
+          }
+          .error-message {
+            position: absolute;
+            margin-bottom: -20px;
+            font-family: Roboto, sans-serif;
+            font-size: 12px;
+            line-height: 14px;
+            color: #ff0000;
+          }
+        }
+        .bookit-alert {
+          &.bookit-alert-danger {
+            @include big-font;
+            color: #ff0000;
+            text-align: center;
+          }
+        }
+
+        &.appointment-confirmation {
+          .success-icon {
+            background: url("../icons/success.svg") no-repeat center;
+            background-size: contain;
+            width: 82px;
+            height: 82px;
+            margin: 0 auto;
+          }
+          h3 {
+            line-height: 24px;
+            font-size: 20px;
+            letter-spacing: normal;
+            color: $base-color;
+            margin: 5px 0px;
+          }
+          p {
+            @include normal-font;
+            color: $base-color;
+          }
+          .appointment-details {
+            border: dashed 1px #707070;
+            background-color: $base-bg-color;
+            padding: 30px 35px 40px;
+            margin: 2%;
+            .info-block {
+              .label {
+                @include smaller-font;
+                color: $grey;
+                padding: 0;
+              }
+              .info {
+                @include bigger-font;
+                color: $black;
+                margin-top: 5px;
+              }
+              + .info-block {
+                margin-top: 15px;
+              }
+            }
+          }
+          .action{
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding:2%;
+            .print-window {
+              background: $base-color;
+              color: $white;
+              @include bigger-font-bold;
+              text-transform: uppercase;
+              text-decoration: none;
+              border-radius: 4px;
+              height: 45px;
+            }
+            .custom-select {
+              text-transform: uppercase;
+              position: relative;
+              display: inline-flex;
+              flex-basis: 0;
+              align-items: center;
+              box-sizing: border-box;
+              height: 45px;
+              border: 1px solid $base-color;
+              border-radius: 4px;
+              color: $base-color;
+              background: $white url("../icons/select-arrow.svg") no-repeat right 15px top 50%;
+              margin: 0;
+              min-width: 200px;
+              cursor: pointer;
+              &.open{
+                border-bottom:none;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius:0;
+              }
+              .value{
+                flex-basis: 80%;
+                text-decoration: none;
+                text-transform: capitalize;
+                font-size: 14px;
+                line-height: 14px;
+                font-weight: 400;
+                margin-left:15px;
+                display: inline-flex;
+                align-items: center;
+                i{
+                  width: 8px;
+                  height: 13px;
+                  &.calendar-icon {
+                    width: 18px;
+                    height: 18px;
+                    margin-right:5px;
+                    background: url("../../dashboard/icons/calendar.svg") no-repeat center;
+                  }
+                }
+              }
+              .custom-options{
+                display: none;
+                box-sizing: border-box;
+                &.open{
+                  z-index: 2;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-start;
+                  align-items: flex-start;
+                  width: calc(100% + 2px);
+                  margin-left: -1px;
+                  box-sizing: border-box;
+                  top: 44px;
+                  background-color: #fff;
+                  border: 1px solid $base-color;
+                  border-top: none;
+                  border-bottom-left-radius: 4px;
+                  border-bottom-right-radius: 4px;
+                  padding-top: 10px;
+                  min-height: 70px;
+                  span{
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding-left: 17px;
+                    padding-bottom: 5px;
+                    cursor: pointer;
+                    color:$base-color;
+                    text-decoration: none;
+                    text-transform: capitalize;
+                    font-size: 14px;
+                    font-weight: 400;
+                    &:focus, &:hover{
+                      background-color: #f0f8f8;
+                      color:$base-color;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .bookit-modal-footer {
+        margin: 0;
+        padding: 32.5px 35px;
+        .payment-method {
+          label {
+            @include normal-font;
+            color: $base-color;
+            vertical-align: middle;
+          }
+          [type="radio"] {
+            &:checked,
+            &:not(:checked) {
+              position: absolute;
+              left: -9999px;
+              + label {
+                position: relative;
+                cursor: pointer;
+                padding-left: 25px;
+                &:before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 16px;
+                  height: 16px;
+                  border: 1px solid $base-color;
+                  border-radius: 100%;
+                  background: transparent;
+                  box-sizing: border-box;
+                }
+                &:after {
+                  content: '';
+                  width: 6px;
+                  height: 6px;
+                  background: $base-color;
+                  position: absolute;
+                  top: 5px;
+                  left: 5px;
+                  border-radius: 100%;
+                  -webkit-transition: all 0.2s ease;
+                  transition: all 0.2s ease;
+                }
+              }
+            }
+            &:not(:checked) + label:after {
+              opacity: 0;
+              -webkit-transform: scale(0);
+              transform: scale(0);
+            }
+            &:checked + label:after {
+              opacity: 1;
+              -webkit-transform: scale(1);
+              transform: scale(1);
+            }
+          }
+          .StripeElement {
+            padding: 5px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid $border-color;
+          }
+        }
+        button {
+          @include bigger-font-bold;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: $white;
+          background: $base-color;
+          border-radius: 5px;
+          padding: 17.5px 35px;
+        }
+      }
+
+      .close-button {
+        position: absolute;
+        right: -32px;
+        top: -3px;
+        height: 20px;
+        width: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &:before,
+        &:after {
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 6px;
+          border-radius: 12px;
+          background-color: $grey;
+        }
+        &:before {
+          transform: rotate(45deg);
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+.bookit-modal-enter,
+.bookit-modal-leave-active {
+  opacity: 0;
+  .bookit-modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@media print {
+  .bookit-modal-mask {
+    .bookit-modal-wrapper {
+      .bookit-modal-container {
+        border-radius: 0px;
+        box-shadow: none;
+        .bookit-modal-body {
+          > h3.success-title, > p, > .print-window {
+            display: none;
+          }
+          .print-only {
+            display: block;
+          }
+          .appointment-details {
+            margin: 0;
+          }
+        }
+        .close {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 769px) {
+  .bookit-modal-mask {
+    .bookit-modal-wrapper {
+      .bookit-modal-container {
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+        .close-button {
+          right: 5px;
+          top: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .bookit-modal-mask {
+    .bookit-modal-wrapper {
+      .bookit-modal-container {
+        margin: 15px;
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+
+        .bookit-modal-header {
+          h3 {
+            font-size: 18px;
+            padding: 25px 25px 20px;
+          }
+          .appointment-info {
+            padding: 15px 20px;
+            div[class^='col-'] {
+              text-align: left;
+              + div[class^='col-'] {
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+
+        .bookit-modal-body {
+          padding: 25px;
+
+          .form-group {
+            .error-message {
+              margin-bottom: -20px;
+            }
+          }
+
+          &.appointment-confirmation {
+            .success-icon {
+              width: 50px;
+              height: 50px;
+            }
+            h3 {
+              line-height: 20px;
+              font-size: 16px;
+            }
+            p {
+              @include smaller-font;
+            }
+            .appointment-details {
+              padding: 15px 15px 5px;
+              .info-block {
+                margin-bottom: 10px;
+                .info {
+                  @include bigger-font;
+                }
+                + .info-block {
+                  margin-top: 0;
+                }
+              }
+            }
+            .print-window {
+              @include normal-font-bold;
+              padding: 13px 20px;
+            }
+          }
+        }
+
+        .bookit-modal-footer {
+          padding: 0 25px 25px;
+          &.bookit-row {
+            .col-3 {
+              text-align: center;
+            }
+          }
+          button {
+            @include normal-font-bold;
+            padding: 15px 30px;
+            margin-top: 20px;
+          }
+        }
+
+
+      }
+    }
+  }
+}

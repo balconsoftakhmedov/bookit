@@ -1,0 +1,15 @@
+.toasted-container {
+  .toasted.toasted-primary {
+    min-width: 200px;
+    min-height: 50px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
+    @include normal-font-bold;
+    line-height: 20px;
+    &.error {
+      background-color: $red;
+      color: $white;
+      border: none;
+    }
+  }
+}

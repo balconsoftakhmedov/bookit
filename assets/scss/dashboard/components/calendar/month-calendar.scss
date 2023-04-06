@@ -1,0 +1,53 @@
+/**
+ * Monthly Calendar
+ */
+
+.monthly-calendar {
+  .calendar-body {
+    .dates {
+      .week {
+        .date {
+          @import "appointments";
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:  1440px){
+  .monthly-calendar {
+      .calendar-body {
+        .dates {
+          .week {
+            .date {
+              .appointments{
+                .list{
+                  .appointment-info{
+                    .service, .time{
+                      @include smaller-font;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  }
+}
+
+@media screen and (max-width: 969px) {
+
+}
+
+@media screen and (max-width: 769px) {
+
+}
+
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (max-width: 400px) {
+
+}

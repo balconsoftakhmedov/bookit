@@ -1,0 +1,97 @@
+
+/* Accordion */
+.accordion {
+  border-bottom: 1px solid $grey;
+  &:first-child {
+    border-top: 1px solid $grey;
+  }
+  &:last-child {
+    margin-bottom: 20px;
+  }
+  &.active {
+    background: $base-bg-color;
+    .accordion-title {
+      .accordion-icon {
+        background: $base-color url("../icons/arrow-up.svg") no-repeat center;
+      }
+      .icon{
+        position: absolute;
+        top:17px;
+        margin-left: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        background: rgba(0, 102, 102, 0.1);
+        padding:0;
+        cursor: pointer;
+        &.edit{
+          &:before{
+            position: absolute;
+            content: "";
+            width:16px;
+            height: 16px;
+            background-color: $base-color;
+            -webkit-mask-image: url("../icons/edit.svg");
+            mask-image: url("../icons/edit.svg");
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            mask-size: 16px 16px;
+            -webkit-mask-size: 16px 16px;
+          }
+        }
+        &.view{
+          &:before{
+            position: absolute;
+            content: "";
+            width:16px;
+            height: 16px;
+            background-color: $base-color;
+            -webkit-mask-image: url("../icons/view.svg");
+            mask-image: url("../icons/view.svg");
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            mask-size: 16px 16px;
+            -webkit-mask-size: 16px 16px;
+          }
+        }
+      }
+    }
+  }
+  .accordion-title {
+    display: block;
+    cursor: pointer;
+    padding: 20px 30px;
+    position: relative;
+    @include normal-font;
+    font-weight: bold;
+    color: $base-color;
+    .accordion-icon {
+      width: 26px;
+      height: 26px;
+      margin-top: -4px;
+      border-radius: 50%;
+      background: $base-color url("../icons/arrow-down.svg") no-repeat 50% 50%;
+    }
+    .icon{
+      display:none;
+    }
+  }
+  .accordion-body {
+    padding: 0 30px;
+    max-height: 45vh;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .accordion-body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}

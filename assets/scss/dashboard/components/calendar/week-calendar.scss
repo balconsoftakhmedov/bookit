@@ -1,0 +1,307 @@
+/**
+ * Weekly Calendar
+ */
+.weekly-calendar{
+  position: relative;
+  .calendar-header{
+    border-left:none;
+    .week-days{
+      height: 40px;
+      span{
+        &.active{
+          background-color: $highlight-color;
+          border-left: 1px solid $highlight-color;
+          color: $base-color;
+        }
+        &:first-child{
+          background-color: $white;
+          color:$black;
+          width: 6%;
+          border-top: 1px solid $grey;
+          border-left: 1px solid $grey;
+          border-top-left-radius: 4px;
+          padding: 0;
+          display: flex;
+          height: 40px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+  .calendar-body {
+    .dates {
+      .week {
+        min-height: auto;
+        .date{
+          padding:0;
+        }
+        .time-row{
+          width: 6%;
+          span{
+            &.hour{
+              @include medium-font-higher-height;
+              display: block;
+              width: 100%;
+              height: 40px;
+              line-height: 40px;
+              box-sizing: border-box;
+              text-align: center;
+              color: #707070;
+              &.current-hour{
+                line-height: normal;
+                &:after{
+                  position: absolute;
+                  display: inline-block;
+                  content: "";
+                  border-bottom: 2px solid $highlight-color;
+                  width: 100%;
+                  margin-top: .65em;
+                }
+                span{
+                  background: linear-gradient(to right, $highlight-color 95%, transparent 0);;
+                  color:$black;
+                  display: inline-block;
+                  line-height: 20px;
+                  height: 20px;
+                  width: 100%;
+                  &:after{
+                    content:"";
+                    position: relative;
+                    float: right;
+                    margin-left: .5%;
+                    border-top: 10px solid white;
+                    border-left: 13px solid #ffd400;
+                    border-bottom: 10px solid white;
+                  }
+
+                }
+              }
+            }
+          }
+        }
+        @import "appointments";
+        .appointments{
+          display: inline-block;
+          &.current-hour{
+            padding-top: 5px;
+            .list{
+              padding-top:5px;
+            }
+          }
+          .long-appointment{
+            position: relative;
+            min-height: 60px;
+            .appointment-info{
+              position: absolute;
+              &.active{
+                background-color: $highlight-color;
+              }
+              &.cancelled:before, &.pending:before{
+                top: 1px;
+                right: 1px;
+                margin-top:unset;
+              }
+              &:not(.active):hover{
+                background-color: #b4d3d3;
+                &.pending{
+                  background-color: #FFE980;
+                }
+              }
+            }
+            .appointment-popup {
+              margin-top: 5.3em;
+            }
+            .popup-arrow{
+              top: 4.8em;
+            }
+          }
+          .list-slider{
+            position: relative;
+            padding-top: 10px;
+            min-height: 100px;
+            .hooper-list{
+              height: max-content;
+            }
+            .slider-control{
+              display: inline-flex;
+              align-items: center;
+              height: 26px;
+              width: 100%;
+              position: relative;
+              div{
+                &.slider-title{
+                  width: 70%;
+                  color:$black;
+                  opacity: 0.5;
+                  @include normal-font;
+                }
+                &.next, &.prev {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 26px;
+                  height: 26px;
+                  text-align: center;
+                  background-color: rgba(0, 102, 102, 0.1);
+                  i {
+                    display: inline-block;
+                    border-top: 6px solid transparent;
+                    border-bottom: 6px solid transparent;
+
+                    &.left-icon {
+                      border-right: 8px solid $base-color;
+                    }
+                    &.right-icon {
+                      border-left: 8px solid $base-color;
+                    }
+                  }
+                }
+                &.prev{
+                  margin-left: 10px;
+                }
+                &.next{
+                  float: right;
+                  margin-right: 10px;
+                }
+              }
+            }
+            .appointment-duration{
+              box-sizing: border-box;
+              border-left: 3px solid $base-color;
+              background-color: rgba(0, 102, 102, 0.1);
+              position: absolute;
+              top:0;
+              left:0;
+              z-index: 2;
+              &.pending{
+                border-left:3px solid #ffd400;
+              }
+            }
+            .hooper {
+              outline: none;
+              width: 100%;
+              height: max-content;
+              text-align: center;
+              position: relative;
+              display: inline-grid;
+              ul{
+                list-style-position: inside;
+                display: flex;
+                height: auto;
+                width: 90%;
+                .hooper-slide {
+                  float: left;
+                  display: block;
+                  @import "appointments";
+                  .list{
+                    width: 93%;
+                    .appointment-info{
+                      .info{
+                        .time{
+                          width: 90%;
+                          word-break: break-word;
+                        }
+                        .service{
+                          width: 95%;
+                        }
+                      }
+                      &:not(.active):hover{
+                        background-color: #b4d3d3;
+                        &.pending{
+                          background-color: #FFE980;
+                        }
+                      }
+                    }
+                  }
+
+                }
+              }
+            }
+            .appointment-popup{
+              top:0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:  1440px){
+  .weekly-calendar{
+    .calendar-body {
+      .dates {
+        .week {
+          .time-row{
+            span{
+              font-size: 12px;
+            }
+          }
+          .appointments{
+            .list-slider{
+              .slider-control{
+                div{
+                  &.slider-title{
+                    font-size: 14px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 969px) {
+
+}
+
+@media screen and (max-width: 769px) {
+
+}
+
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (max-width: 400px) {
+
+}
+
+@media screen and (min-width: 1600px) {
+  .daily-calendar {
+    .calendar-time-side{
+      .times{
+        span {
+          &.current-hour{
+            span{
+              &:after{
+                margin-left: .7%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 2000px) {
+  .daily-calendar {
+    .calendar-time-side{
+      .times{
+        span {
+          &.current-hour{
+            span{
+              &:after{
+                margin-left: 1%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

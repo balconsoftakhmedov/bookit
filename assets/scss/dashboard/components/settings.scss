@@ -1,0 +1,541 @@
+/** Settings page styles **/
+
+.setting-row{
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 40px;
+  padding-top: 30px;
+  &.not-active{
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.column{
+    flex-direction: column;
+  }
+  &:first-child{
+    padding-top: 0;
+  }
+  &.no-border{
+    border: none;
+  }
+
+  &.pt-10{
+    padding-top: 10px;
+  }
+  &.pt-30{
+    padding-top: 30px;
+  }
+  &.pb-10{
+    padding-bottom: 10px;
+  }
+  &.pb-20{
+    padding-bottom: 20px;
+  }
+  .code{
+    position: relative;
+    display: inline-flex;
+    margin-top: 10px;
+    width: calc(50% - 40px);
+    &.full{
+      width: 100%;
+    }
+    code{
+      display: flex;
+      align-items: center;
+      flex-basis: 90%;
+      height:30px;
+      border-top-left-radius:4px;
+      border-bottom-left-radius: 4px;
+      background-color: #eeeeee;
+      font-size: 14px;
+      padding: 0 0 0 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .button-copy{
+      flex-basis: 10%;
+      display: inline-flex;
+      align-items: center;
+      height:30px;
+      color: $white;
+      border:none;
+      background-color: $base-color;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      padding: 0 10px;
+      cursor: pointer;
+      .copy-icon{
+        display: block;
+        background: url("../icons/copy.svg") no-repeat center;
+        background-size: contain;
+        width: 14px;
+        height: 17px;
+        padding-left: 10px;
+      }
+    }
+    .help{
+      position: absolute;
+      z-index: 2;
+      background-color: $white;
+      bottom: 0;
+      right: -10px;
+      margin-bottom: 34px;
+      border-radius:4px;
+      .help-tip {
+        text-transform: capitalize;
+        font-size: 12px;
+        line-height: 20px;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        color: $base-color;
+        padding: 5px;
+        text-align: center;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .title{
+    line-height: 24px;
+    color: $black;
+    margin: 0;
+    padding-bottom: 30px;
+    font-size: 20px;
+    font-weight: 400;
+    flex-basis:100%;
+    font-family: SFUIDisplay, sans-serif;
+    &.no-padding{
+      padding: 0;
+    }
+  }
+  .description{
+    opacity: 0.7;
+    color: $black;
+    font-size: 16px;
+    font-weight: 400;
+    flex-basis:100%;
+  }
+  .form-group{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    .file-load{
+      flex-grow: 1;
+      flex-basis: 100%;
+      display: inline-flex;
+      @include smaller-font;
+
+      .icon{
+        position: relative;
+        height: 100px;
+        border-radius: 4px;
+        border: 1px solid #dddddd;
+        margin-right: 20px;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        &.small{
+          width: 260px;
+        }
+        .delete-icon {
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          border-radius: 4px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 30px;
+          height: 30px;
+          color: $red;
+          background: rgba(217, 65, 65, 0.1);
+          padding:0;
+          cursor: pointer;
+          &:before{
+            position: absolute;
+            content: "";
+            width:14px;
+            height: 16px;
+            background-color:$red;
+            -webkit-mask-image: url("../icons/delete_red.svg");
+            mask-image: url("../icons/delete_red.svg");
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            mask-size: 14px 16px;
+            -webkit-mask-size: 14px 16px;
+
+          }
+        }
+        img{
+          width: calc(100% - 55px);
+          height: 100px;
+          object-fit: contain;
+        }
+      }
+      input.import-file {
+        display: none;
+        width: 152px;
+        color: transparent;
+        height: 41.2px;
+      }
+      div{
+        display: inline-flex;
+        .load-button, .remove-button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 20px;
+          cursor: pointer;
+          text-transform: capitalize;
+          height: 40px;
+          margin-left: 10px;
+          border-radius: 4px;
+          border: none;
+          background-color: $base-color;
+          color: $white;
+        }
+        .remove-button{
+          background-color: $red;
+        }
+        .file-button {
+          height: 40px;
+          border-radius: 4px;
+          background-color: #e5efef;
+          display: inline-flex;
+          padding: 0 20px;
+          justify-content: center;
+          align-items: center;
+          color:$base-color;
+          cursor: pointer;
+          .download-icon{
+            display: block;
+            background: url("../../frontend/icons/download-arrow.svg") no-repeat center;
+            background-size: contain;
+            width: 16px;
+            height: 16px;
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+
+    &.no-margin{
+      margin: 0;
+    }
+    &.small{
+      width: 260px;
+    }
+    &.half{
+      width: 50%;
+    }
+    &.three-quarters{
+      width: 75%;
+    }
+    &.medium{
+      width: 540px;
+    }
+    &.large{
+      width: 100%;
+    }
+    &.mt-10{
+      margin-top: 10px;
+    }
+    &.mt-20{
+      margin-top: 20px;
+    }
+    .copy-block{
+      max-height: 120px;
+      width: 100%;
+      border-radius: 10px;
+      background-color: #eeeeee;
+      padding:20px;
+      box-sizing: border-box;
+      label {
+        /* Style for "Paypal IPN" */
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: none;
+      }
+      div{
+        font-size: 14px;
+        font-weight: 400;
+        &.code{
+          position: relative;
+          display: inline-flex;
+          margin-top: 10px;
+          width: 100%;
+          code{
+            display: flex;
+            align-items: center;
+            flex-basis: 90%;
+            height:30px;
+            border-top-left-radius:4px;
+            border-bottom-left-radius: 4px;
+            background-color: $white;
+            font-size: 14px;
+            padding: 0 0 0 10px;
+          }
+          .button-copy{
+            flex-basis: 10%;
+            display: inline-flex;
+            align-items: center;
+            height:30px;
+            color: $white;
+            border:none;
+            background-color: $base-color;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            padding: 0 10px;
+            cursor: pointer;
+            .copy-icon{
+              display: block;
+              background: url("../icons/copy.svg") no-repeat center;
+              background-size: contain;
+              width: 14px;
+              height: 17px;
+              padding-left: 10px;
+            }
+          }
+          .help{
+            position: absolute;
+            z-index: 2;
+            background-color: $white;
+            bottom: 0;
+            right: -10px;
+            margin-bottom: 34px;
+            border-radius:4px;
+            .help-tip {
+              text-transform: capitalize;
+              font-size: 12px;
+              line-height: 20px;
+              border-radius: 4px;
+              -moz-border-radius: 4px;
+              -webkit-border-radius: 4px;
+              color: $base-color;
+              padding: 5px;
+              text-align: center;
+              box-sizing: border-box;
+            }
+          }
+        }
+      }
+
+    }
+    label{
+      flex-basis: content;
+      &.full{
+        flex-basis: 100%;
+      }
+    }
+    .label{
+      text-transform: capitalize;
+      color: $black;
+      font-size: 20px;
+      font-weight: 200;
+      &.for-switcher{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+    .image-radio{
+      flex-basis: calc(50% - 15px);
+      min-height: 180px;
+      border-radius: 10px;
+      border: 2px solid #dddddd;
+      background-color: $white;
+      margin-left: 20px;
+      &:first-of-type{
+        margin-left: 0px;
+      }
+      .image{
+        min-height: 140px;
+        border-bottom: 2px solid #dddddd;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        background-size: initial;
+        &.default{
+          background: url("../icons/default_view.svg") no-repeat center;
+        }
+        &.step{
+          background: url("../icons/step_view.svg") no-repeat center;
+        }
+      }
+      .field{
+        display: inline-flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 40px;
+        padding-left: 20px;
+        input[type="radio"]{
+          border: 1px solid $base-color;
+          &:before{
+            background-color: $base-color;
+          }
+        }
+        span{
+          line-height: 19px;
+          color: $black;
+          font-size: 16px;
+          font-weight: 700;
+        }
+      }
+      &:hover,&:focus{
+        border: 2px solid #fed430;
+        cursor: pointer;
+      }
+    }
+
+    /** Switcher */
+    .switcher{
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 400;
+      .bookit-switch {
+        position: relative;
+        display: inline-block;
+        margin-right: 10px;
+        label {
+          width: 45px;
+          height: 24px;
+          background: $grey;
+          position: relative;
+          border-radius: 46px;
+          margin-bottom: 1px;
+          display: inline-block;
+          -webkit-transition: .4s;
+          transition: .4s;
+          &:after {
+            content: '';
+            background: #fff;
+            top: 0;
+            left: 0;
+            width: 18px;
+            height: 18px;
+            margin-top: 3px;
+            margin-left: 3px;
+            position: absolute;
+            border-radius: 100%;
+            z-index: 2;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            -webkit-transition: .4s;
+            transition: .4s;
+          }
+        }
+        input {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 5;
+          opacity: 0;
+          cursor: pointer;
+          &:checked + label:after {
+            background: #fff;
+            right: 0;
+            left: 20px;
+            transition: .4s;
+          }
+          &:checked + label {
+            background: $base-color;
+          }
+        }
+      }
+    }
+    /** Switcher | End */
+    .custom-colors{
+      display: inline-flex;
+      flex-wrap: wrap;
+      width: 100%;
+      margin: 0;
+      padding-top: 20px;
+      text-align: left;
+      .color-picker{
+        flex-basis:calc(15% - 20px);
+      }
+    }
+    .autocomplete {
+      position: absolute;
+      z-index: 2;
+      top: 65px;
+      width: 100%;
+    }
+  }
+}
+@media screen
+and (max-device-width: 1132px)
+and (min-device-width: 836px){
+  .setting-row{
+    .form-group{
+      &.small{
+        width: calc(32% - 10px);
+      }
+      .custom-colors{
+        .color-picker{
+          flex-basis: calc(50% - 10px);
+          margin-left: 10px;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen
+and (max-device-width: 836px)
+and (min-device-width: 760px){
+  .setting-row{
+    .title{
+      margin: 0;
+    }
+    .form-group{
+      &.small{
+        width: calc(50% - 10px);
+      }
+      .custom-colors{
+        .color-picker{
+          flex-basis:calc(50% - 20px);
+          &:nth-child(2) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen
+and (max-device-width: 760px)
+and (min-device-width: 0px){
+  .setting-row{
+    .title{
+      margin: 0;
+    }
+    .form-group{
+      width: 100%;
+      flex-grow: 1;
+      margin-left: 0;
+      &.medium, &.small, &.large{
+        width: 100%;
+      }
+      .image-radio{
+        flex-basis: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+      }
+      .custom-colors{
+        .color-picker{
+          flex-basis: 100%;
+          margin-right: 0;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

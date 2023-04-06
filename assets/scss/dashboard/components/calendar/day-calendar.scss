@@ -1,0 +1,349 @@
+/**
+ * Daily Calendar
+ */
+.daily-calendar {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      border: 1px solid $grey;
+      border-radius: 4px;
+
+      .calendar-header {
+        border-left: none;
+        .staff-list {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          span {
+            float: left;
+            display: block;
+            width: 14.285%;
+            color: $white;
+            @include smaller-font;
+            letter-spacing: 1.2px;
+            line-height: normal;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 15px 0 13px;
+            border-left: solid 1px #377e7e;
+            &:first-child{
+              background-color: $white;
+              color: $black;
+              width: 106px;
+              border-top: 1px solid $grey;
+              border-left: 1px solid $grey;
+              border-top-left-radius: 4px;
+            }
+          }
+
+          /** Staff Slider **/
+          .hooper {
+            width: 91%;
+            text-align: center;
+            height: 40px;
+            .hooper-slide {
+              &.is-active {
+                float: left;
+                display: block;
+                width: 14.285%;
+                color: $white;
+                @include smaller-font;
+                letter-spacing: 1.2px;
+                line-height: normal;
+                text-align: center;
+                text-transform: uppercase;
+                padding: 15px 0 13px;
+                border-left: solid 1px #377e7e;
+                &:first-child{
+                  border: none;
+                }
+              }
+            }
+          }
+          .staff-slider-control {
+            cursor: pointer;
+            width: 2%;
+            padding: 0 1% 0 1%;
+
+            &.next {
+              border-left: solid 1px #377e7e;
+            }
+            &.prev {
+              border-right: solid 1px #377e7e;
+            }
+            i {
+              display: inline-block;
+              margin-top: 35%;
+              width: 16px;
+              height: 14px;
+              position: relative;
+              background: $white;
+
+              &.left-icon {
+                -webkit-mask-image: url("../../../frontend/icons/arrow-left.svg");
+              }
+
+              &.right-icon {
+                -webkit-mask-image: url("../../../frontend/icons/arrow-right.svg");
+              }
+            }
+          }
+          /** Staff Slider | End **/
+        }
+      }
+      .calendar-time-side{
+        width: 6%;
+        .time-header{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 40px;
+          box-sizing: border-box;
+          border-bottom: 1px solid $grey;
+          .title{
+            @include smaller-font;
+            text-align: center;
+            text-transform: uppercase;
+            background-color: $white;
+            color: $black;
+          }
+        }
+        .times{
+          width: 100%;
+          display: table;
+          span {
+            &.hour{
+              @include medium-font-higher-height;
+              display: block;
+              width: 100%;
+              height: 40px;
+              line-height: 40px;
+              box-sizing: border-box;
+              text-align: center;
+              color: #707070;
+            }
+            &.current-hour{
+              line-height: normal;
+              span{
+                background: linear-gradient(to right, $highlight-color 95%, transparent 0);;
+                color:$black;
+                display: inline-block;
+                line-height: 20px;
+                height: 20px;
+                width: 100%;
+                &:after{
+                  content:"";
+                  position: absolute;
+                  float: right;
+                  border-top: 10px solid white;
+                  border-left: 13px solid #ffd400;
+                  border-bottom: 10px solid white;
+                }
+
+              }
+            }
+          }
+        }
+      }
+      .calendar-data{
+        position: relative;
+        width: 94%;
+        .daily-slider{
+          /** Staff Slider **/
+          height: 100%;
+          .hooper {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+
+            &:focus{
+              outline: none;
+            }
+
+            .hooper-list{
+              position: inherit;
+              ul{
+                list-style-position: inside;
+                .hooper-slide {
+                  float: left;
+                  display: block;
+                  border-left: 1px solid $grey;
+                  .current-hour-border{
+                    position: absolute;
+                    display: inline-block;
+                    content: "";
+                    border-top: 2px solid $highlight-color;
+                    width: 100%;
+                    margin-top: .7em;
+                    z-index: 1;
+                  }
+                  &:last-of-type{
+                    background-color: #f7f7f7;
+                  }
+                  .employee{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    min-height: 40px;
+                    background: $base-color;
+                    color: $white;
+                    @include smaller-font;
+                    text-transform: uppercase;
+                  }
+                  @import "appointments";
+                  .appointments{
+                    display: flex;
+                    flex-direction: column;
+                    .list{
+                      width: 95%;
+                      &.current-hour{
+                        margin-top: 10px;
+                      }
+                      .appointment{
+                        .info{
+                          width: 100%;
+                          .service{
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            width:  98%;
+                            height: 20px;
+                            padding-bottom: 18px;
+                            white-space: nowrap;
+                          }
+                        }
+                      }
+                      .long-appointment{
+                        &:not(.active):hover{
+                          background-color: #b4d3d3;
+                          z-index: 2;
+                          &.pending{
+                            background-color: #FFE980;
+                          }
+                        }
+                      }
+                      .appointment-popup{
+                        margin-top: 6px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .staff-slider-control {
+            position: absolute;
+            cursor: pointer;
+            z-index: 1;
+            width: 2%;
+            &.next {
+              top: 0;
+              right: 0;
+            }
+            &.prev {
+              top: 0;
+              left: 0;
+            }
+            i {
+              display: inline-block;
+              margin-top: 35%;
+              width: 16px;
+              height: 14px;
+              position: relative;
+              background: $white;
+              &.left-icon {
+                float:right;
+                -webkit-mask-image: url("../../../frontend/icons/arrow-left.svg");
+              }
+              &.right-icon {
+                -webkit-mask-image: url("../../../frontend/icons/arrow-right.svg");
+              }
+            }
+          }
+          /** Staff Slider | End **/
+        }
+      }
+    }
+
+@media screen and (max-width:  1440px){
+  .daily-calendar {
+    .calendar-time-side{
+      .times{
+        span {
+          &.hour{
+            @include smaller-font;
+          }
+          &.current-hour{
+            line-height: normal;
+            &:after{
+              border-bottom: 2px solid $highlight-color;
+              margin-top: .8em;
+            }
+          }
+        }
+      }
+    }
+
+    .calendar-data{
+      position: relative;
+      width: 94%;
+      .daily-slider{
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 969px) {
+
+}
+
+@media screen and (max-width: 769px) {
+
+}
+
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (max-width: 400px) {
+
+}
+
+@media screen and (min-width: 1600px) {
+  .daily-calendar {
+    .calendar-time-side{
+      .times{
+        span {
+          &.current-hour{
+            span{
+              &:after{
+                margin-left: .7%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 2000px) {
+  .daily-calendar {
+    .calendar-time-side{
+      .times{
+        span {
+          &.current-hour{
+            span{
+              &:after{
+                margin-left: 1%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

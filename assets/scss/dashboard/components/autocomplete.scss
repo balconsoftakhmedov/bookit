@@ -1,0 +1,27 @@
+/* Autocomplete */
+
+.autocomplete {
+  position: relative;
+  background-color: $white;
+}
+
+.autocomplete-list {
+  padding: 0;
+  margin: 0;
+  border: 1px solid #eeeeee;
+  max-height: 120px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.autocomplete-list-item {
+  list-style: none;
+  text-align: left;
+  padding: 4px 2px;
+  cursor: pointer;
+  &.is-active,
+  &:hover {
+    background-color: #b4d3d3;
+    color: white;
+  }
+}

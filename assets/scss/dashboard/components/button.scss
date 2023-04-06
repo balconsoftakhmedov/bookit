@@ -1,0 +1,44 @@
+
+/** button rules **/
+.bookit-button {
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 12px 25px;
+  border-radius: 4px;
+  border: none;
+  background: $base-color;
+  color: $white;
+  @include smaller-font;
+  font-weight: 700;
+  transition: ease-in 0.1s;
+  margin-left: 20px;
+  &:disabled{
+    cursor:not-allowed;
+    opacity: 0.5;
+  }
+  &:not(.ml):first-of-type{
+    margin-left: 0;
+  }
+  &.error{
+    background:$red;
+  }
+  &.light{
+    background:$white;
+    color: $base-color;
+    border: 1px solid $base-color;
+  }
+  &.temp-add-appointment{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  &:hover {
+    opacity: 0.9;
+  }
+  &:focus {
+    outline: 0;
+  }
+}

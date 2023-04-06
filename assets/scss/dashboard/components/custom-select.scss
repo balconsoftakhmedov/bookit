@@ -1,0 +1,107 @@
+/* Custom select  */
+
+.custom-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 43px;
+  border: 2px solid rgba(11, 102, 101, 0.2);
+  border-right: none;
+  border-radius: unset;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  color: $base-color;
+  background: #fff url("../icons/select-arrow.svg") no-repeat right 18px top 50%;
+  margin: 0;
+  min-width: 157px;
+  cursor: pointer;
+  &.open{
+    border:none;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius:unset;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  &.hidden{
+    display: none;
+  }
+  .value{
+    padding: 0px 40px 0px 17px;
+    margin:0;
+  }
+  .custom-options{
+    display: none;
+    &.open{
+      z-index: 2;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin:0;
+      top: 44px;
+      background-color: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border-top: none;
+      border-radius: unset;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      padding: 10px 0;
+      min-height: 40px;
+      span{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 17px;
+        line-height: 36px;
+        cursor: pointer;
+        color:#000000;
+        &.hidden{
+          display: none;
+        }
+        &:focus, &:hover{
+          background-color: #f0f8f8;
+          color:$base-color;
+        }
+        &:last-child{
+          border-bottom-left-radius: 11px;
+          border-bottom-right-radius: 11px;
+        }
+        &.disable{
+          opacity: 0.5;
+          cursor: not-allowed;
+          &:after {
+            position: absolute;
+            content: '';
+            right: 0;
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 12px;
+            background: url(../icons/selected.svg) no-repeat center;
+          }
+        }
+
+      }
+    }
+  }
+}
+a{
+  height: 43px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  text-decoration: none;
+  padding: 0px 29px 0px 24px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  border: none;
+  background: $base-color;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  transition: ease-in 0.1s;
+  &:focus{
+    box-shadow: none;
+    outline: none;
+  }
+}
