@@ -90,7 +90,7 @@ export default {
                   <div v-for="n in 9"></div>
                 </div>
               </div>
-              <div v-if="!dayLoading && calendarWeek === weekIndex" class="booking-form">
+              <div v-if="!dayLoading && calendarWeek === weekIndex" class="booking-form"> 
                 <template v-if="selectedService">
                   <div class="form-group">
                     <label>{{ translations.employee }}</label>
@@ -117,20 +117,50 @@ export default {
             </div>
           </div>
         </div>
-        <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
-          <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
-            <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-product-people.svg" alt="תאריך" class="accordion-group__icon">
-            כמה תהיו?
-          </div>
-          <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+
+      </div>
+      <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
+        <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
+          <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-product-people.svg" alt="תאריך" class="accordion-group__icon">
+          כמה תהיו?
         </div>
-        <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
-          <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
-            <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-time-line.svg" alt="תאריך" class="accordion-group__icon">
-            בחרו שעה
-          </div>
-          <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+      </div>
+      <div class="stm-people">
+        <div v-if="!dayLoading" class="booking-form">
+          <template v-if="selectedService">
+            <div class="form-group">
+              <label>{{ translations.employee }}</label>
+              <select @change="handleChangeStaff($event)">
+                <option v-for="(staff, index) in availableStaff" :value="staff.id" :selected="selectedStaff && selectedStaff.id === staff.id">
+                  {{ staff.full_name }} - {{ getStaffPrice(staff, selectedService, settings) }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>{{ translations.time }}</label>
+              <select @change="handleChangeTimeSlot($event)">
+             
+              </select>
+            </div>
+            <div class="form-group">
+              <button @click="showBookingForm" :disabled="!selectedStaff || !selectedTime">{{ translations.submit }}</button>
+            </div>
+          </template>
+          <template v-else>
+            <div class="notice">{{ translations.please_choose_service }}</div>
+          </template>
         </div>
+      </div>
+      <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
+        <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
+          <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-time-line.svg" alt="תאריך" class="accordion-group__icon">
+          בחרו שעה
+        </div>
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+      </div>
+      <div class="stm-time">
+
       </div>
       </div>
 	`,
@@ -364,6 +394,7 @@ export default {
 			this.selectedTime = this.staffTimeSlots.find(time => time.value === event.target.value);
 		},
 		async handleChangeDay(day, weekIndex) {
+
 			if (this.isEqualDate(day.date, this.calendarAppointmentsDate)) {
 				this.calendarAppointmentsDate = null;
 				this.calendarWeek = null;
