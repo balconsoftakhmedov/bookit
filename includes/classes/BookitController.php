@@ -84,7 +84,7 @@ class BookitController {
         $settings['pro_active']     = bookit_pro_active();
         $settings['payment_active'] = $bookitPaymentsActive ? true : false;
         $user                       = ( is_user_logged_in() ) ? wp_get_current_user() : null;
-        $language                   = substr( get_bloginfo( 'language' ), 0, 2 );
+        $language                   =  'he' ; //substr( get_bloginfo( 'language' ), 0, 2 )
         $navigation                 = self::get_step_naviation();
 
         $time_format    = get_option('time_format');
