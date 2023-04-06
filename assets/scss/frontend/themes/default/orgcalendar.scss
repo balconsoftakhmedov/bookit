@@ -1,0 +1,53 @@
+.accordion-group__title.active[_ngcontent-serverApp-c112] {
+  background-color: #ffecca;
+      width: 100%;
+    direction: rtl;
+}
+
+.accordion-group__title[_ngcontent-serverApp-c112] {
+  background-color: #fff;
+  color: #191a1a;
+  cursor: pointer;
+  display: flex;
+  font-family: Assistant, sans-serif;
+  font-size: 1.063rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 400;
+  justify-content: space-between;
+  letter-spacing: normal;
+  line-height: 1;
+  padding: 0.938rem;
+  white-space: nowrap;
+}
+
+.accordion-group__title[_ngcontent-serverApp-c112] {
+  background-color: #fff;
+  color: #191a1a;
+  cursor: pointer;
+  display: flex;
+  font-family: Assistant, sans-serif;
+  font-size: 1.063rem;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 400;
+  justify-content: space-between;
+  letter-spacing: normal;
+  line-height: 1;
+  padding: 0.938rem;
+  white-space: nowrap;
+}
+
+.accordion-group__icon[_ngcontent-serverApp-c112] {
+  margin-left: 0.764rem;
+}
+
+.accordion-group__state-icon.open[_ngcontent-serverApp-c112] {
+  transform: rotate(0deg);
+}
+
+.accordion-group__state-icon[_ngcontent-serverApp-c112] {
+  margin-right: 0.5rem;
+  transform: rotate(180deg);
+  transition: transform .5s;
+}

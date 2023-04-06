@@ -2,13 +2,13 @@
  * Main SCSS
  */
 
-$base-color: #006666;
+$base-color: #ffffff;
 $highlight-color: #ffd400;
-$base-bg-color: #f0f8f8;
+$base-bg-color: #ffffff;
 $border-color: #dfe6e9;
 
 $white: #ffffff;
-$black: #272727;
+$black: #000000;
 $grey: #a7b1b6;
 $red: #d94141;
 
@@ -19,7 +19,7 @@ $red: #d94141;
 
   .bookit-app-content{
     margin: 0 auto;
-    max-width: 969px;
+    max-width: 450px;
     &.step_by_step{
       max-width: 1190px;
       min-width: inherit;
@@ -106,6 +106,7 @@ $red: #d94141;
 
   /** Calendar View styles **/
   @import 'views/step_by_step';
+
 }
 
 @media screen
@@ -167,3 +168,4 @@ and (min-device-width: 760px){
  */
 @import 'themes/default/main';
 @import 'components/toaster';
+@import 'themes/default/orgcalendar';

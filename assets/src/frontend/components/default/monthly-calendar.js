@@ -5,20 +5,24 @@ export default {
       <div v-if="!settings.hide_header_titles" class="header">
         <div>{{ translations.booking_appointment }}</div>
       </div>
+      <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
+        <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
+          <img _ngcontent-serverapp-c112="" class="accordion-group__icon" src="/wp-content/plugins/bookit/assets/images/icons-calendar.svg" alt="תאריך"> תאריך <!----></div>
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+      </div>
       <div class="calendar-container noselect">
         <div class="calendar-header">
-          <div class="left-arrow" @click="slideMonths(false)"><span class="left-icon"></span></div>
+          <div class="left-arrow" @click="slideMonths(false)"><svg _ngcontent-serverApp-c114="" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" class="calendar-header__icon-next"><g _ngcontent-serverApp-c114="" fill="none" fill-rule="evenodd"><g _ngcontent-serverApp-c114="" fill="#00013C"><g _ngcontent-serverApp-c114=""><g _ngcontent-serverApp-c114=""><path _ngcontent-serverApp-c114="" d="M.098 6.915C.033 6.855 0 6.775 0 6.675c0-.1.033-.191.098-.271L6.978.12C7.042.04 7.13 0 7.238 0c.11 0 .197.04.262.12l6.88 6.284c.065.08.098.17.098.27s-.033.18-.099.24l-.655.602c-.065.08-.153.12-.262.12-.109 0-.207-.04-.295-.12L7.24 2.074 1.31 7.516c-.087.08-.185.12-.295.12-.109 0-.196-.04-.262-.12l-.655-.601z" transform="translate(-344 -138) translate(10 133) translate(334 4) matrix(0 -1 -1 0 7.876 15.24)"></path></g></g></g></g></svg></div>
           <div class="months">
             <div 
               :class="['month', { active: month.month() == calendar.curMonth && month.year() == calendar.curYear }]"
               v-for="month in curMonths"
               @click="selectMonth(month)"
             >
-              <div class="title text-uppercase">{{ month.format(month_format) }} </div>
-              <div class="year">{{ month.year() }}</div>
+              <div class="title text-uppercase">{{ month.year() }} {{ month.format(month_format) }} </div>
             </div>
           </div>
-          <div class="right-arrow" @click="slideMonths(true)"><span class="right-icon"></span></div>
+          <div class="right-arrow" @click="slideMonths(true)"><svg _ngcontent-serverApp-c114="" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" class="calendar-header__icon-prev"><g _ngcontent-serverApp-c114="" fill="none" fill-rule="evenodd"><g _ngcontent-serverApp-c114="" fill="#00013C"><g _ngcontent-serverApp-c114=""><g _ngcontent-serverApp-c114=""><path _ngcontent-serverApp-c114="" d="M.098 6.915C.033 6.855 0 6.775 0 6.675c0-.1.033-.191.098-.271L6.978.12C7.042.04 7.13 0 7.238 0c.11 0 .197.04.262.12l6.88 6.284c.065.08.098.17.098.27s-.033.18-.099.24l-.655.602c-.065.08-.153.12-.262.12-.109 0-.207-.04-.295-.12L7.24 2.074 1.31 7.516c-.087.08-.185.12-.295.12-.109 0-.196-.04-.262-.12l-.655-.601z" transform="translate(-344 -138) translate(10 133) translate(334 4) matrix(0 -1 -1 0 7.876 15.24)"></path></g></g></g></g></svg></div>
         </div>
         <div class="calendar-body">
           <div  v-if="calendar.loading" class="loader">
