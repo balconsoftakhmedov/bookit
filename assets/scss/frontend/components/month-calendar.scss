@@ -6,10 +6,47 @@
   width: calc(70% - 15px);
   padding-left: 30px;
 
+  .form-group.stm-row {
+	display: flex;
+	flex-direction: column;
+  }
+
+  .form-group.stm-row label.radio-label {
+	display: flex;
+	justify-content: flex-end;
+	line-height: 2em;
+	font-weight: 700;
+	cursor: pointer;
+  }
+
+  .form-group.stm-row label.radio-label input {
+	display: none;
+  }
+
+  .form-group.stm-row label.radio-label:hover, label.radio-label.selected {
+	background: $highlight-color;
+  }
+
   &.full-width {
 	width: 100%;
   }
 
+  button.stm-button {
+	width: 100%;
+	background: #cc3366;
+	color: #ffffff;
+	font-weight: bold;
+	margin-top: 10px;
+  }
+.accordion-group__title-wrapp {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+}
+img.accordion-group__state-icon.open.selected-row {
+    transform: rotate(180deg);
+}
   .header {
 	@include big-font;
 	color: $black;
@@ -66,9 +103,10 @@
 		  position: absolute;
 		  top: calc(50% - 7px);
 		}
+
 		svg.calendar-header__icon-next {
-			transform: rotate(180deg);
-		  }
+		  transform: rotate(180deg);
+		}
 
 		.left-icon {
 		  background: url("../icons/arrow-left.svg") no-repeat center;
@@ -148,7 +186,13 @@
 			&:focus,
 			&:active,
 			&.selected-day {
+
 			  span {
+				border-radius: 50%;
+				background: $highlight-color !important;
+				border: none !important;
+				text-align: center;
+
 				&.available {
 				  background-color: $white;
 				  border: solid 1px $border-color;
@@ -162,9 +206,17 @@
 				top: 25px;
 				left: 8px;
 				cursor: pointer;
-				color: $base-color;
+				color: $black;
 				@include normal-font-bold;
 
+			  }
+
+
+			  .selected-day-month {
+				text-align: center !important;
+				align-items: flex-end;
+				flex-wrap: wrap;
+				padding-left: 3px;
 			  }
 
 			  .selected-day-flag {

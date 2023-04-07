@@ -71,16 +71,18 @@ export default {
                   :key="day.date.dayOfYear()"
               >
                 <template v-if="day.dayOff || ! day.currentMonth">
-                  <span :class="[{'day-off': day.dayOff, 'inactive': ! day.currentMonth}]">{{ day.date.date() }}</span>
+                  <span :class="[{'day-off': day.dayOff, 'inactive': ! day.currentMonth}]">{{ day.date.date() }} {{ day.date.format('MMMM') }}</span>
+
                 </template>
                 <template v-else>
-                  <span v-if="day.date.isBefore(today)" class="day-off">{{ day.date.date() }}</span>
-                  <span v-else class="available" @click="handleChangeDay(day, weekIndex)">{{ day.date.date() }} </span>
-                  <div v-if="isEqualDate(day.date, calendar.curAppointmentsDate)" class="selected-day-month" @click="handleChangeDay(day, weekIndex)">{{ day.date.format('MMMM') }}</div>
+                  <span v-if="day.date.isBefore(today)" class="day-off">{{ day.date.date() }} {{ day.date.format('MMMM') }}</span>
+
+                  <span v-else class="available" @click="handleChangeDay(day, weekIndex)">{{ day.date.date() }} {{ day.date.format('MMMM') }}</span>
+
                   <div v-if="isEqualDate(day.date, calendar.curAppointmentsDate)" class="selected-day-flag"></div>
                 </template>
               </div>
-              <div  class="loader day loading-animation">
+              <div v-if="dayLoading === weekIndex" class="loader day loading-animation">
                 <div class="loading">
                   <div v-for="n in 9"></div>
                 </div>
@@ -95,18 +97,16 @@ export default {
           <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-product-people.svg" alt="תאריך" class="accordion-group__icon">
           כמה תהיו?
         </div>
-        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open"  :class="{'selected-row':!dayLoading && calendarAppointmentsDate }" :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
       </div>
       <div class="stm-people">
         <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
           <template v-if="selectedService">
-            <div class="form-group">
-              <label>{{ translations.employee }}</label>
-              <select @change="handleChangeStaff($event)">
-                <option v-for="(staff, index) in availableStaff" :value="staff.id" :selected="selectedStaff && selectedStaff.id === staff.id">
-                  {{ staff.full_name }} - {{ getStaffPrice(staff, selectedService, settings) }}
-                </option>
-              </select>
+            <div class="form-group stm-row">
+              <label v-for="(staff, index) in availableStaff" :key="staff.id" :class="{ 'radio-label': true, 'selected': selectedStaff && selectedStaff.id === staff.id }">
+                <input type="radio" name="staff" :value="staff.id" @change="handleChangeStaff($event)" :checked="selectedStaff && selectedStaff.id === staff.id">
+                {{ staff.full_name }} - {{ getStaffPrice(staff, selectedService, settings) }}
+              </label>
             </div>
           </template>
           <template v-else>
@@ -119,19 +119,20 @@ export default {
           <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-time-line.svg" alt="תאריך" class="accordion-group__icon">
           בחרו שעה
         </div>
-        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate }" :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
       </div>
       <div class="stm-time">
         <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
           <template v-if="selectedService">
-            <div class="form-group">
-              <label>{{ translations.time }}</label>
-              <select @change="handleChangeTimeSlot($event)">
-                <option v-for="slot in staffTimeSlots" :value="slot.value">{{ slot.label }}</option>
-              </select>
+            <div class="form-group stm-row">
+
+              <label v-for="slot in staffTimeSlots" :key="slot.value" :class="{ 'radio-label': true, 'selected': selectedTime.value === slot.value }">
+                <input type="radio" name="timeSlot" :value="slot.value" @change="handleChangeTimeSlot($event)" >
+                {{ slot.label }} 
+              </label>
             </div>
             <div class="form-group">
-              <button @click="showBookingForm" :disabled="!selectedStaff || !selectedTime">{{ translations.submit }}</button>
+              <button class="stm-button" @click="showBookingForm" :disabled="!selectedStaff || !selectedTime">{{ translations.submit }}</button>
             </div>
           </template>
           <template v-else>
