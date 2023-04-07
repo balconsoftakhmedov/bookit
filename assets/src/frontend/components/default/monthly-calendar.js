@@ -75,44 +75,15 @@ export default {
                 </template>
                 <template v-else>
                   <span v-if="day.date.isBefore(today)" class="day-off">{{ day.date.date() }}</span>
-                  <span v-else class="available" @click="handleChangeDay(day, weekIndex)">{{ day.date.date() }}
-                    <div class="day-info" v-if="selectedService">
-                        <div class="display-inline-block float-left available-staff"><i class="user-icon"></i> {{ day.staff }}</div>
-                        <div class="display-inline-block float-right available-slots"><i class="timer-icon"></i> {{ day.slots }}</div>
-                      </div>
-                    </span>
+                  <span v-else class="available" @click="handleChangeDay(day, weekIndex)">{{ day.date.date() }} </span>
                   <div v-if="isEqualDate(day.date, calendar.curAppointmentsDate)" class="selected-day-month" @click="handleChangeDay(day, weekIndex)">{{ day.date.format('MMMM') }}</div>
                   <div v-if="isEqualDate(day.date, calendar.curAppointmentsDate)" class="selected-day-flag"></div>
                 </template>
               </div>
-              <div v-if="dayLoading === weekIndex" class="loader day">
+              <div  class="loader day loading-animation">
                 <div class="loading">
                   <div v-for="n in 9"></div>
                 </div>
-              </div>
-              <div v-if="!dayLoading && calendarWeek === weekIndex" class="booking-form"> 
-                <template v-if="selectedService">
-                  <div class="form-group">
-                    <label>{{ translations.employee }}</label>
-                    <select @change="handleChangeStaff($event)">
-                      <option v-for="(staff, index) in availableStaff" :value="staff.id" :selected="selectedStaff && selectedStaff.id === staff.id">
-                        {{ staff.full_name }} - {{ getStaffPrice(staff, selectedService, settings) }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>{{ translations.time }}</label>
-                    <select @change="handleChangeTimeSlot($event)">
-                      <option v-for="slot in staffTimeSlots" :value="slot.value">{{ slot.label }}</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <button @click="showBookingForm" :disabled="!selectedStaff || !selectedTime">{{ translations.submit }}</button>
-                  </div>
-                </template>
-                <template v-else>
-                  <div class="notice">{{ translations.please_choose_service }}</div>
-                </template>
               </div>
             </div>
           </div>
@@ -137,15 +108,6 @@ export default {
                 </option>
               </select>
             </div>
-            <div class="form-group">
-              <label>{{ translations.time }}</label>
-              <select @change="handleChangeTimeSlot($event)">
-                <option v-for="slot in staffTimeSlots" :value="slot.value">{{ slot.label }}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <button @click="showBookingForm" :disabled="!selectedStaff || !selectedTime">{{ translations.submit }}</button>
-            </div>
           </template>
           <template v-else>
             <div class="notice">{{ translations.please_choose_service }}</div>
@@ -160,7 +122,22 @@ export default {
         <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
       </div>
       <div class="stm-time">
-
+        <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
+          <template v-if="selectedService">
+            <div class="form-group">
+              <label>{{ translations.time }}</label>
+              <select @change="handleChangeTimeSlot($event)">
+                <option v-for="slot in staffTimeSlots" :value="slot.value">{{ slot.label }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button @click="showBookingForm" :disabled="!selectedStaff || !selectedTime">{{ translations.submit }}</button>
+            </div>
+          </template>
+          <template v-else>
+            <div class="notice">{{ translations.please_choose_service }}</div>
+          </template>
+        </div>
       </div>
       </div>
 	`,
