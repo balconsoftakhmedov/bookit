@@ -331,6 +331,7 @@ export default {
     },
     getService( service ) {
       let staff_service = this.getStaffService( service.id );
+      console.log(service,staff_service );
       return ( staff_service !== undefined ) ? staff_service : service;
     },
     getStaffService( service_id ) {
@@ -360,6 +361,7 @@ export default {
       return { weekday: weekday, start_time: '09:00:00', end_time: '18:00:00' };
     },
     updateStaffServices( add_edit, service ) {
+      console.log(service);
       const staff_service = this.getStaffService(service.id);
       if ( staff_service !== undefined ) {
         let staff_services = [...this.row.staff_services];

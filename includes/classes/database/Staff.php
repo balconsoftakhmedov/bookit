@@ -70,6 +70,7 @@ class Staff extends DatabaseModel {
             for ( $i = 0; $i < count( $keys ); $i++ ) {
                 $service['id']            = $services[$keys[$i]]['serviceId'];
                 $service['price']         = $services[$keys[$i]]['price'];
+				$service['child_price']         = $services[$keys[$i]]['child_price'];
                 $service['service_title'] = $services[$keys[$i]]['title'];
                 array_push($staffServices, $service);
             }
