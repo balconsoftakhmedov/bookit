@@ -135,12 +135,15 @@
 			  text-overflow: ellipsis;
 			  transform-origin: left bottom;
 			  transform: translate(0, 20px) scale(1.3);
+			   transform: unset;
 			}
 
 			&:not(:placeholder-shown) + label,
 			&:focus + label {
 			  transform: translate(0, 0) scale(1);
 			  cursor: pointer;
+
+			  transform: unset;
 			}
 		  }
 

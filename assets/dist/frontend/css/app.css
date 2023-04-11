@@ -3081,6 +3081,8 @@
   line-height: 2em;
   font-weight: 700;
   cursor: pointer;
+  font-size: 14px;
+  color: black;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label input {
   display: none;
@@ -3162,6 +3164,9 @@
   top: calc(50% - 7px);
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-header .left-arrow svg.calendar-header__icon-next, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-header .right-arrow svg.calendar-header__icon-next {
+  transform: rotate(0deg);
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-header .left-arrow svg.calendar-header__icon-prev, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-header .right-arrow svg.calendar-header__icon-prev {
   transform: rotate(180deg);
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-header .left-arrow .left-icon, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-header .right-arrow .left-icon {
@@ -3615,10 +3620,12 @@
   text-overflow: ellipsis;
   transform-origin: left bottom;
   transform: translate(0, 20px) scale(1.3);
+  transform: unset;
 }
 #bookit-app .bookit-app-content .default-theme .bookit-modal-mask .bookit-modal-wrapper .bookit-modal-container .bookit-modal-body .form-group input:not(:placeholder-shown) + label, #bookit-app .bookit-app-content .default-theme .bookit-modal-mask .bookit-modal-wrapper .bookit-modal-container .bookit-modal-body .form-group input:focus + label {
   transform: translate(0, 0) scale(1);
   cursor: pointer;
+  transform: unset;
 }
 #bookit-app .bookit-app-content .default-theme .bookit-modal-mask .bookit-modal-wrapper .bookit-modal-container .bookit-modal-body .form-group ::-webkit-input-placeholder {
   opacity: 0;

@@ -12,11 +12,13 @@
   }
 
   .form-group.stm-row label.radio-label {
-	display: flex;
-	justify-content: flex-end;
-	line-height: 2em;
-	font-weight: 700;
-	cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    line-height: 2em;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    color: black;
   }
 
   .form-group.stm-row label.radio-label input {
@@ -105,9 +107,11 @@ img.accordion-group__state-icon.open.selected-row {
 		}
 
 		svg.calendar-header__icon-next {
-		  transform: rotate(180deg);
+		  transform: rotate(0deg);
 		}
-
+svg.calendar-header__icon-prev {
+    transform: rotate(180deg);
+}
 		.left-icon {
 		  background: url("../icons/arrow-left.svg") no-repeat center;
 		  right: 0;
