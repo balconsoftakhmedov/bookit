@@ -109,12 +109,24 @@ export default {
                   <input type="radio" name="staff" :value="staff.id" @change="handleChangeStaff($event)" :checked="selectedStaff && selectedStaff.id === staff.id">
                   {{ staff.full_name }}
                   <div class="stm-label-row">
-                    <input type="number" name="staff_adult_number" class="stm-input">Adult -{{ getStaffPrice(staff, selectedService, settings) }} 
+                    <div class="stm-subtotal">{{ StaffAdultTotal }}</div>
+                    <div class="stm-div-input">
+                      <input type="number" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @change="handleChangeStaffAdult($event)">Adult -{{ getStaffPrice(staff, selectedService, settings) }}
+                    </div>
                   </div>
                   <div class="stm-label-row">
-                  <input type="number" name="staff_child_number" class="stm-input"> Child -{{ getStaffChildPrice(staff, selectedService, settings) }}
-                 </div>
+                    <div class="stm-subtotal">{{ StaffChildTotal }}</div>
+                    <div class="stm-div-input">
+                      <input type="number" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @change="handleChangeStaffChild($event)"> Child -{{ getStaffChildPrice(staff, selectedService, settings) }}
+                    </div>
                   </div>
+                  <div class="stm-label-row">
+                    <div class="stm-total">{{ StaffTotal }}</div>
+                    <div class="stm-div-total-label">
+                     סה״כ
+                    </div>
+                  </div>
+                </div>
               </label>
             </div>
           </template>
@@ -224,6 +236,46 @@ export default {
 			},
 			set(staff) {
 				this.$store.commit('setSelectedStaff', staff);
+			}
+		},
+		selectedStaffAdult: {
+			get() {
+				return this.$store.getters.getSelectedStaffAdult;
+			},
+			set(staff) {
+				this.$store.commit('setSelectedStaffAdult', staff);
+			}
+		},
+		selectedStaffChild: {
+			get() {
+				return this.$store.getters.getSelectedStaffChild;
+			},
+			set(staff) {
+				this.$store.commit('setSelectedStaffChild', staff);
+			}
+		},
+		StaffAdultTotal: {
+			get() {
+				return this.$store.getters.getStaffAdultTotal;
+			},
+			set(price) {
+				this.$store.commit('setStaffAdultTotal', price);
+			}
+		},
+		StaffChildTotal: {
+			get() {
+				return this.$store.getters.getStaffChildTotal;
+			},
+			set(price) {
+				this.$store.commit('setStaffChildTotal', price);
+			}
+		},
+		StaffTotal: {
+			get() {
+				return this.$store.getters.getStaffTotal;
+			},
+			set(price) {
+				this.$store.commit('setStaffTotal', price);
 			}
 		},
 		selectedTime: {
@@ -377,6 +429,12 @@ export default {
 		},
 		handleChangeStaff(event) {
 			this.selectedStaff = this.availableStaff.find(staff => staff.id === event.target.value);
+		},
+		handleChangeStaffAdult(event) {
+			this.selectedStaffAdult = event.target.value;
+		},
+		handleChangeStaffChild(event) {
+			this.selectedStaffChild = event.target.value;
 		},
 		handleChangeTimeSlot(event) {
 			this.selectedTime = this.staffTimeSlots.find(time => time.value === event.target.value);

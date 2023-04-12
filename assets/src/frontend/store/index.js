@@ -17,6 +17,11 @@ export default {
     selectedCategory: null,
     selectedService: null,
     selectedStaff: null,
+    selectedStaffAdult: 0,
+    selectedStaffChild: 0,
+    StaffChildTotal: 0,
+    StaffAdultTotal: 0,
+    StaffTotal: 0,
     selectedTime: null,
     stepNavigation: [],
     disabledTimeSlots: [],
@@ -58,6 +63,11 @@ export default {
     getSelectedCategory: state => state.selectedCategory,
     getSelectedService: state => state.selectedService,
     getSelectedStaff: state => state.selectedStaff,
+    getSelectedStaffAdult: state => state.selectedStaffAdult,
+    getSelectedStaffChild: state => state.selectedStaffChild,
+    getStaffAdultTotal: state => state.StaffAdultTotal,
+    getStaffChildTotal: state => state.StaffChildTotal,
+    getStaffTotal: state => state.StaffTotal,
     getSelectedTime: state => state.selectedTime,
     getDisabledTimeSlots: state => state.disabledTimeSlots,
     getShowBookingForm: state => state.showBookingForm,
@@ -122,6 +132,21 @@ export default {
     },
     setSelectedStaff(state, selectedStaff) {
       state.selectedStaff = selectedStaff;
+    },
+    setSelectedStaffAdult(state, selectedStaffAdult) {
+      state.selectedStaffAdult = selectedStaffAdult;
+    },
+    setSelectedStaffChild(state, selectedStaffChild) {
+      state.selectedStaffChild = selectedStaffChild;
+    },
+    setStaffTotal(state, StaffTotal) {
+      state.StaffTotal = StaffTotal;
+    },
+     setStaffAdultTotal(state, StaffAdultTotal) {
+      state.StaffAdultTotal = StaffAdultTotal;
+    },
+    setStaffChildTotal(state, StaffChildTotal) {
+      state.StaffChildTotal = StaffChildTotal;
     },
     setSelectedTime(state, time) {
       state.selectedTime = time;

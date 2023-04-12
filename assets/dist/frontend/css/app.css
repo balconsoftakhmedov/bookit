@@ -3090,6 +3090,33 @@
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label input.stm-input {
   display: block;
 }
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-label-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-label {
+  width: 100%;
+  margin: 10px;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar input.stm-input {
+  width: 100px;
+  padding: 10px 5px;
+  border: none;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar input.stm-input:focus {
+  border: none;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar input[type=number]::-webkit-outer-spin-button,
+#bookit-app .bookit-app-content .default-theme .monthly-calendar input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar input[type=number] {
+  -moz-appearance: textfield;
+}
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label:hover, #bookit-app .bookit-app-content .default-theme .monthly-calendar label.radio-label.selected {
   background: #ffd400;
 }
