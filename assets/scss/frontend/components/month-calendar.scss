@@ -11,6 +11,10 @@
 	flex-direction: column;
   }
 
+  .hide-row {
+	display: none !important;
+  }
+
   .form-group.stm-row label.radio-label {
 	display: flex;
 	justify-content: flex-end;
@@ -35,6 +39,21 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 10px;
+	flex-direction: row;
+  }
+
+  .stm-div-input {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: stretch;
+	width: 100%;
+  }
+
+  .stm-subtotal {
+	width: 150px;
+	margin-right: 5px;
   }
 
   .stm-label {

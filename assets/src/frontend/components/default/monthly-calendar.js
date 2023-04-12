@@ -92,15 +92,40 @@ export default {
         </div>
 
       </div>
-      <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
+
+      <div _ngcontent-serverapp-c112="" class="accordion-group__title active" @click="stmTimeOpen($event)">
+        <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
+          <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-time-line.svg" alt="תאריך" class="accordion-group__icon">
+          בחרו שעה
+        </div>
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate && showtime }"
+             :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
+      </div>
+      <div class="stm-time" :class="{'hide-row': !showtime }">
+        <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
+          <template v-if="selectedService">
+            <div class="form-group stm-row">
+
+              <label v-for="slot in staffTimeSlots" :key="slot.value" :class="{ 'radio-label': true, 'selected': selectedTime.value === slot.value }">
+                <input type="radio" name="timeSlot" :value="slot.value" @change="handleChangeTimeSlot($event)">
+                {{ slot.label }}
+              </label>
+            </div>
+          </template>
+          <template v-else>
+            <div class="notice">{{ translations.please_choose_service }}</div>
+          </template>
+        </div>
+      </div>
+      <div _ngcontent-serverapp-c112="" class="accordion-group__title active" @click="stmPeopleOpen($event)">
         <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
           <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-product-people.svg" alt="תאריך" class="accordion-group__icon">
           כמה תהיו?
         </div>
-        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate }"
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate && showpeople }"
              :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
       </div>
-      <div class="stm-people">
+      <div class="stm-people" :class="{'hide-row': !showpeople }">
         <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
           <template v-if="selectedService">
             <div class="form-group stm-row">
@@ -111,13 +136,13 @@ export default {
                   <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <input type="number" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @keyup="handleChangeStaffAdult($event, selectedService)">Adult -{{ getStaffPrice(staff, selectedService, settings) }}
+                      <input type="number" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @keyup="handleChangeStaffAdult($event, selectedService)">מבוגר -{{ getStaffPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
                   <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <input type="number" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @keyup="handleChangeStaffChild($event, selectedService)"> Child -{{ getStaffChildPrice(staff, selectedService, settings) }}
+                      <input type="number" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @keyup="handleChangeStaffChild($event, selectedService)"> ילד (עד גיל 18) -{{ getStaffChildPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
                   <div class="stm-label-row">
@@ -127,30 +152,6 @@ export default {
                     </div>
                   </div>
                 </div>
-              </label>
-            </div>
-          </template>
-          <template v-else>
-            <div class="notice">{{ translations.please_choose_service }}</div>
-          </template>
-        </div>
-      </div>
-      <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
-        <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
-          <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-time-line.svg" alt="תאריך" class="accordion-group__icon">
-          בחרו שעה
-        </div>
-        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate }"
-             :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
-      </div>
-      <div class="stm-time">
-        <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
-          <template v-if="selectedService">
-            <div class="form-group stm-row">
-
-              <label v-for="slot in staffTimeSlots" :key="slot.value" :class="{ 'radio-label': true, 'selected': selectedTime.value === slot.value }">
-                <input type="radio" name="timeSlot" :value="slot.value" @change="handleChangeTimeSlot($event)">
-                {{ slot.label }}
               </label>
             </div>
             <div class="form-group">
@@ -168,7 +169,9 @@ export default {
 		curMonths: [],
 		dayLoading: null,
 		translations: bookit_window.translations,
-		month_format: (window.innerWidth > 600) ? 'MMMM' : 'MMM'
+		month_format: (window.innerWidth > 600) ? 'MMMM' : 'MMM',
+		showtime: false,
+		showpeople: false,
 	}),
 	computed: {
 		settings() {
@@ -436,6 +439,12 @@ export default {
 			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
 			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
 		},
+		stmPeopleOpen(event) {
+			this.showpeople = (this.showpeople == false)? true: false;
+		},
+		stmTimeOpen(event) {
+			this.showtime = (this.showtime == false)? true: false;
+		},
 		handleChangeStaffChild(event, service) {
 			this.selectedStaffChild = (event.target.value) ? event.target.value : 0;
 			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
@@ -444,6 +453,7 @@ export default {
 		},
 		handleChangeTimeSlot(event) {
 			this.selectedTime = this.staffTimeSlots.find(time => time.value === event.target.value);
+			this.showpeople = true;
 		},
 		async handleChangeDay(day, weekIndex) {
 
@@ -458,6 +468,8 @@ export default {
 				if (this.selectedService) {
 					this.setDisabledTimeSlots(weekIndex);
 				}
+				this.showtime = true;
+				this.showpeople = true;
 			}
 		},
 		showBookingForm() {
