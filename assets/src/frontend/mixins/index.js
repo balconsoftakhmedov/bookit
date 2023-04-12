@@ -16,6 +16,10 @@ export default {
       let current_service = staff.staff_services.find(staff_service => staff_service.id == service.id);
       return this.generatePrice(parseFloat(current_service.price), settings);
     },
+    getStaffChildPrice( staff, service, settings ) {
+      let current_service = staff.staff_services.find(staff_service => staff_service.id == service.id);
+      return this.generatePrice(parseFloat(current_service.child_price), settings);
+    },
     generatePrice( price, settings ) {
       let formatted_price = parseFloat(price).toFixed(settings.decimals_number).replace('.', settings.decimals_separator);
       formatted_price     = formatted_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, settings.thousands_separator);

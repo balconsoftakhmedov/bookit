@@ -3087,6 +3087,9 @@
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label input {
   display: none;
 }
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label input.stm-input {
+  display: block;
+}
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label:hover, #bookit-app .bookit-app-content .default-theme .monthly-calendar label.radio-label.selected {
   background: #ffd400;
 }

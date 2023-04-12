@@ -78,6 +78,7 @@ class BookitController {
         $categories                 = $base_data['categories'];
         $services                   = $base_data['services'];
         $staff                      = $base_data['staff'];
+
         $settings                   = SettingsController::get_settings();
         $settings['date_format']    = bookit_php_to_moment(get_option('date_format'));
         $settings['time_format']    = bookit_php_to_moment(get_option('time_format'));

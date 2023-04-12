@@ -129,6 +129,7 @@ class Staff extends DatabaseModel {
 							\', "category_id":\', %2$s.category_id,
 						    \', "title":"\', %2$s.title,
 							\'", "price":"\', %3$s.price,
+						    \'", "child_price":"\', %3$s.child_price,
 						\'"}\' ) ), \']\' ) as staff_services,
 						CONCAT( \'[\', GROUP_CONCAT(DISTINCT CONCAT( 
 							\'{"id":\', %4$s.id,

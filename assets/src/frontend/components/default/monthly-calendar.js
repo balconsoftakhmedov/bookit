@@ -97,15 +97,24 @@ export default {
           <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-product-people.svg" alt="תאריך" class="accordion-group__icon">
           כמה תהיו?
         </div>
-        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open"  :class="{'selected-row':!dayLoading && calendarAppointmentsDate }" :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate }"
+             :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
       </div>
       <div class="stm-people">
         <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
           <template v-if="selectedService">
             <div class="form-group stm-row">
               <label v-for="(staff, index) in availableStaff" :key="staff.id" :class="{ 'radio-label': true, 'selected': selectedStaff && selectedStaff.id === staff.id }">
-                <input type="radio" name="staff" :value="staff.id" @change="handleChangeStaff($event)" :checked="selectedStaff && selectedStaff.id === staff.id">
-                {{ staff.full_name }} - {{ getStaffPrice(staff, selectedService, settings) }}
+                <div class="stm-label">
+                  <input type="radio" name="staff" :value="staff.id" @change="handleChangeStaff($event)" :checked="selectedStaff && selectedStaff.id === staff.id">
+                  {{ staff.full_name }}
+                  <div class="stm-label-row">
+                    <input type="number" name="staff_adult_number" class="stm-input">Adult -{{ getStaffPrice(staff, selectedService, settings) }} 
+                  </div>
+                  <div class="stm-label-row">
+                  <input type="number" name="staff_child_number" class="stm-input"> Child -{{ getStaffChildPrice(staff, selectedService, settings) }}
+                 </div>
+                  </div>
               </label>
             </div>
           </template>
@@ -119,7 +128,8 @@ export default {
           <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icons-time-line.svg" alt="תאריך" class="accordion-group__icon">
           בחרו שעה
         </div>
-        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate }" :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row':!dayLoading && calendarAppointmentsDate }"
+             :style="{'transform: rotate(180deg);': !dayLoading && calendarAppointmentsDate }">
       </div>
       <div class="stm-time">
         <div v-if="!dayLoading && calendarAppointmentsDate" class="booking-form">
@@ -127,8 +137,8 @@ export default {
             <div class="form-group stm-row">
 
               <label v-for="slot in staffTimeSlots" :key="slot.value" :class="{ 'radio-label': true, 'selected': selectedTime.value === slot.value }">
-                <input type="radio" name="timeSlot" :value="slot.value" @change="handleChangeTimeSlot($event)" >
-                {{ slot.label }} 
+                <input type="radio" name="timeSlot" :value="slot.value" @change="handleChangeTimeSlot($event)">
+                {{ slot.label }}
               </label>
             </div>
             <div class="form-group">
