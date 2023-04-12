@@ -109,21 +109,21 @@ export default {
                   <input type="radio" name="staff" :value="staff.id" @change="handleChangeStaff($event)" :checked="selectedStaff && selectedStaff.id === staff.id">
                   {{ staff.full_name }}
                   <div class="stm-label-row">
-                    <div class="stm-subtotal">{{ StaffAdultTotal }}</div>
+                    <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <input type="number" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @change="handleChangeStaffAdult($event)">Adult -{{ getStaffPrice(staff, selectedService, settings) }}
+                      <input type="number" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @keyup="handleChangeStaffAdult($event, selectedService)">Adult -{{ getStaffPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
                   <div class="stm-label-row">
-                    <div class="stm-subtotal">{{ StaffChildTotal }}</div>
+                    <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <input type="number" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @change="handleChangeStaffChild($event)"> Child -{{ getStaffChildPrice(staff, selectedService, settings) }}
+                      <input type="number" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @keyup="handleChangeStaffChild($event, selectedService)"> Child -{{ getStaffChildPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
                   <div class="stm-label-row">
-                    <div class="stm-total">{{ StaffTotal }}</div>
+                    <div class="stm-total">{{ generatePrice(parseFloat(StaffTotal), settings) }}</div>
                     <div class="stm-div-total-label">
-                     סה״כ
+                      סה״כ
                     </div>
                   </div>
                 </div>
@@ -430,11 +430,17 @@ export default {
 		handleChangeStaff(event) {
 			this.selectedStaff = this.availableStaff.find(staff => staff.id === event.target.value);
 		},
-		handleChangeStaffAdult(event) {
-			this.selectedStaffAdult = event.target.value;
+		handleChangeStaffAdult(event, service) {
+			this.selectedStaffAdult = (event.target.value) ? event.target.value : 0;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
+			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
 		},
-		handleChangeStaffChild(event) {
-			this.selectedStaffChild = event.target.value;
+		handleChangeStaffChild(event, service) {
+			this.selectedStaffChild = (event.target.value) ? event.target.value : 0;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffChildTotal = parseFloat(this.selectedStaffChild) * parseFloat(current_service.child_price);
+			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
 		},
 		handleChangeTimeSlot(event) {
 			this.selectedTime = this.staffTimeSlots.find(time => time.value === event.target.value);
