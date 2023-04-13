@@ -4,12 +4,12 @@ export default {
       <div v-if="!settings.hide_header_titles" class="header">
         <div>{{ translations.booking_appointment }}</div>
       </div>
-      <div _ngcontent-serverapp-c112="" class="accordion-group__title active">
+      <div _ngcontent-serverapp-c112="" class="accordion-group__title active" @click="stmCalendarOpen($event)">
         <div _ngcontent-serverapp-c112="" class="accordion-group__title-wrapp">
           <img _ngcontent-serverapp-c112="" class="accordion-group__icon" src="/wp-content/plugins/bookit/assets/images/icons-calendar.svg" alt="תאריך"> תאריך <!----></div>
-        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open">
+        <img _ngcontent-serverapp-c112="" src="/wp-content/plugins/bookit/assets/images/icon-back-dark.svg" alt="" class="accordion-group__state-icon open" :class="{'selected-row': showcalendar }">
       </div>
-      <div class="calendar-container noselect">
+      <div class="calendar-container noselect" :class="{'hide-row': !showcalendar }">
         <div class="calendar-header">
           <div class="left-arrow" @click="slideMonths(false)">
             <svg _ngcontent-serverApp-c114="" xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" class="calendar-header__icon-next">
@@ -155,7 +155,7 @@ export default {
               </label>
             </div>
             <div class="form-group">
-              <button class="stm-button" @click="showBookingForm" :disabled="!selectedStaff || !selectedTime">{{ translations.submit }}</button>
+              <button class="stm-button" @click="showBookingForm" :disabled="!selectedStaff || !selectedTime || !StaffTotal">{{ translations.submit }}</button>
             </div>
           </template>
           <template v-else>
@@ -172,6 +172,7 @@ export default {
 		month_format: (window.innerWidth > 600) ? 'MMMM' : 'MMM',
 		showtime: false,
 		showpeople: false,
+		showcalendar: true,
 	}),
 	computed: {
 		settings() {
@@ -444,6 +445,9 @@ export default {
 		},
 		stmTimeOpen(event) {
 			this.showtime = (this.showtime == false)? true: false;
+		},
+		stmCalendarOpen(event) {
+			this.showcalendar = (this.showcalendar == false)? true: false;
 		},
 		handleChangeStaffChild(event, service) {
 			this.selectedStaffChild = (event.target.value) ? event.target.value : 0;

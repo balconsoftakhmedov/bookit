@@ -3087,6 +3087,12 @@
   font-size: 14px;
   color: black;
 }
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-time {
+  direction: ltr;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-people {
+  direction: ltr;
+}
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label input {
   display: none;
 }
