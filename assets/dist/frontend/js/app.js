@@ -130,6 +130,131 @@
 
 /***/ }),
 
+/***/ "./assets/src/dashboard/components/addons/payments/woocommerce.js":
+/*!************************************************************************!*\
+  !*** ./assets/src/dashboard/components/addons/payments/woocommerce.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'paypal',
+  template: "\n      <div class=\"woocommerce\">\n      <div v-if=\"loading\" class=\"loader\">\n        <div class=\"loading\"><div v-for=\"n in 9\"></div></div>\n      </div>\n      <div :class=\"['setting-row pt-30 no-border pb-10', {'not-active': ( !addon.installed || ( addon.installed && ( !addon.isCanUse || !addon.active) ) )}]\">\n        <div :class=\"['form-group small no-margin', {disabled: ( !addon.installed || !addon.isCanUse ) }]\">\n          <span class=\"label\">{{ paymentName }}</span>\n        </div>\n        <div :class=\"['form-group small no-margin', {disabled: ( !addon.installed || !addon.isCanUse ) }]\">\n          <div class=\"switcher\">\n            <div class=\"bookit-switch\">\n              <input type=\"checkbox\" @change=\"checkWoocommerce($event)\" v-model=\"settings_object.payments.woocommerce.enabled\" :disabled=\"!addon.installed\">\n              <label></label>\n            </div>\n          </div>\n          <span class=\"label for-switcher\" v-html=\" settings_object.payments.woocommerce.enabled ? translations.enabled : translations.disabled\"></span>\n        </div>\n        </div>\n        <div v-if=\"settings_object.payments.woocommerce.enabled || ( !addon.installed || !addon.isCanUse ) \" :class=\"['setting-row pt-30 no-border pb-10', {'not-active': ( !addon.installed || ( addon.installed && ( !addon.isCanUse || !addon.active) ) ) }]\">\n          <div class=\"form-group small\">\n            <label>{{ translations.woocommerce_product }}</label>\n            <select v-model=\"settings_object.payments.woocommerce.product_id\" required :disabled=\"!addon.installed\">\n              <option v-for=\"product in payment.woocommerce_products\" :value=\"product.id\">{{ product.title }}</option>\n            </select>\n          </div>\n          <div class=\"form-group small\">\n            <label>{{ translations.woocommerce_title }}</label>\n            <input type=\"text\" v-model=\"settings_object.payments.woocommerce.custom_title\" :disabled=\"!addon.installed\">\n          </div>\n        </div>\n        <div v-if=\"settings_object.payments.woocommerce.enabled || ( !addon.installed || !addon.isCanUse ) \" :class=\"['setting-row pt-10', {'not-active': ( !addon.installed || ( addon.installed && ( !addon.isCanUse || !addon.active) ) ) }]\">\n          <div class=\"form-group medium\">\n            <label>{{ translations.woocommerce_icon }}</label>\n            \n            <div class=\"file-load\">\n              \n              <div class=\"icon small\" v-if=\"woocommerceIcon\">\n                <img :src=\"woocommerceIcon\"/>\n                <span class=\"delete-icon\" @click=\"removeIcon\"></span>\n              </div>\n              \n              <div v-if=\"!settings_object.payments.woocommerce.custom_icon\">\n                <div class=\"file-button\" onclick=\"document.getElementById('load-woocommmerce-icon').click()\">\n                  <i class=\"download-icon\"></i> {{ translations.choose_icon }}\n                </div>\n\n                <input id=\"load-woocommmerce-icon\" type=\"file\" class=\"import-file\" name=\"file\" :ref=\"'loadWoocommerceIcon'\" @change=\"appendIcon\">\n                <span @click=\"loadIcon\" class=\"load-button\">{{ translations.save }}</span>\n              </div>\n              \n            </div>\n            <span class=\"error-tip\" v-if=\"errors.woocommerce_icon\">{{ errors.woocommerce_icon }}</span>\n          </div>\n        </div>\n      </div>\n      \n    ",
+  data: function data() {
+    return {
+      loading: false,
+      translations: bookit_window.translations,
+      show_woocommerce_alert: false,
+      woocommerceIcon: false
+    };
+  },
+  computed: {
+    errors: function errors() {
+      return this.$store.getters.getErrors;
+    },
+    paymentName: function paymentName() {
+      return this.payment.name.replace('comm', function (part, index) {
+        var partName = part.split('');
+        partName[0] = partName[0].toUpperCase();
+        partName = partName.join('');
+        return index == 0 ? part.toLowerCase() : partName;
+      });
+    }
+  },
+  created: function created() {
+    this.woocommerceIcon = this.settings_object.payments.woocommerce.custom_icon;
+  },
+  props: {
+    settings_object: {
+      type: Object,
+      required: true
+    },
+    payment: {
+      type: Object,
+      required: true
+    },
+    addon: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    checkWoocommerce: function checkWoocommerce(event) {
+      if (this.payment.woocommerce_enabled === 'false' && event.target.checked) {
+        this.show_woocommerce_alert = true;
+      } else {
+        this.show_woocommerce_alert = false;
+      }
+    },
+    removeIcon: function removeIcon() {
+      var _this = this;
+      this.loading = true;
+      var formData = new FormData();
+      formData.append('action', 'bookit_remove_icon');
+      formData.append('nonce', bookit_window.nonces.bookit_load_icon);
+      this.axios.post("".concat(bookit_window.ajax_url), formData, this.getPostHeaders()).then(function (res) {
+        var response = res.data;
+        if (response.success) {
+          _this.woocommerceIcon = false;
+          _this.settings_object.payments.woocommerce.custom_icon = false;
+        }
+        _this.$toasted.show(response.data.message, {
+          type: response.success ? 'success' : 'error'
+        });
+        _this.loading = false;
+      });
+    },
+    loadIcon: function loadIcon() {
+      var _this2 = this;
+      var files = this.$refs['loadWoocommerceIcon'].files;
+      if (!files.length) return;
+      this.$store.commit('setErrors', {});
+      if (files[0]['type'].split('/')[0] != 'image') {
+        this.$store.commit('setErrors', {
+          'woocommerce_icon': this.translations.woocommerce_icon_error
+        });
+        this.woocommerceIcon = this.settings_object.payments.woocommerce.custom_icon ? this.settings_object.payments.woocommerce.custom_icon : '';
+        return;
+      }
+      this.loading = true;
+      var formData = new FormData();
+      formData.append('file', files[0]);
+      formData.append('action', 'bookit_load_setting_icon');
+      formData.append('nonce', bookit_window.nonces.bookit_load_icon);
+      this.axios.post("".concat(bookit_window.ajax_url), formData, this.getPostHeaders()).then(function (res) {
+        var response = res.data;
+        if (response.data.errors && Object.keys(response.data.errors).length > 0 && response.data.errors.hasOwnProperty('icon')) {
+          _this2.$store.commit('setErrors', response.data.errors);
+        }
+        if (response.success) {
+          _this2.woocommerceIcon = response.data.icon_url;
+          _this2.settings_object.payments.woocommerce.custom_icon = response.data.icon_url;
+        }
+        _this2.$toasted.show(response.data.message, {
+          type: response.success ? 'success' : 'error'
+        });
+        _this2.loading = false;
+      });
+    },
+    appendIcon: function appendIcon(event) {
+      if (event.target.files.length > 0) {
+        var errors = {};
+        if (event.target.files[0].type.split('/')[0] == 'image') {
+          var filename = event.target.files[0].name;
+          this.woocommerceIcon = window.URL.createObjectURL(event.target.files[0]);
+        } else {
+          errors.woocommerce_icon = this.translations.woocommerce_icon_error;
+        }
+        this.$store.commit('setErrors', errors);
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./assets/src/frontend/@views/bookit.js":
 /*!**********************************************!*\
   !*** ./assets/src/frontend/@views/bookit.js ***!
@@ -1287,6 +1412,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dashboard_components_addons_payments_woocommerce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../dashboard/components/addons/payments/woocommerce */ "./assets/src/dashboard/components/addons/payments/woocommerce.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1306,8 +1432,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: "\n  <transition name=\"bookit-modal\">\n    <div class=\"bookit-modal-mask\">\n      <div class=\"bookit-modal-wrapper\" @click=\"close($event)\">\n          <transition v-if=\"!success\" name=\"slide\">\n            <div class=\"bookit-modal-container\" @click.stop>\n              <div v-if=\"loading\" class=\"loader\">\n                <div class=\"loading\"><div v-for=\"n in 9\"></div></div>\n              </div>\n              <form @submit.prevent=\"bookNow\">\n                <div class=\"bookit-modal-header\">\n                  <h3>{{ translations.booking_details }}</h3>\n                  <div class=\"appointment-info bookit-row\">\n                    <div class=\"col-2\">\n                      <div class=\"text-bold\">{{ service.title }} </div>\n                     <div class=\"text-bold\">\u05DE\u05D1\u05D5\u05D2\u05E8 -{{ selectedStaffAdult }} - {{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>\n                     <div class=\"text-bold\">\u05D9\u05DC\u05D3 (\u05E2\u05D3 \u05D2\u05D9\u05DC 18) - {{ selectedStaffChild }} - {{ generatePrice(parseFloat(StaffChildTotal), settings) }} </div>\n                    <div class=\"text-bold\">\u05E1\u05D4\u05F4\u05DB - {{ generatePrice(parseFloat(StaffTotal), settings) }} </div>\n                      \n                      <div class=\"text-uppercase\">{{ translations.employee }}: {{ staff.full_name }}</div>\n                    </div>\n                    <div class=\"col-2 text-right\">\n                      <div class=\"text-uppercase\">{{ calendarAppointmentsDate | moment(settings.date_format) }}</div>\n                      <div class=\"text-bold\">{{ time.format(settings.time_format) }} / {{ calendarAppointmentsDate | moment('dddd') }}</div>\n                    </div>\n                  </div>\n                </div>\n      \n                <div class=\"bookit-modal-body\">\n                  <div class=\"bookit-row\">\n                    <div class=\"form-group\">\n                      <span class=\"error-message\" v-if=\"errors.full_name\">{{ errors.full_name }}</span>\n                      <input type=\"text\" id=\"bookit_full_name\" v-model=\"full_name\" :placeholder=\"translations.full_name\">\n                      <label for=\"bookit_full_name\">{{ translations.full_name }}</label>\n                      <div v-if=\"errors.full_name\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.full_name\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                  </div>\n                  <div class=\"bookit-row\">\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.email\">{{ errors.email }}</span>\n                      <input type=\"email\" id=\"bookit_email\" v-model=\"email\" :placeholder=\"translations.email\">\n                      <label for=\"bookit_email\">{{ translations.email }}</label>\n                      <div v-if=\"errors.email\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.email\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                  </div>\n                  <div class=\"bookit-row\">\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.phone\">{{ errors.phone }}</span>\n                      <input type=\"text\" id=\"bookit_phone\" v-model=\"phone\" :placeholder=\"translations.phone\">\n                      <label for=\"bookit_phone\">{{ translations.phone }}</label>\n                    </div>\n                  </div>\n                  <div v-if=\"settings.booking_type == 'registered' && !user_id\" class=\"bookit-row\">\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.password\">{{ errors.password }}</span>\n                      <input type=\"password\" id=\"bookit_password\" v-model=\"password\" :placeholder=\"translations.password\">\n                      <label for=\"bookit_password\">{{ translations.password }}</label>\n                      <div v-if=\"errors.password\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.password\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.password_confirmation\">{{ errors.password_confirmation }}</span>\n                      <input type=\"password\" id=\"bookit_password_confirmation\" v-model=\"password_confirmation\" :placeholder=\"translations.password_confirmation\">\n                      <label for=\"bookit_password_confirmation\">{{ translations.password_confirmation }}</label>\n                      <div v-if=\"errors.password\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.password\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                  </div>\n                  <div v-if=\"errors.message !== undefined\" class=\"bookit-row\">\n                    <div class=\"bookit-alert bookit-alert-danger\">\n                      <div>{{ errors.message }}</div>\n                    </div>\n                  </div>\n                </div>\n                \n                <div class=\"bookit-modal-footer bookit-row\">\n                  <div class=\"col-2-3\" v-if=\"getStaffClearPrice(staff, service) > 0\">\n                    <div v-for=\"(item, key) in payment_methods\" class=\"payment-method\">\n                      <input type=\"radio\" :id=\"key\" class=\"display-inline-block\" v-model=\"payment_method\" :value=\"key\">\n                      <label :for=\"key\" class=\"display-inline-block\">{{ translations[key] }}</label>\n                      \n                      <span class=\"is-pro\" v-if=\"key === 'paypal'\">\n                          <span class=\"pro-tooltip\">\n                             pro\n                             <span style=\"visibility: hidden;\" class=\"pro-tooltiptext\">Feature Available <br> in Pro Version</span>\n                          </span>\n                      </span>\n                      \n                      <span class=\"is-pro\" v-if=\"key === 'stripe'\">\n                          <span class=\"pro-tooltip\">\n                             pro\n                             <span style=\"visibility: hidden;\" class=\"pro-tooltiptext\">Feature Available <br> in Pro Version</span>\n                          </span>\n                      </span>\n                      \n                    </div>\n                    <div v-if=\"payment_method === 'stripe'\" class=\"payment-method\">\n                      <div ref=\"stripe_card\"></div>\n                    </div>\n                  </div>\n                  <div class=\"col-3 text-right\">\n                    <button type=\"submit\" class=\"modal-default-button\">{{ translations.book_now }}</button>\n                  </div>\n                </div>\n              </form>\n              <a href=\"#\" class=\"close-button\" @click=\"close($event)\"></a>\n            </div>\n          </transition>\n          <transition v-else name=\"slide\">\n            <div class=\"bookit-modal-container\" @click.stop>\n              <div class=\"bookit-modal-body text-center appointment-confirmation\">\n                <div class=\"success-icon\"></div>\n                <h3 class=\"success-title\">{{ translations.success_booking }}</h3>\n                <h3 class=\"print-only\">{{ translations.reservation_confirmation }}</h3>\n                <p>{{ translations.booking_email_sent }}</p>\n                \n                <div v-if=\"redirect_url.length > 0\" class=\"appointment-info redirect-answer\">\n                  <div class=\"text-bold\">{{ translations.you_will_be_redirected }} <span class=\"text-capitalize payment-text\">{{ payment_method }}</span> {{ translations.in }} {{ countDown }} {{ translations.seconds }}...</div>\n                </div>\n                \n                <div class=\"appointment-details text-left\">\n                  <div class=\"bookit-row\">\n                    <div class=\"col-2\">\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.service }}:</div>\n                        <div class=\"info\">{{ service.title }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.employee }}:</div>\n                        <div class=\"info\">{{ staff.full_name }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.price }}:</div>\n                        <div class=\"info\">{{ getStaffPrice(staff, service, settings) }}</div>\n                      </div>\n                    </div>\n                    <div class=\"col-2\">\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.client_name }}:</div>\n                        <div class=\"info\">{{ full_name }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.reservation_time }}:</div>\n                        <div class=\"info\">{{ moment.unix(appointment.start_time) | moment(settings.time_format) }} / {{ moment.unix(appointment.start_time) | moment('dddd') }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.reservation_date }}:</div>\n                        <div class=\"info\">{{ moment.unix(appointment.start_time) | moment(settings.date_format) }}</div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"action\">\n                  <button class=\"print-window\" @click=\"printWindow\">{{ translations.print_confirmation }}</button>\n                  <div :class=\"['custom-select', { 'open': isOpenAddToCalendar } ]\" @click=\"isOpenAddToCalendar = !isOpenAddToCalendar;\" >\n                    <div class=\"value\">\n                      <i class=\"calendar-icon\"></i>\n                      {{ translations.add_to_calendar }}\n                    </div>\n                    <div :class=\"['custom-options', { 'open': isOpenAddToCalendar } ]\">\n                  <span class=\"custom-option\" @click=\"addToCalendar('google')\">\n                    {{ translations.google_calendar }}\n                  </span>\n                      <span class=\"custom-option\" @click=\"addToCalendar('ical')\">\n                    {{ translations.i_cal }}\n                  </span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <a href=\"#\" class=\"close-button\" @click=\"close($event)\"></a>\n            </div>\n          </transition>\n      </div>\n    </div>\n  </transition>\n  ",
+  template: "\n      <transition name=\"bookit-modal\">\n      <div class=\"bookit-modal-mask\">\n        <div class=\"bookit-modal-wrapper\" @click=\"close($event)\">\n          <transition v-if=\"!success\" name=\"slide\">\n            <div class=\"bookit-modal-container\" @click.stop>\n              <div v-if=\"loading\" class=\"loader\">\n                <div class=\"loading\">\n                  <div v-for=\"n in 9\"></div>\n                </div>\n              </div>\n              <form @submit.prevent=\"bookNow\">\n                <div class=\"bookit-modal-header\">\n                  <h3>{{ translations.booking_details }}</h3>\n                  <div class=\"appointment-info bookit-row\">\n                    <div class=\"col-2\">\n                      <div class=\"text-bold\">{{ service.title }}</div>\n                      <div class=\"text-bold\">\u05DE\u05D1\u05D5\u05D2\u05E8 -{{ selectedStaffAdult }} - {{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>\n                      <div class=\"text-bold\">\u05D9\u05DC\u05D3 (\u05E2\u05D3 \u05D2\u05D9\u05DC 18) - {{ selectedStaffChild }} - {{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>\n                      <div class=\"text-bold\">\u05E1\u05D4\u05F4\u05DB - {{ generatePrice(parseFloat(StaffTotal), settings) }}</div>\n\n                      <div class=\"text-uppercase\">{{ translations.employee }}: {{ staff.full_name }}</div>\n                    </div>\n                    <div class=\"col-2 text-right\">\n                      <div class=\"text-uppercase\">{{ calendarAppointmentsDate | moment(settings.date_format) }}</div>\n                      <div class=\"text-bold\">{{ time.format(settings.time_format) }} / {{ calendarAppointmentsDate | moment('dddd') }}</div>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"bookit-modal-body\">\n                  <div class=\"bookit-row\">\n                    <div class=\"form-group\">\n                      <span class=\"error-message\" v-if=\"errors.full_name\">{{ errors.full_name }}</span>\n                      <input type=\"text\" id=\"bookit_full_name\" v-model=\"full_name\" :placeholder=\"translations.full_name\">\n                      <label for=\"bookit_full_name\">{{ translations.full_name }}</label>\n                      <div v-if=\"errors.full_name\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.full_name\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                  </div>\n                  <div class=\"bookit-row\">\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.email\">{{ errors.email }}</span>\n                      <input type=\"email\" id=\"bookit_email\" v-model=\"email\" :placeholder=\"translations.email\">\n                      <label for=\"bookit_email\">{{ translations.email }}</label>\n                      <div v-if=\"errors.email\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.email\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                  </div>\n                  <div class=\"bookit-row\">\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.phone\">{{ errors.phone }}</span>\n                      <input type=\"text\" id=\"bookit_phone\" v-model=\"phone\" :placeholder=\"translations.phone\">\n                      <label for=\"bookit_phone\">{{ translations.phone }}</label>\n                    </div>\n                  </div>\n                  <div v-if=\"settings.booking_type == 'registered' && !user_id\" class=\"bookit-row\">\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.password\">{{ errors.password }}</span>\n                      <input type=\"password\" id=\"bookit_password\" v-model=\"password\" :placeholder=\"translations.password\">\n                      <label for=\"bookit_password\">{{ translations.password }}</label>\n                      <div v-if=\"errors.password\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.password\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                    <div class=\"form-group col-2\">\n                      <span class=\"error-message\" v-if=\"errors.password_confirmation\">{{ errors.password_confirmation }}</span>\n                      <input type=\"password\" id=\"bookit_password_confirmation\" v-model=\"password_confirmation\" :placeholder=\"translations.password_confirmation\">\n                      <label for=\"bookit_password_confirmation\">{{ translations.password_confirmation }}</label>\n                      <div v-if=\"errors.password\" class=\"validation-icon has-error-icon\"></div>\n                      <div v-if=\"!errors.password\" class=\"validation-icon has-success-icon\"></div>\n                    </div>\n                  </div>\n                  <div v-if=\"errors.message !== undefined\" class=\"bookit-row\">\n                    <div class=\"bookit-alert bookit-alert-danger\">\n                      <div>{{ errors.message }}</div>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"bookit-modal-footer bookit-row\">\n                  <div class=\"col-2-3\" v-if=\"getStaffClearPrice(staff, service) > 0\">\n                    <div v-for=\"(item, key) in payment_methods\" class=\"payment-method\">\n                      <input type=\"radio\" :id=\"key\" class=\"display-inline-block\" v-model=\"payment_method\" :value=\"key\">\n                      <label :for=\"key\" class=\"display-inline-block\">{{ translations[key] }}</label>\n\n                      <span class=\"is-pro\" v-if=\"key === 'paypal'\">\n                          <span class=\"pro-tooltip\">\n                             pro\n                             <span style=\"visibility: hidden;\" class=\"pro-tooltiptext\">Feature Available <br> in Pro Version</span>\n                          </span>\n                      </span>\n\n                      <span class=\"is-pro\" v-if=\"key === 'stripe'\">\n                          <span class=\"pro-tooltip\">\n                             pro\n                             <span style=\"visibility: hidden;\" class=\"pro-tooltiptext\">Feature Available <br> in Pro Version</span>\n                          </span>\n                      </span>\n\n                    </div>\n                    <div v-if=\"payment_method === 'stripe'\" class=\"payment-method\">\n                      <div ref=\"stripe_card\"></div>\n                    </div>\n                  </div>\n                  <div class=\"col-3 text-right\">\n                    <button type=\"submit\" class=\"modal-default-button\">{{ translations.book_now }}</button>\n                  </div>\n                </div>\n              </form>\n              <a href=\"#\" class=\"close-button\" @click=\"close($event)\"></a>\n            </div>\n          </transition>\n          <transition v-else name=\"slide\">\n            <div class=\"bookit-modal-container\" @click.stop>\n              <div class=\"bookit-modal-body text-center appointment-confirmation\">\n                <div class=\"success-icon\"></div>\n                <h3 class=\"success-title\">{{ translations.success_booking }}</h3>\n                <h3 class=\"print-only\">{{ translations.reservation_confirmation }}</h3>\n                <p>{{ translations.booking_email_sent }}</p>\n\n                <div v-if=\"redirect_url.length > 0\" class=\"appointment-info redirect-answer\">\n                  <div class=\"text-bold\">{{ translations.you_will_be_redirected }} <span class=\"text-capitalize payment-text\">{{ payment_method }}</span> {{ translations.in }} {{ countDown }} {{ translations.seconds }}...</div>\n                </div>\n\n                <div class=\"appointment-details text-left\">\n                  <div class=\"bookit-row\">\n                    <div class=\"col-2\">\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.service }}:</div>\n                        <div class=\"info\">{{ service.title }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.employee }}:</div>\n                        <div class=\"info\">{{ staff.full_name }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.price }}:</div>\n                        <div class=\"info\">{{ getStaffPrice(staff, service, settings) }}</div>\n                      </div>\n                    </div>\n                    <div class=\"col-2\">\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.client_name }}:</div>\n                        <div class=\"info\">{{ full_name }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.reservation_time }}:</div>\n                        <div class=\"info\">{{ moment.unix(appointment.start_time) | moment(settings.time_format) }} / {{ moment.unix(appointment.start_time) | moment('dddd') }}</div>\n                      </div>\n                      <div class=\"info-block\">\n                        <div class=\"label text-uppercase\">{{ translations.reservation_date }}:</div>\n                        <div class=\"info\">{{ moment.unix(appointment.start_time) | moment(settings.date_format) }}</div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"action\">\n                  <button class=\"print-window\" @click=\"printWindow\">{{ translations.print_confirmation }}</button>\n                  <div :class=\"['custom-select', { 'open': isOpenAddToCalendar } ]\" @click=\"isOpenAddToCalendar = !isOpenAddToCalendar;\">\n                    <div class=\"value\">\n                      <i class=\"calendar-icon\"></i>\n                      {{ translations.add_to_calendar }}\n                    </div>\n                    <div :class=\"['custom-options', { 'open': isOpenAddToCalendar } ]\">\n                  <span class=\"custom-option\" @click=\"addToCalendar('google')\">\n                    {{ translations.google_calendar }}\n                  </span>\n                      <span class=\"custom-option\" @click=\"addToCalendar('ical')\">\n                    {{ translations.i_cal }}\n                  </span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n              <a href=\"#\" class=\"close-button\" @click=\"close($event)\"></a>\n            </div>\n          </transition>\n        </div>\n      </div>\n      </transition>\n\t",
   data: function data() {
     return {
       appointment: {},
@@ -1503,11 +1630,19 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 clear_price: _this3.staff.staff_services.find(function (staff_service) {
                   return staff_service.id == _this3.service.id;
                 }).price,
+                adult_total_price: _this3.generatePrice(parseFloat(_this3.StaffAdultTotal), _this3.settings),
+                clear_adult_total_price: _this3.StaffAdultTotal,
+                child_total_price: _this3.generatePrice(parseFloat(_this3.StaffChildTotal), _this3.settings),
+                clear_child_total_price: _this3.StaffChildTotal,
+                total_price: _this3.generatePrice(parseFloat(_this3.StaffTotal), _this3.settings),
+                clear_total_price: _this3.StaffTotal,
+                adult_qty: _this3.selectedStaffAdult,
+                child_qty: _this3.selectedStaffChild,
                 user_id: _this3.user_id,
                 date_timestamp: _this3.calendarAppointmentsDate.unix(),
                 start_time: _this3.time.unix(),
                 end_time: _this3.time.clone().add(_this3.service.duration, 'seconds').unix(),
-                payment_method: _this3.payment_method,
+                payment_method: _this3.payment_method == 'woocommerce' ? _this3.payment_method : _this3.payment_method,
                 token: ''
               };
               if (!(_this3.payment_method === 'stripe')) {
@@ -1607,7 +1742,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               return _context3.abrupt("return");
             case 9:
               _context3.next = 11;
-              return _this3.axios.post("".concat(bookit_window.ajax_url, "?action=bookit_book_appointment"), _this3.generateFormData(data), _this3.getPostHeaders()).then(function (res) {
+              return _this3.axios.post("".concat(bookit_window.ajax_url, "?action=bookit_book_appointment_child"), _this3.generateFormData(data), _this3.getPostHeaders()).then(function (res) {
                 var response = res.data;
                 if (response.data.errors && Object.keys(response.data.errors).length > 0) {
                   _this3.errors = response.data.errors;

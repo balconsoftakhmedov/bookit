@@ -1,3 +1,5 @@
+import woocommerce from "../../../../dashboard/components/addons/payments/woocommerce";
+
 export default {
 	template: `
       <transition name="bookit-modal">
@@ -389,7 +391,7 @@ export default {
 					date_timestamp: this.calendarAppointmentsDate.unix(),
 					start_time: this.time.unix(),
 					end_time: this.time.clone().add(this.service.duration, 'seconds').unix(),
-					payment_method: this.payment_method,
+					payment_method: (this.payment_method == 'woocommerce')?this.payment_method: this.payment_method,
 					token: '',
 				};
 
@@ -439,7 +441,7 @@ export default {
 					return;
 				}
 
-				await this.axios.post(`${bookit_window.ajax_url}?action=bookit_book_appointment`, this.generateFormData(data), this.getPostHeaders()).then((res) => {
+				await this.axios.post(`${bookit_window.ajax_url}?action=bookit_book_appointment_child`, this.generateFormData(data), this.getPostHeaders()).then((res) => {
 					let response = res.data;
 
 					if (response.data.errors && Object.keys(response.data.errors).length > 0) {
