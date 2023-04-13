@@ -64,15 +64,7 @@ class AdminMenu {
 			'bookit-staff',
 			'Bookit\Classes\Admin\StaffController::render'
 		);
-		// Add Tours Submenu
-		add_submenu_page(
-			'bookit',
-			esc_html__( 'Tours', 'bookit' ),
-			esc_html__( 'Tours', 'bookit' ),
-			'manage_bookit_staff',
-			'bookit-tours',
-			'Bookit\Classes\Admin\StaffController::render'
-		);
+
 		// Add Customers Submenu
 		add_submenu_page(
 			'bookit',
