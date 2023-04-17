@@ -3096,6 +3096,55 @@
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label input {
   display: none;
 }
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-plus {
+  align-items: center;
+  background-color: #0bc7d9;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  display: inline-flex;
+  font-size: 32px;
+  font-weight: 400;
+  height: 32px;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  width: 32px;
+  padding-bottom: 9px;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-minus {
+  align-items: center;
+  background-color: #0bc7d9;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  display: inline-flex;
+  font-size: 32px;
+  font-weight: 400;
+  height: 32px;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  width: 32px;
+  padding-bottom: 9px;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-number {
+  font-size: 1.25rem;
+  font-family: Assistant;
+  font-weight: 600;
+  color: #191a1a;
+  display: flex;
+  justify-content: center;
+  width: 3rem;
+}
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .form-group.stm-row label.radio-label input.stm-input {
   display: block;
 }
@@ -3111,7 +3160,6 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
   align-content: stretch;
   width: 100%;
 }
@@ -3253,6 +3301,9 @@
   width: 100%;
   overflow: hidden;
   text-align: center;
+}
+#bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week {
+  direction: ltr;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date {
   position: relative;

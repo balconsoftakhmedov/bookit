@@ -136,13 +136,24 @@ export default {
                   <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <input type="number" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @keyup="handleChangeStaffAdult($event, selectedService)">מבוגר -{{ getStaffPrice(staff, selectedService, settings) }}
+                      <div class="stm-plus" @click="PlusChangeStaffAdult(selectedService)">+</div>
+                      <div class="stm-number">{{ selectedStaffAdult }}</div>
+                      <div class="stm-minus" @click="MinusChangeStaffAdult(selectedService)">-</div>
+                    </div>
+                    <div class="stm-title">
+                      <input type="hidden" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @keyup="handleChangeStaffAdult($event, selectedService)">מבוגר  {{ getStaffPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
                   <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <input type="number" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @keyup="handleChangeStaffChild($event, selectedService)"> ילד (עד גיל 18) -{{ getStaffChildPrice(staff, selectedService, settings) }}
+                      <div class="stm-plus" @click="PlusChangeStaffChild(selectedService)">+</div>
+                      <div class="stm-number">{{ selectedStaffChild }}</div>
+                      <div class="stm-minus" @click="MinusChangeStaffChild(selectedService)">-</div>
+                    </div>
+                    <div class="stm-title">
+                      <input type="hidden" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @keyup="handleChangeStaffChild($event, selectedService)"> ילד (עד גיל 18) -
+                      {{ getStaffChildPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
                   <div class="stm-label-row">
@@ -440,14 +451,26 @@ export default {
 			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
 			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
 		},
+		PlusChangeStaffAdult(service) {
+			this.selectedStaffAdult = this.selectedStaffAdult + 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
+			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+		},
+		MinusChangeStaffAdult(service) {
+			this.selectedStaffAdult = (this.selectedStaffAdult == 0) ? 0 : this.selectedStaffAdult - 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
+			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+		},
 		stmPeopleOpen(event) {
-			this.showpeople = (this.showpeople == false)? true: false;
+			this.showpeople = (this.showpeople == false) ? true : false;
 		},
 		stmTimeOpen(event) {
-			this.showtime = (this.showtime == false)? true: false;
+			this.showtime = (this.showtime == false) ? true : false;
 		},
 		stmCalendarOpen(event) {
-			this.showcalendar = (this.showcalendar == false)? true: false;
+			this.showcalendar = (this.showcalendar == false) ? true : false;
 		},
 		handleChangeStaffChild(event, service) {
 			this.selectedStaffChild = (event.target.value) ? event.target.value : 0;

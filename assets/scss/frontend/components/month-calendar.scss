@@ -37,6 +37,64 @@
 	display: none;
   }
 
+  .stm-plus {
+	align-items: center;
+	background-color: #0bc7d9;
+	border-radius: 50%;
+	border: none;
+	color: #fff;
+	display: inline-flex;
+	font-size: 32px;
+	font-weight: 400;
+	height: 32px;
+	justify-content: center;
+	line-height: 1;
+	margin: 0;
+	outline: none;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 32px;
+	padding-bottom: 9px;
+  }
+
+  .stm-minus {
+	align-items: center;
+	background-color: #0bc7d9;
+	border-radius: 50%;
+	border: none;
+	color: #fff;
+	display: inline-flex;
+	font-size: 32px;
+	font-weight: 400;
+	height: 32px;
+	justify-content: center;
+	line-height: 1;
+	margin: 0;
+	outline: none;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 32px;
+	padding-bottom: 9px;
+  }
+
+  .stm-title {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+  }
+
+  .stm-number {
+	font-size: 1.02rem;
+	/* font-family: Assistant; */
+	font-weight: bold;
+	color: #191a1a;
+	display: flex;
+	justify-content: center;
+	width: 3rem;
+  }
+
   .form-group.stm-row label.radio-label input.stm-input {
 	display: block;
   }
@@ -54,7 +112,6 @@
 	display: flex;
 	align-items: center;
 	flex-direction: row;
-	justify-content: space-between;
 	align-content: stretch;
 	width: 100%;
   }
@@ -218,6 +275,7 @@
 		text-align: center;
 
 		.week {
+		  direction: ltr;
 
 		  .date {
 			position: relative;
