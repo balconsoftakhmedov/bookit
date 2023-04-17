@@ -3115,6 +3115,7 @@
   vertical-align: middle;
   width: 32px;
   padding-bottom: 9px;
+  cursor: pointer;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-minus {
   align-items: center;
@@ -3135,6 +3136,7 @@
   vertical-align: middle;
   width: 32px;
   padding-bottom: 9px;
+  cursor: pointer;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-title {
   width: 100%;
@@ -3160,6 +3162,7 @@
   align-items: center;
   margin-bottom: 10px;
   flex-direction: row;
+  cursor: default;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .stm-div-input {
   display: flex;

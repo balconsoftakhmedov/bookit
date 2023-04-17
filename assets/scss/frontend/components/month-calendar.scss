@@ -56,6 +56,7 @@
 	vertical-align: middle;
 	width: 32px;
 	padding-bottom: 9px;
+	cursor: pointer;
   }
 
   .stm-minus {
@@ -77,6 +78,7 @@
 	vertical-align: middle;
 	width: 32px;
 	padding-bottom: 9px;
+		cursor: pointer;
   }
 
   .stm-title {
@@ -106,6 +108,7 @@
 	align-items: center;
 	margin-bottom: 10px;
 	flex-direction: row;
+	cursor: default;
   }
 
   .stm-div-input {
