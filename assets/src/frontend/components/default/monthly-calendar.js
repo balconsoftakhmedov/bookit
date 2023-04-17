@@ -478,6 +478,18 @@ export default {
 			this.StaffChildTotal = parseFloat(this.selectedStaffChild) * parseFloat(current_service.child_price);
 			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
 		},
+		PlusChangeStaffChild(service) {
+			this.selectedStaffChild = this.selectedStaffChild + 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffChildTotal = parseFloat(this.selectedStaffChild) * parseFloat(current_service.child_price);
+			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+		},
+		MinusChangeStaffChild(service) {
+			this.selectedStaffChild = (this.selectedStaffChild == 0) ? 0 : this.selectedStaffChild - 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffChildTotal = parseFloat(this.selectedStaffChild) * parseFloat(current_service.child_price);
+			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+		},
 		handleChangeTimeSlot(event) {
 			this.selectedTime = this.staffTimeSlots.find(time => time.value === event.target.value);
 			this.showpeople = true;
