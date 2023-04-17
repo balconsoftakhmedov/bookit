@@ -10,6 +10,9 @@ export default {
       <div class="col-3">
         Adult Price <input type="number" step="0.01" :value="parseFloat(item.price).toFixed(2)" :disabled="!check" placeholder="Price" @input="handleInput($event)">
         Child Price <input type="number" step="0.01" :value="parseFloat(item.child_price).toFixed(2)" :disabled="!check" placeholder="Price" @input="handleInputChild($event)">
+        Double picnic basket <input type="number" step="0.01" :value="parseFloat(item.basket_price).toFixed(2)" :disabled="!check" placeholder="Price" @input="handleInputBasket($event)">
+        Double picnic basket (vegan cheese) <input type="number" step="0.01" :value="parseFloat(item.basket_cheese_price).toFixed(2)" :disabled="!check" placeholder="Price" @input="handleInputBasketCheese($event)">
+
       </div>
       <div class="col-3"></div>
       </div>
@@ -43,6 +46,14 @@ export default {
 		},
 		handleInputChild(event) {
 			this.item.child_price = event.target.value;
+			this.$emit('emitStaffServices', this.check, this.item);
+		},
+		handleInputBasket(event){
+			this.item.basket_price = event.target.value;
+			this.$emit('emitStaffServices', this.check, this.item);
+		},
+		handleInputBasketCheese(event){
+			this.item.basket_cheese_price = event.target.value;
 			this.$emit('emitStaffServices', this.check, this.item);
 		},
 	}
