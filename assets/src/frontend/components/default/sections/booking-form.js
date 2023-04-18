@@ -20,6 +20,8 @@ export default {
                       <div class="text-bold">{{ service.title }}</div>
                       <div class="text-bold">מבוגר -{{ selectedStaffAdult }} - {{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
                       <div class="text-bold">ילד (עד גיל 18) - {{ selectedStaffChild }} - {{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
+                      <div class="text-bold">סל פיקניק זוגי - {{ selectedStaffBasket }} - {{ generatePrice(parseFloat(StaffBasketTotal), settings) }}</div>
+                     <div class="text-bold"> סל פיקניק זוגי (גבינה טבעונית) - {{ selectedStaffBasketCheese }} - {{ generatePrice(parseFloat(StaffBasketCheeseTotal), settings) }}</div>
                       <div class="text-bold">סה״כ - {{ generatePrice(parseFloat(StaffTotal), settings) }}</div>
 
                       <div class="text-uppercase">{{ translations.employee }}: {{ staff.full_name }}</div>
@@ -281,6 +283,22 @@ export default {
 				this.$store.commit('setSelectedStaffChild', staff);
 			}
 		},
+		selectedStaffBasket: {
+			get() {
+				return this.$store.getters.getSelectedStaffBasket;
+			},
+			set(staff) {
+				this.$store.commit('setSelectedStaffBasket', staff);
+			}
+		},
+		selectedStaffBasketCheese: {
+			get() {
+				return this.$store.getters.getSelectedStaffBasketCheese;
+			},
+			set(staff) {
+				this.$store.commit('setSelectedStaffBasketCheese', staff);
+			}
+		},
 		StaffAdultTotal: {
 			get() {
 				return this.$store.getters.getStaffAdultTotal;
@@ -379,14 +397,24 @@ export default {
 					service_id: this.service.id,
 					price: this.getStaffPrice(this.staff, this.service, this.settings),
 					clear_price: this.staff.staff_services.find(staff_service => staff_service.id == this.service.id).price,
+
 					adult_total_price: this.generatePrice(parseFloat(this.StaffAdultTotal), this.settings),
 					clear_adult_total_price: this.StaffAdultTotal,
 					child_total_price: this.generatePrice(parseFloat(this.StaffChildTotal), this.settings),
 					clear_child_total_price: this.StaffChildTotal,
+					basket_total_price: this.generatePrice(parseFloat(this.StaffBasketTotal), this.settings),
+					clear_basket_total_price: this.StaffBasketTotal,
+					basket_cheese_total_price: this.generatePrice(parseFloat(this.StaffBasketCheeseTotal), this.settings),
+					clear_basket_cheese_total_price: this.StaffBasketCheeseTotal,
+
 					total_price: this.generatePrice(parseFloat(this.StaffTotal), this.settings),
 					clear_total_price: this.StaffTotal,
+
 					adult_qty: this.selectedStaffAdult,
 					child_qty: this.selectedStaffChild,
+					basket_qty: this.selectedStaffBasket,
+					basket_cheese_qty: this.selectedStaffBasketCheese,
+
 					user_id: this.user_id,
 					date_timestamp: this.calendarAppointmentsDate.unix(),
 					start_time: this.time.unix(),

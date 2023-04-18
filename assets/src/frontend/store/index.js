@@ -148,6 +148,12 @@ export default {
 		setSelectedStaffChild(state, selectedStaffChild) {
 			state.selectedStaffChild = selectedStaffChild;
 		},
+		setSelectedStaffBasket(state, selectedStaffBasket) {
+			state.selectedStaffBasket = selectedStaffBasket;
+		},
+		setSelectedStaffBasketCheese(state, selectedStaffBasketCheese) {
+			state.selectedStaffBasketCheese = selectedStaffBasketCheese;
+		},
 		setStaffTotal(state, StaffTotal) {
 			state.StaffTotal = StaffTotal;
 		},
