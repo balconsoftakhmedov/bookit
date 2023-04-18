@@ -1672,6 +1672,22 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         this.$store.commit('setStaffChildTotal', price);
       }
     },
+    StaffBasketTotal: {
+      get: function get() {
+        return this.$store.getters.getStaffBasketTotal;
+      },
+      set: function set(price) {
+        this.$store.commit('setStaffBasketTotal', price);
+      }
+    },
+    StaffBasketCheeseTotal: {
+      get: function get() {
+        return this.$store.getters.getStaffBasketCheeseTotal;
+      },
+      set: function set(price) {
+        this.$store.commit('setStaffBasketCheeseTotal', price);
+      }
+    },
     StaffTotal: {
       get: function get() {
         return this.$store.getters.getStaffTotal;

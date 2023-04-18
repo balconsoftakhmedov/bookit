@@ -315,6 +315,22 @@ export default {
 				this.$store.commit('setStaffChildTotal', price);
 			}
 		},
+		StaffBasketTotal: {
+			get() {
+				return this.$store.getters.getStaffBasketTotal;
+			},
+			set(price) {
+				this.$store.commit('setStaffBasketTotal', price);
+			}
+		},
+		StaffBasketCheeseTotal: {
+			get() {
+				return this.$store.getters.getStaffBasketCheeseTotal;
+			},
+			set(price) {
+				this.$store.commit('setStaffBasketCheeseTotal', price);
+			}
+		},
 		StaffTotal: {
 			get() {
 				return this.$store.getters.getStaffTotal;

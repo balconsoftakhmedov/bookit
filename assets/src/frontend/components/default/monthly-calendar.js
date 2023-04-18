@@ -136,9 +136,9 @@ export default {
                   <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <div class="stm-plus" @click="PlusChangeStaffAdult(selectedService)">+</div>
+                      <button class="stm-plus" @click="PlusChangeStaffAdult(selectedService)">+</button>
                       <div class="stm-number">{{ selectedStaffAdult }}</div>
-                      <div class="stm-minus" @click="MinusChangeStaffAdult(selectedService)">-</div>
+                      <button class="stm-minus" @click="MinusChangeStaffAdult(selectedService)">-</button>
                     </div>
                     <div class="stm-title">
                       <input type="hidden" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @keyup="handleChangeStaffAdult($event, selectedService)">מבוגר  {{ getStaffPrice(staff, selectedService, settings) }}
@@ -147,9 +147,9 @@ export default {
                   <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <div class="stm-plus" @click="PlusChangeStaffChild(selectedService)">+</div>
+                      <button class="stm-plus" @click="PlusChangeStaffChild(selectedService)">+</button>
                       <div class="stm-number">{{ selectedStaffChild }}</div>
-                      <div class="stm-minus" @click="MinusChangeStaffChild(selectedService)">-</div>
+                      <button class="stm-minus" @click="MinusChangeStaffChild(selectedService)">-</button>
                     </div>
                     <div class="stm-title">
                       <input type="hidden" name="staff_child_number" class="stm-input" :value="selectedStaffChild" @keyup="handleChangeStaffChild($event, selectedService)"> ילד (עד גיל 18) -
@@ -159,9 +159,9 @@ export default {
                   <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffBasketTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <div class="stm-plus" @click="PlusChangeStaffBasket(selectedService)">+</div>
+                      <button class="stm-plus" @click="PlusChangeStaffBasket(selectedService)">+</button>
                       <div class="stm-number">{{ selectedStaffBasket }}</div>
-                      <div class="stm-minus" @click="MinusChangeStaffBasket(selectedService)">-</div>
+                      <button class="stm-minus" @click="MinusChangeStaffBasket(selectedService)">-</button>
                     </div>
                     <div class="stm-title">
                   סל פיקניק זוגי
@@ -171,9 +171,9 @@ export default {
                  <div class="stm-label-row">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffBasketCheeseTotal), settings) }}</div>
                     <div class="stm-div-input">
-                      <div class="stm-plus" @click="PlusChangeStaffBasketCheese(selectedService)">+</div>
+                      <button class="stm-plus" @click="PlusChangeStaffBasketCheese(selectedService)">+</button>
                       <div class="stm-number">{{ selectedStaffBasketCheese }}</div>
-                      <div class="stm-minus" @click="MinusChangeStaffBasketCheese(selectedService)">-</div>
+                      <button class="stm-minus" @click="MinusChangeStaffBasketCheese(selectedService)">-</button>
                     </div>
                     <div class="stm-title">	                  סל פיקניק זוגי (גבינה טבעונית) {{ getStaffBasketCheesePrice(staff, selectedService, settings) }}
                     </div>
