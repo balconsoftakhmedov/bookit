@@ -157,6 +157,31 @@ export default {
                     </div>
                   </div>
                   <div class="stm-label-row">
+                    <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffBasketTotal), settings) }}</div>
+                    <div class="stm-div-input">
+                      <div class="stm-plus" @click="PlusChangeStaffBasket(selectedService)">+</div>
+                      <div class="stm-number">{{ selectedStaffBasket }}</div>
+                      <div class="stm-minus" @click="MinusChangeStaffBasket(selectedService)">-</div>
+                    </div>
+                    <div class="stm-title">
+                  סל פיקניק זוגי
+                      {{ getStaffBasketPrice(staff, selectedService, settings) }}
+                    </div>
+                  </div>
+                 <div class="stm-label-row">
+                    <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffBasketCheeseTotal), settings) }}</div>
+                    <div class="stm-div-input">
+                      <div class="stm-plus" @click="PlusChangeStaffBasketCheese(selectedService)">+</div>
+                      <div class="stm-number">{{ selectedStaffBasketCheese }}</div>
+                      <div class="stm-minus" @click="MinusChangeStaffBasketCheese(selectedService)">-</div>
+                    </div>
+                    <div class="stm-title">
+	                  סל פיקניק זוגי
+                      (גבינה טבעונית)
+                      {{ getStaffBasketCheesePrice(staff, selectedService, settings) }}
+                    </div>
+                  </div>
+                  <div class="stm-label-row">
                     <div class="stm-total">{{ generatePrice(parseFloat(StaffTotal), settings) }}</div>
                     <div class="stm-div-total-label">
                       סה״כ
@@ -269,6 +294,22 @@ export default {
 				this.$store.commit('setSelectedStaffChild', staff);
 			}
 		},
+		selectedStaffBasket: {
+			get() {
+				return this.$store.getters.getSelectedStaffBasket;
+			},
+			set(staff) {
+				this.$store.commit('setSelectedStaffBasket', staff);
+			}
+		},
+		selectedStaffBasketCheese: {
+			get() {
+				return this.$store.getters.getSelectedStaffBasketCheese;
+			},
+			set(staff) {
+				this.$store.commit('setSelectedStaffBasketCheese', staff);
+			}
+		},
 		StaffAdultTotal: {
 			get() {
 				return this.$store.getters.getStaffAdultTotal;
@@ -283,6 +324,22 @@ export default {
 			},
 			set(price) {
 				this.$store.commit('setStaffChildTotal', price);
+			}
+		},
+		StaffBasketTotal: {
+			get() {
+				return this.$store.getters.getStaffBasketTotal;
+			},
+			set(price) {
+				this.$store.commit('setStaffBasketTotal', price);
+			}
+		},
+		StaffBasketCheeseTotal: {
+			get() {
+				return this.$store.getters.getStaffBasketCheeseTotal;
+			},
+			set(price) {
+				this.$store.commit('setStaffBasketCheeseTotal', price);
 			}
 		},
 		StaffTotal: {
@@ -449,19 +506,19 @@ export default {
 			this.selectedStaffAdult = (event.target.value) ? event.target.value : 0;
 			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
 			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
-			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+			this.StaffTotal += this.StaffAdultTotal;
 		},
 		PlusChangeStaffAdult(service) {
 			this.selectedStaffAdult = this.selectedStaffAdult + 1;
 			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
 			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
-			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+			this.StaffTotal += this.StaffAdultTotal;
 		},
 		MinusChangeStaffAdult(service) {
 			this.selectedStaffAdult = (this.selectedStaffAdult == 0) ? 0 : this.selectedStaffAdult - 1;
 			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
 			this.StaffAdultTotal = parseFloat(this.selectedStaffAdult) * parseFloat(current_service.price);
-			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+			this.StaffTotal += this.StaffAdultTotal;
 		},
 		stmPeopleOpen(event) {
 			this.showpeople = (this.showpeople == false) ? true : false;
@@ -482,13 +539,37 @@ export default {
 			this.selectedStaffChild = this.selectedStaffChild + 1;
 			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
 			this.StaffChildTotal = parseFloat(this.selectedStaffChild) * parseFloat(current_service.child_price);
-			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+			this.StaffTotal += this.StaffChildTotal;
 		},
 		MinusChangeStaffChild(service) {
 			this.selectedStaffChild = (this.selectedStaffChild == 0) ? 0 : this.selectedStaffChild - 1;
 			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
 			this.StaffChildTotal = parseFloat(this.selectedStaffChild) * parseFloat(current_service.child_price);
-			this.StaffTotal = this.StaffAdultTotal + this.StaffChildTotal;
+			this.StaffTotal += this.StaffChildTotal;
+		},
+		PlusChangeStaffBasket(service) {
+			this.selectedStaffBasket = this.selectedStaffBasket + 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffBasketTotal = parseFloat(this.selectedStaffBasket) * parseFloat(current_service.basket_price);
+			this.StaffTotal += this.StaffBasketTotal;
+		},
+		MinusChangeStaffBasket(service) {
+			this.selectedStaffBasket = (this.selectedStaffBasket == 0) ? 0 : this.selectedStaffBasket - 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffBasketTotal = parseFloat(this.selectedStaffBasket) * parseFloat(current_service.basket_price);
+			this.StaffTotal -= this.StaffBasketTotal;
+		},
+		PlusChangeStaffBasketCheese(service) {
+			this.selectedStaffBasket = this.selectedStaffBasket + 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffBasketTotal = parseFloat(this.selectedStaffBasket) * parseFloat(current_service.basket_price);
+			this.StaffTotal += this.StaffBasketTotal;
+		},
+		MinusChangeStaffBasketCheese(service) {
+			this.selectedStaffBasketCheese = (this.selectedStaffBasketCheese == 0) ? 0 : this.selectedStaffBasketCheese - 1;
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			this.StaffBasketCheeseTotal = parseFloat(this.selectedStaffBasketCheese) * parseFloat(current_service.basket_cheese_price);
+			this.StaffTotal -= this.StaffBasketCheeseTotal;
 		},
 		handleChangeTimeSlot(event) {
 			this.selectedTime = this.staffTimeSlots.find(time => time.value === event.target.value);
