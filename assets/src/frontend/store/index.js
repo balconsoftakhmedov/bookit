@@ -21,6 +21,10 @@ export default {
     selectedStaffChild: 0,
     StaffChildTotal: 0,
     StaffAdultTotal: 0,
+    selectedStaffBasket: 0,
+    selectedStaffBasketCheese: 0,
+    StaffBasketTotal: 0,
+    StaffBasketCheeseTotal: 0,
     StaffTotal: 0,
     selectedTime: null,
     stepNavigation: [],
@@ -67,6 +71,10 @@ export default {
     getSelectedStaffChild: state => state.selectedStaffChild,
     getStaffAdultTotal: state => state.StaffAdultTotal,
     getStaffChildTotal: state => state.StaffChildTotal,
+    getSelectedStaffBasket: state => state.selectedStaffBasket,
+    getSelectedStaffBasketCheese: state => state.selectedStaffBasketCheese,
+    getStaffBasketTotal: state => state.StaffBasketTotal,
+    getStaffBasketCheeseTotal: state => state.StaffBasketCheeseTotal,
     getStaffTotal: state => state.StaffTotal,
     getSelectedTime: state => state.selectedTime,
     getDisabledTimeSlots: state => state.disabledTimeSlots,
@@ -147,6 +155,12 @@ export default {
     },
     setStaffChildTotal(state, StaffChildTotal) {
       state.StaffChildTotal = StaffChildTotal;
+    },
+      setStaffBasketTotal(state, StaffBasketTotal) {
+      state.StaffBasketTotal = StaffBasketTotal;
+    },
+    setStaffBasketCheeseTotal(state, StaffBasketCheeseTotal) {
+      state.StaffBasketCheeseTotal = StaffBasketCheeseTotal;
     },
     setSelectedTime(state, time) {
       state.selectedTime = time;

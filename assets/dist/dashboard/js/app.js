@@ -6139,7 +6139,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  template: "\n      <div class=\"bookit-row\">\n      <div class=\"col-2 staff-services\">\n        <label class=\"text-capitalize staff-services-label\">\n          <input type=\"checkbox\" :value=\"item.id\" :checked=\"check\" @change=\"handleChange($event)\">\n          <span>{{ service.title }}</span>\n        </label>\n      </div>\n      <div class=\"col-3\">\n        Adult Price <input type=\"number\" step=\"0.01\" :value=\"parseFloat(item.price).toFixed(2)\" :disabled=\"!check\" placeholder=\"Price\" @input=\"handleInput($event)\">\n        Child Price <input type=\"number\" step=\"0.01\" :value=\"parseFloat(item.child_price).toFixed(2)\" :disabled=\"!check\" placeholder=\"Price\" @input=\"handleInputChild($event)\">\n      </div>\n      <div class=\"col-3\"></div>\n      </div>\n\t",
+  template: "\n      <div class=\"bookit-row\">\n      <div class=\"col-2 staff-services\">\n        <label class=\"text-capitalize staff-services-label\">\n          <input type=\"checkbox\" :value=\"item.id\" :checked=\"check\" @change=\"handleChange($event)\">\n          <span>{{ service.title }}</span>\n        </label>\n      </div>\n      <div class=\"col-3\">\n        Adult Price <input type=\"number\" step=\"0.01\" :value=\"parseFloat(item.price).toFixed(2)\" :disabled=\"!check\" placeholder=\"Price\" @input=\"handleInput($event)\">\n        Child Price <input type=\"number\" step=\"0.01\" :value=\"parseFloat(item.child_price).toFixed(2)\" :disabled=\"!check\" placeholder=\"Price\" @input=\"handleInputChild($event)\">\n        Double picnic basket <input type=\"number\" step=\"0.01\" :value=\"parseFloat(item.basket_price).toFixed(2)\" :disabled=\"!check\" placeholder=\"Price\" @input=\"handleInputBasket($event)\">\n        Double picnic basket (vegan cheese) <input type=\"number\" step=\"0.01\" :value=\"parseFloat(item.basket_cheese_price).toFixed(2)\" :disabled=\"!check\" placeholder=\"Price\" @input=\"handleInputBasketCheese($event)\">\n\n      </div>\n      <div class=\"col-3\"></div>\n      </div>\n\t",
   data: function data() {
     return {
       check: false,
@@ -6171,6 +6171,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleInputChild: function handleInputChild(event) {
       this.item.child_price = event.target.value;
+      this.$emit('emitStaffServices', this.check, this.item);
+    },
+    handleInputBasket: function handleInputBasket(event) {
+      this.item.basket_price = event.target.value;
+      this.$emit('emitStaffServices', this.check, this.item);
+    },
+    handleInputBasketCheese: function handleInputBasketCheese(event) {
+      this.item.basket_cheese_price = event.target.value;
       this.$emit('emitStaffServices', this.check, this.item);
     }
   }

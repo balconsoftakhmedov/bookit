@@ -3660,6 +3660,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       });
       return this.generatePrice(parseFloat(current_service.child_price), settings);
     },
+    getStaffBasketPrice: function getStaffBasketPrice(staff, service, settings) {
+      var current_service = staff.staff_services.find(function (staff_service) {
+        return staff_service.id == service.id;
+      });
+      return this.generatePrice(parseFloat(current_service.basket_price), settings);
+    },
+    getStaffBasketCheesePrice: function getStaffBasketCheesePrice(staff, service, settings) {
+      var current_service = staff.staff_services.find(function (staff_service) {
+        return staff_service.id == service.id;
+      });
+      return this.generatePrice(parseFloat(current_service.basket_cheese_price), settings);
+    },
     generatePrice: function generatePrice(price, settings) {
       var formatted_price = parseFloat(price).toFixed(settings.decimals_number).replace('.', settings.decimals_separator);
       formatted_price = formatted_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, settings.thousands_separator);
