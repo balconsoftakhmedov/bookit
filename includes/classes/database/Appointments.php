@@ -383,6 +383,7 @@ class Appointments extends DatabaseModel {
 			self::$delete,
 			'start_time'
 		);
+
 		return $wpdb->get_results(
 			$wpdb->prepare(
 				$sql,

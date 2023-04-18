@@ -12,6 +12,10 @@ export default {
 			let current_service = staff.staff_services.find(staff_service => staff_service.id == service.id);
 			return parseFloat(current_service.price);
 		},
+		getStaffAnyClearPrice(staff, service) {
+			let current_service = staff.staff_services.find(staff_service => staff_service.id == service.id);
+			return parseFloat(current_service.price) + parseFloat(current_service.child_price) + parseFloat(current_service.basket_price) + parseFloat(current_service.basket_cheese_price);
+		},
 		getStaffPrice(staff, service, settings) {
 			let current_service = staff.staff_services.find(staff_service => staff_service.id == service.id);
 			return this.generatePrice(parseFloat(current_service.price), settings);

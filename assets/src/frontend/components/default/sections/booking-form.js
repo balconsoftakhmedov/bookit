@@ -18,11 +18,11 @@ export default {
                   <div class="appointment-info bookit-row">
                     <div class="col-2">
                       <div class="text-bold">{{ service.title }}</div>
-                      <div class="text-bold">מבוגר -{{ selectedStaffAdult }} - {{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
-                      <div class="text-bold">ילד (עד גיל 18) - {{ selectedStaffChild }} - {{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
-                      <div class="text-bold">סל פיקניק זוגי - {{ selectedStaffBasket }} - {{ generatePrice(parseFloat(StaffBasketTotal), settings) }}</div>
-                     <div class="text-bold"> סל פיקניק זוגי (גבינה טבעונית) - {{ selectedStaffBasketCheese }} - {{ generatePrice(parseFloat(StaffBasketCheeseTotal), settings) }}</div>
-                      <div class="text-bold">סה״כ - {{ generatePrice(parseFloat(StaffTotal), settings) }}</div>
+                      <div class="text-bold" v-if="selectedStaffAdult > 0">מבוגר -{{ selectedStaffAdult }} - {{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
+                      <div class="text-bold" v-if="selectedStaffChild > 0">ילד (עד גיל 18) - {{ selectedStaffChild }} - {{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
+                      <div class="text-bold" v-if="selectedStaffBasket > 0">סל פיקניק זוגי - {{ selectedStaffBasket }} - {{ generatePrice(parseFloat(StaffBasketTotal), settings) }}</div>
+                     <div class="text-bold" v-if="selectedStaffBasketCheese > 0"> סל פיקניק זוגי (גבינה טבעונית) - {{ selectedStaffBasketCheese }} - {{ generatePrice(parseFloat(StaffBasketCheeseTotal), settings) }}</div>
+                      <div class="text-bold" >סה״כ - {{ generatePrice(parseFloat(StaffTotal), settings) }}</div>
 
                       <div class="text-uppercase">{{ translations.employee }}: {{ staff.full_name }}</div>
                     </div>
@@ -83,7 +83,7 @@ export default {
                 </div>
 
                 <div class="bookit-modal-footer bookit-row">
-                  <div class="col-2-3" v-if="getStaffClearPrice(staff, service) > 0">
+                  <div class="col-2-3" v-if="getStaffAnyClearPrice(staff, service) > 0">
                     <div v-for="(item, key) in payment_methods" class="payment-method">
                       <input type="radio" :id="key" class="display-inline-block" v-model="payment_method" :value="key">
                       <label :for="key" class="display-inline-block">{{ translations[key] }}</label>

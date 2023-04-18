@@ -133,7 +133,7 @@ export default {
                 <div class="stm-label">
                   <input type="radio" name="staff" :value="staff.id" @change="handleChangeStaff($event)" :checked="selectedStaff && selectedStaff.id === staff.id">
                   {{ staff.full_name }}
-                  <div class="stm-label-row">
+                  <div class="stm-label-row" v-if="CurrentStaffServicePrice(selectedService,'price') > 0">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffAdultTotal), settings) }}</div>
                     <div class="stm-div-input">
                       <button class="stm-plus" @click="PlusChangeStaffAdult(selectedService)">+</button>
@@ -144,7 +144,7 @@ export default {
                       <input type="hidden" name="staff_adult_number" class="stm-input" :value="selectedStaffAdult" @keyup="handleChangeStaffAdult($event, selectedService)">מבוגר  {{ getStaffPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
-                  <div class="stm-label-row">
+                  <div class="stm-label-row" v-if="CurrentStaffServicePrice(selectedService,'child_price') > 0">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffChildTotal), settings) }}</div>
                     <div class="stm-div-input">
                       <button class="stm-plus" @click="PlusChangeStaffChild(selectedService)">+</button>
@@ -156,7 +156,7 @@ export default {
                       {{ getStaffChildPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
-                  <div class="stm-label-row">
+                  <div class="stm-label-row" v-if="CurrentStaffServicePrice(selectedService,'basket_price') > 0">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffBasketTotal), settings) }}</div>
                     <div class="stm-div-input">
                       <button class="stm-plus" @click="PlusChangeStaffBasket(selectedService)">+</button>
@@ -164,18 +164,18 @@ export default {
                       <button class="stm-minus" @click="MinusChangeStaffBasket(selectedService)">-</button>
                     </div>
                     <div class="stm-title">
-                  סל פיקניק זוגי
+                      סל פיקניק זוגי
                       {{ getStaffBasketPrice(staff, selectedService, settings) }}
                     </div>
                   </div>
-                 <div class="stm-label-row">
+                  <div class="stm-label-row" v-if="CurrentStaffServicePrice(selectedService,'basket_cheese_price') > 0">
                     <div class="stm-subtotal">{{ generatePrice(parseFloat(StaffBasketCheeseTotal), settings) }}</div>
                     <div class="stm-div-input">
                       <button class="stm-plus" @click="PlusChangeStaffBasketCheese(selectedService)">+</button>
                       <div class="stm-number">{{ selectedStaffBasketCheese }}</div>
                       <button class="stm-minus" @click="MinusChangeStaffBasketCheese(selectedService)">-</button>
                     </div>
-                    <div class="stm-title">	                  סל פיקניק זוגי (גבינה טבעונית) {{ getStaffBasketCheesePrice(staff, selectedService, settings) }}
+                    <div class="stm-title"> סל פיקניק זוגי (גבינה טבעונית) {{ getStaffBasketCheesePrice(staff, selectedService, settings) }}
                     </div>
                   </div>
                   <div class="stm-label-row">
@@ -543,6 +543,10 @@ export default {
 			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
 			this.StaffChildTotal = parseFloat(this.selectedStaffChild) * parseFloat(current_service.child_price);
 			this.StaffTotal = this.StaffBasketTotal + this.StaffBasketCheeseTotal + this.StaffChildTotal + this.StaffAdultTotal;
+		},
+		CurrentStaffServicePrice(service,key_price) {
+			let current_service = this.selectedStaff.staff_services.find(staff_service => staff_service.id == service.id);
+			return current_service[key_price];
 		},
 		PlusChangeStaffBasket(service) {
 			this.selectedStaffBasket = this.selectedStaffBasket + 1;

@@ -203,6 +203,7 @@ class AppointmentController {
 				}
 				$appointments = array_merge($gcBusyTimeSlots, $appointments);
 			}
+
 			/** if google calendar addon is installed | end */
 			wp_send_json_success( $appointments );
 		}
