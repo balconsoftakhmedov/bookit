@@ -3291,6 +3291,8 @@
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .weeks {
   width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .weeks span {
   float: left;
@@ -3312,6 +3314,8 @@
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week {
   direction: ltr;
+  display: flex;
+  flex-direction: row-reverse;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date {
   position: relative;
@@ -3331,7 +3335,7 @@
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date.today span {
   border: solid 1px #ffffff;
   border-top: solid 4px #ffffff;
-  padding: 4px 7px 7px;
+  padding: 14px;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date:hover .day-info {
   display: block;
@@ -3349,7 +3353,7 @@
   background-color: #ffffff;
   border: solid 1px #dfe6e9;
   border-top: solid 4px #ffd400;
-  padding: 4px 7px 7px;
+  padding: 16px;
 }
 #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date:hover .selected-day-month, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date:focus .selected-day-month, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date:active .selected-day-month, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date.selected-day .selected-day-month {
   position: absolute;
@@ -3385,7 +3389,7 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  padding: 8px;
+  padding: 17px;
   color: #000000;
   font-size: 13px;
   line-height: 15px;
@@ -3556,10 +3560,10 @@
     min-height: 60px;
   }
   #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date:hover span.available, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date:focus span.available, #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date:active span.available {
-    padding: 4px;
+    padding: 16px;
   }
   #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date span {
-    padding: 0px;
+    padding: 16px;
   }
   #bookit-app .bookit-app-content .default-theme .monthly-calendar .calendar-container .calendar-body .dates .week .date span .day-info {
     font-size: 8px;

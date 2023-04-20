@@ -407,13 +407,13 @@ export default {
 
 		isMobile() {
 			if (screen.width <= 760) {
-				return true;
+				/*return true; */
 			}
 			return false;
 		},
 		isTablet() {
 			if (screen.width > 760 && screen.width < 836) {
-				return true;
+				/*return true; */
 			}
 			return false;
 		},

@@ -71,13 +71,13 @@ export default {
                   :key="day.date.dayOfYear()"
               >
                 <template v-if="day.dayOff || ! day.currentMonth">
-                  <span :class="[{'day-off': day.dayOff, 'inactive': ! day.currentMonth}]">{{ day.date.date() }} {{ day.date.format('MMMM') }}</span>
+                  <span :class="[{'day-off': day.dayOff, 'inactive': ! day.currentMonth}]">{{ day.date.date() }} </span>
 
                 </template>
                 <template v-else>
-                  <span v-if="day.date.isBefore(today)" class="day-off">{{ day.date.date() }} {{ day.date.format('MMMM') }}</span>
+                  <span v-if="day.date.isBefore(today)" class="day-off">{{ day.date.date() }} </span>
 
-                  <span v-else class="available" @click="handleChangeDay(day, weekIndex)">{{ day.date.date() }} {{ day.date.format('MMMM') }}</span>
+                  <span v-else class="available" @click="handleChangeDay(day, weekIndex)">{{ day.date.date() }} </span>
 
                   <div v-if="isEqualDate(day.date, calendar.curAppointmentsDate)" class="selected-day-flag"></div>
                 </template>
